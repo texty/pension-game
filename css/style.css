@@ -1,0 +1,103 @@
+#main-wrapper {
+    /*background-color: #f4f4f4;*/
+}
+
+.intro-text {
+    font-size: 2em;
+    margin: 0 auto;
+}
+
+.header-text {
+    font-size: 50px;
+    padding: 10px 0;
+    font-weight: 600;
+}
+
+h4 {
+    font-weight: 600;
+    margin: 20px 0 0 0;
+}
+
+.container-intro {
+    /*border-bottom: 1px solid #d1d1d1;*/
+    padding: 0 50px;
+}
+
+#age-handle {
+    width: 1.8em;
+    height: 1.6em;
+}
+
+#payers-handle {
+    width: 2.8em;
+    height: 1.6em;
+}
+
+#esv-handle {
+    width: 3em;
+    height: 1.6em;
+}
+
+#pension-handle{
+    width: 3em;
+    height: 1.6em;
+}
+
+#deficit {
+    width: 700px;
+    height:700px;
+    position: absolute;
+}
+
+h4 {
+    /*line-height: 1.2em;*/
+    /*padding-top: 20px;*/
+}
+
+#age-handle,
+#payers-handle,
+#esv-handle,
+#pension-handle {
+    background: #337ab7;
+    color: white;
+}
+
+#age,
+#payers,
+#esv,
+#pension {
+    background: #95adc1;
+    text-align: center;
+}
+
+.min {
+    position: absolute;
+    left: -8px;
+    top: 16px;
+}
+
+.max {
+    position: absolute;
+    right: -8px;
+    top: 16px;
+}
+
+
+#result9 {
+    color: darkred;
+}
+
+.col-md-4 {
+    /*height: 400px;*/
+}
+
+#main-container {
+    height: 900px;
+}
+
+.history {
+    /*position: relative;*/
+    /*float: left;*/
+    width: 250px;
+}
+

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ua">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="___">
+    <meta name="author" content="___">
+
+    <title>Pension Game</title>
+
+    <!--jQuery UI CSS-->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <!--<link rel="stylesheet" href="css/jquery-ui.css">-->
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Base CSS for header and footer-->
+    <link href="css/template-style.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <link href="css/ballance_chart.css" rel="stylesheet">
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,800&subset=cyrillic,latin' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=PT+Sans&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+    <!-- OpenGraph Meta Tags -->
+    <meta property="og:site_name" content="ТЕКСТИ.ORG.UA"/>
+    <meta property="og:type" content="article"/>
+    <meta property="og:title" content="___"/>
+    <meta property="og:image" content="http://texty.org.ua/d/___/share.png"/>
+    <meta property="og:description" content="___"/>
+    <meta property="og:url" content="http://texty.org.ua/d/___/"/>
+    <meta property="article:publisher" content="https://www.facebook.com/TEXTY.org.ua"/>
+    <meta property="article:author" content="___">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:site" content="@textyorgua"/>
+    <meta property="twitter:account_id" content="49572937"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:url" content="http://texty.org.ua/d/___/"/>
+    <meta name="twitter:title" content="___"/>
+    <meta name="twitter:description" content="___"/>
+    <meta name="twitter:image:src" content="http://texty.org.ua/d/___/share.png"/>
+    <meta name="twitter:image:width" content="1200"/>
+    <meta name="twitter:image:height" content="630"/>
+
+</head>
+<body>
+        <!--лого і соцмережі-->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
+                <a href="http://texty.org.ua"><img class="img-responsive logo" src="img/logo.svg"></a>
+            </div>
+            <div class="col-lg-1 col-lg-offset-9 col-md-1 col-md-offset-9 col-sm-2 col-sm-offset-6 col-xs-2 col-xs-offset-6">
+                <div class="social-icons">
+                    <a href="https://twitter.com/intent/tweet?text=http://texty.org.ua/d/___/" class="share-btn"><i class="fa fa-twitter fa-fw fa-2x social-tw"></i></a>
+                    <a href="https://www.facebook.com/sharer/sharer.php?u=http://texty.org.ua/d/___/" class="share-btn"><i class="fa fa-facebook fa-fw fa-2x social-fb"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <h1 class="text-center header-text">Врятуй бюджет Пенсійного фонду</h1>
+        </div>
+
+        <div class="container container-intro text-center">
+            <p class="intro-text article-text">Ви прокралися до таємного пункту керування українською пенсійною системою. Рухаючи наданими параметрами, Ви можете керувати балансом Пенсійного фонду і запобігти колапсу усієї системи. Ваше завдання — зменшити дефіцит Пенсійного фонду, не допустивши його падіння до катастрофічної цифри — 100 млрд грн. Від Вас залежить доля понад 10 мільйонів пенсіонерів. І Ваша доля також — Ви ж теж через якийсь час станете одним із них.</p>
+
+            <div class="row">
+                <h4>Історія показників за останні 10 років</h4>
+                <br>
+                <div class="col-md-3 col-sm-6">
+                    <p>Пенсійний вік:</p>
+                    <img src="img/graph-template.png" class="history"  alt="">
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <p>Частка платників:</p>
+                    <img src="img/graph-template.png" class="history" alt="">
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <p>Ставка ЄСВ:</p>
+                    <img src="img/graph-template.png" class="history" alt="">
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <p>Середня пенсія:</p>
+                    <img src="img/graph-template.png" class="history" alt="">
+                </div>
+            </div>
+        </div>
+
+        <hr>
+        <div class="row">
+            <div class="col-md-4">
+                <h4>Пенсійний вік</h4>
+                <p>Зараз чоловіки йдуть на пенсію у 60 років. Для жінок пенсійний вік зростає щороку на 6 місяців і у 2021-му буде таким же, як у чоловіків</p>
+
+                <!-- перший слайдер (пенсійний вік) -->
+                <div id="age">
+                    <!--<div class="pull-left"><span class="min">55</span></div>-->
+                    <!--<div class="pull-right"><span class="max">65</span></div>-->
+                    <div id="age-handle" class="ui-slider-handle"></div>
+                </div>
+
+                <!--<img src="img/graph-template.png" alt="" class="img-template">-->
+
+                <h4>Ставка ЄСВ, що йде в Пенсійний фонд</h4>
+                <p>Кошти зі сплати Єдиного соціального внеску, що йдуть на пенсійні виплати</p>
+
+                <!--другий слайдер (частка платників)-->
+                <div id="esv">
+                    <!--<div class="pull-left"><span class="min">10%</span></div>-->
+                    <!--<div class="pull-right"><span class="max">50%</span></div>-->
+                    <div id="esv-handle" class="ui-slider-handle"></div>
+                </div>
+
+                <!--<img src="img/graph-template.png" alt="" class="img-template">-->
+
+                <h4>Частка платників</h4>
+                <p>Відсоток тих, хто платить Єдиний соціальний внесок</p>
+
+                <!--третій слайдер (ставка ЄСВ)-->
+                <div id="payers">
+                    <!--<div class="pull-left"><span class="min">50%</span></div>-->
+                    <!--<div class="pull-right"><span class="max">90%</span></div>-->
+                    <div id="payers-handle" class="ui-slider-handle"></div>
+                </div>
+
+                <!--<img src="img/graph-template.png" alt="" class="img-template">-->
+
+                <h4>Пенсія</h4>
+                <p>Розмір середньої пенсії за віком (станом на початок грудня 2016 року) становить 1800 грн. <b>Зазвичай середня зарплата УТРИЧІ вища, ніж середня пенсія</b></p>
+
+                <!--четвертий слайдер (середня пенсія)-->
+                <div id="pension">
+                    <!--<div class="pull-left"><span class="min">1000 грн</span></div>-->
+                    <!--<div class="pull-right"><span class="max">10000 грн</span></div>-->
+                    <div id="pension-handle" class="ui-slider-handle"></div>
+                </div>
+
+                <!--<img src="img/graph-template.png" alt="" class="img-template">-->
+
+            </div>
+
+            <div class="col-md-8">
+                <h2>Зупини зростання дефіциту Пенсійного фонду</h2>
+                <p>На цьому графіку показаний дефіцит Пенсійного фонду. Погані демографічні показники (низька народжуваність, високий рівень еміграції молоді тощо), а також непродумані дії політиків та нестабільна ситуація в країні спричнили те, що видатки Пенсійного фонду суттєво перевищують його доходи. Через це з Державного бюджету щороку виділяються шалені кошти на покриття дефіциту (тільки у 2016 році на ці потреби було закладено понад 88 мільярдів гривень). Ці гроші натомість могли би працювати на економіку та підвищувати добробут українців.</p>
+
+                <h3>Приклад прогнозів:</h3>
+
+                <div id="deficit">
+                    <svg id="ballance_chart" width="800" height="414"></svg>
+                    <!--<img src="img/projections-template.jpg" alt="">-->
+                    <br>
+                    <h4 id="result1">Працездатні: x осіб</h4>
+                    <h4 id="result3">Платять: x осіб</h4>
+                    <h4 id="result4">Пенсіонерів: x осіб</h4>
+                    <br>
+
+                    <!--<h4 id="result5">Працездатні до пенсіонерів: x</h4>-->
+                    <!--<h4 id="result6">Платники до пенсіонерів: x</h4>-->
+                    <br>
+                    <h4 id="result7"><b>Надходження:</b> x грн</h4>
+                    <h4 id="result8"><b>Видатки:</b> x грн</h4>
+                    <br>
+
+                    <h3 id="result9">Баланс Пенс. фонду: x грн</h3>
+                </div> <!--end of #deficit-->
+            </div> <!--right part-->
+        </div> <!--end of .row-->
+<!-- End of your content -->
+
+
+<script src="lib/jquery-2.1.4.min.js"></script>
+<script src="lib/jquery-ui-1.12.1.js"></script>
+<script src="lib/bootstrap.min.js"></script>
+<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+<script src="lib/share-behavior.js"></script>
+
+<script src="lib/d3.v4.min.js"></script>
+<script src="lib/d3-jetpack.js"></script>
+<script src="js/demographics.js"></script>
+<script src="js/model.js"></script>
+<script src="js/sliders.js"></script>
+<script src="js/ballance_chart.js"></script>
+<script src="js/main.js"></script>
+
+<!--  Google analytics -->
+<!--ADD LATER-->
+
+</body>
+</html>
