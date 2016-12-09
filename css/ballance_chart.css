@@ -7,11 +7,19 @@
 
 #ballance_chart .line {
     fill: none;
-    stroke: steelblue;
-    stroke-width: 1.5px;
+    stroke: black;
+    stroke-width: 0.5px;
 }
 
 #ballance_chart .chart.old .line {
-    stroke: #cccccc;
+    stroke: #eee;
 }
+
+#ballance_chart {
+    margin-left: -53px;
+}
+
+/*body {*/
+    /*background-image: url(../img/back1.jpg);*/
+/*}*/
 

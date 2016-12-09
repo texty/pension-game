@@ -37,14 +37,13 @@
         
         ballance_chart.draw(ballance);
     });
+
+    $("#start").on("click", ballance_chart.start_timer);
     
-    
-    
-    
-    
+
     function ballance_data(params) {
         return years.map(function(y) {return {
-            year: y,
+            year: new Date(y,1,1),
             ballance: model.calcBalance(params.pension_age, params.payers_rate, params.esv_rate, params.pension_avg, y)
         }});
     }

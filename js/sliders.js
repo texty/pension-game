@@ -11,18 +11,18 @@ var sliders = (function() {
     };
     
     module.sliders  = {
-        pension_age: init_slider('#age-handle','#age', 55, 65, 1, 60, _onChange),
-        payers_rate: init_slider('#payers-handle','#payers', .35, .45, .01, .4, _onChange),
-        esv_rate: init_slider('#esv-handle','#esv', .1, .5, .005, .175, _onChange),
-        pension_avg: init_slider('#pension-handle','#pension', 1000, 10000, 100, 1700, _onChange)
+        pension_age: init_slider('#age', 55, 65, 1, 60, _onChange),
+        payers_rate: init_slider('#payers', .35, .45, .01, .4, _onChange),
+        esv_rate: init_slider('#esv', .1, .5, .005, .175, _onChange),
+        pension_avg: init_slider('#pension', 1000, 10000, 100, 1700, _onChange)
     };
     
     module.currentValues = function() {
         return {
-            pension_age: $('#age').slider('option', 'value'),
-            payers_rate: $('#payers').slider('option', 'value'),
-            esv_rate: $('#esv').slider('option', 'value'),
-            pension_avg: $('#pension').slider('option', 'value')
+            pension_age: +$('#age').val(),
+            payers_rate: +$('#payers').val(),
+            esv_rate: +$('#esv').val(),
+            pension_avg: +$('#pension').val()
         };
         //todo
         // return {
@@ -33,25 +33,48 @@ var sliders = (function() {
         // }
     };
 
-    function init_slider(handle, slider, min, max, step, value) {
-        var obj = {};
-        obj.handle = $(handle);
-        obj.slider = $(slider).slider({
-            orientation: "vertical",
-            create: function () {
-                obj.handle.text($(this).slider("value"));
-            },
-            slide: function (event, ui) {
-                obj.handle.text(ui.value);
-            },
-            change: function(args){return _onChange(args)},
+    function init_slider(slider, min, max, step, value) {
+        var control = $(slider);
+
+        control.knob({
             min: min,
             max: max,
             step: step,
-            value: value
+            change: function(value){console.log("change"); return _onChange(value)},
+            release: function(value){console.log('release'); return _onChange(value)},
+            fgColor: "#FF0000",
+            skin: "tron",
+            // cursor: true,
+            height: 100,
+            width: 100
         });
-        
-        return obj;
+
+        control
+            .val(value)
+            .trigger('change');
+
+
+
+
+        //
+        // var obj = {};
+        // obj.handle = $(handle);
+        // obj.slider = $(slider).slider({
+        //     orientation: "vertical",
+        //     create: function () {
+        //         obj.handle.text($(this).slider("value"));
+        //     },
+        //     slide: function (event, ui) {
+        //         obj.handle.text(ui.value);
+        //     },
+        //     change: function(args){return _onChange(args)},
+        //     min: min,
+        //     max: max,
+        //     step: step,
+        //     value: value
+        // });
+        //
+        return control;
     }
 
     return module;
