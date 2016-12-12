@@ -1,14 +1,6 @@
 (function () {
-    console.log(model.calcWorkForce('both', 61, 2016));
-    console.log(model.calcPensioners('both', 61, 2016));
-
-    //
-    // sliders.onChange(function(){
-    //     console.log('YYYYYYOOOObaaa!');
-    // })
-    
     var years = [];
-    for (var y = 2016; y<=2035; y++) years.push(y);
+    for (var y = 2016; y<=2050; y++) years.push(y);
 
     ballance_chart
         .init('#ballance_chart');
@@ -36,7 +28,7 @@
 
     $("#start").on("click", function() {
         ballance_chart.reset_line();
-        
+
         var ballance = ballance_data(sliders.currentValues());
         ballance_chart.draw(ballance);
 
