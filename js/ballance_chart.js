@@ -24,6 +24,9 @@ var ballance_chart = (function(d3) {
 
         , previous_data
 
+        , minYear = 2016
+        , maxYear = 2050
+        , playDuration = 60000
         // , z
 
 
@@ -42,8 +45,8 @@ var ballance_chart = (function(d3) {
         y = d3.scaleLinear().range([height, 0]);
         // z = d3.scaleOrdinal(d3.schemeCategory10);
 
-        x.domain([new Date(2016,1,1), new Date(2035,1,1)]);
-        y.domain([-500, 0]);
+        x.domain([new Date(minYear,1,1), new Date(maxYear,1,1)]);
+        y.domain([-100, 100]);
 
         line = d3.line()
             .curve(d3.curveMonotoneX)
@@ -98,7 +101,7 @@ var ballance_chart = (function(d3) {
             .attr("height", height)
             .attr("width", 0);
 
-        timeScale = d3.scaleTime().domain([new Date(2016,1,1), new Date(2035,1,1)]).range([0, 30000]);
+        timeScale = d3.scaleTime().domain([new Date(minYear,1,1), new Date(maxYear,1,1)]).range([0, playDuration]);
     };
 
     module.draw = function(data) {
@@ -154,7 +157,7 @@ var ballance_chart = (function(d3) {
         if (timer) timer.stop();
 
         timer = d3.interval(function(elapsed) {
-            if (elapsed > 30000) timer.stop();
+            if (elapsed > playDuration) timer.stop();
 
             time = elapsed;
             ballance_chart.move_line(timeScale.invert(elapsed));

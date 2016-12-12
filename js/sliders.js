@@ -14,7 +14,7 @@ var sliders = (function() {
         pension_age: init_slider('#age', 55, 65, 1, 60, _onChange),
         payers_rate: init_slider('#payers', .35, .45, .01, .4, _onChange),
         esv_rate: init_slider('#esv', .1, .5, .005, .175, _onChange),
-        pension_avg: init_slider('#pension', 1000, 10000, 100, 1700, _onChange)
+        pension_avg: init_slider('#pension', 1700, 5000, 100, 1700, _onChange)
     };
     
     module.currentValues = function() {
