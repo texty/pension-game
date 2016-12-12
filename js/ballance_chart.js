@@ -26,7 +26,7 @@ var ballance_chart = (function(d3) {
 
         , minYear = 2016
         , maxYear = 2050
-        , playDuration = 60000
+        , playDuration = 100000
         // , z
 
 
