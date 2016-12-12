@@ -42,7 +42,6 @@ var sliders = (function() {
             step: step,
             change: function(value){console.log("change"); return _onChange(value)},
             release: function(value){console.log('release'); return _onChange(value)},
-            fgColor: "#FF0000",
             skin: "tron",
             // cursor: true,
             height: 100,

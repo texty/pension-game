@@ -2,13 +2,16 @@ var ballance_chart = (function(d3) {
     var module = {}
         , container
 
-
-
         , svg
         , margin
         , width
         , height
         , g
+        , prediction_g
+        , actual_g
+        , prediction_path
+        , actual_path
+        , current_clip_path
         , line
 
         , x
@@ -67,17 +70,38 @@ var ballance_chart = (function(d3) {
             .attr('x1', 0)
             .attr('x2', 0)
             .attr('y1', 0)
-            .attr('y2', height)
-            .attr('stroke', "orange");
+            .attr('y2', height);
+
+        prediction_g = g
+            .append('g')
+            .attr("class", "prediction");
+
+        actual_g = g
+            .append('g')
+            .attr("class", "actual")
+            .attr("clip-path", "url(#current-clip-path)");
+
+        actual_path = actual_g
+            .append("path")
+            .attr("class", "line");
+
+        prediction_path = prediction_g
+            .append("path")
+            .attr("class", "line");
+
+        current_clip_path = svg.append("defs")
+            .append("clipPath")
+            .attr("id", "current-clip-path")
+            .append("rect")
+            .attr("x", 0)
+            .attr("y", 0)
+            .attr("height", height)
+            .attr("width", 0);
 
         timeScale = d3.scaleTime().domain([new Date(2016,1,1), new Date(2035,1,1)]).range([0, 30000]);
-
     };
 
     module.draw = function(data) {
-        console.log("data");
-        console.log(data);
-
         if (time != 0) {
             var elapsed_date = timeScale.invert(time);
 
@@ -87,16 +111,17 @@ var ballance_chart = (function(d3) {
             data = prev_part.concat(future_part);
         }
 
-        d3.selectAll("g.chart")
-            .classed("old", true);
+        var line_d = line(data);
 
-        var chart = g
-            .append('g')
-            .attr("class", "chart");
+        prediction_path
+            .transition()
+            .duration(200)
+            .attr("d", line_d);
 
-        chart.append("path")
-            .attr("class", "line")
-            .attr("d", line(data));
+        actual_path
+            .transition()
+            .duration(200)
+            .attr("d", line_d);
 
         previous_data = data;
     };
@@ -109,17 +134,24 @@ var ballance_chart = (function(d3) {
             .ease(d3.easeLinear)
             .attr('x1', x_)
             .attr('x2', x_);
+
+        current_clip_path
+            .transition()
+            .duration(500)
+            .ease(d3.easeLinear)
+            .attr("width", x_);
     };
 
     module.reset_line = function() {
         moving_line
             .attr('x1', 0)
             .attr('x2', 0);
+        
+        time = 0;
     };
-
+    
     module.start_timer = function() {
         if (timer) timer.stop();
-        module.reset_line();
 
         timer = d3.interval(function(elapsed) {
             if (elapsed > 30000) timer.stop();

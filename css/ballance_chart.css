@@ -7,12 +7,20 @@
 
 #ballance_chart .line {
     fill: none;
-    stroke: black;
     stroke-width: 0.5px;
 }
 
-#ballance_chart .chart.old .line {
-    stroke: #eee;
+#ballance_chart .actual .line {
+    stroke: #000000;
+    stroke-width: 1px;
+}
+
+#ballance_chart .prediction .line {
+    stroke: #cccccc;
+}
+
+#ballance_chart .moving-line {
+    stroke: black;
 }
 
 #ballance_chart {

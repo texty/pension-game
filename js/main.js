@@ -31,14 +31,17 @@
 
     sliders.onChange(function(){
         var ballance = ballance_data(sliders.currentValues());
-        
-        
-        
-        
         ballance_chart.draw(ballance);
     });
 
-    $("#start").on("click", ballance_chart.start_timer);
+    $("#start").on("click", function() {
+        ballance_chart.reset_line();
+        
+        var ballance = ballance_data(sliders.currentValues());
+        ballance_chart.draw(ballance);
+
+        ballance_chart.start_timer();
+    });
     
 
     function ballance_data(params) {
