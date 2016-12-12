@@ -23,6 +23,12 @@
     stroke: black;
 }
 
+#ballance_chart .background-year {
+    font-size: 44px;
+    font-weight: 800;
+    fill: #ccc;
+}
+
 #ballance_chart {
     margin-left: -53px;
 }
