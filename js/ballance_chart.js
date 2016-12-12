@@ -27,6 +27,7 @@ var ballance_chart = (function(d3) {
         , minYear = 2016
         , maxYear = 2050
         , playDuration = 100000
+        , transitionTime = 500
         // , z
 
 
@@ -46,7 +47,7 @@ var ballance_chart = (function(d3) {
         // z = d3.scaleOrdinal(d3.schemeCategory10);
 
         x.domain([new Date(minYear,1,1), new Date(maxYear,1,1)]);
-        y.domain([-100, 100]);
+        y.domain([-150, 50]);
 
         line = d3.line()
             .curve(d3.curveMonotoneX)
@@ -55,7 +56,7 @@ var ballance_chart = (function(d3) {
 
         g.append("g")
             .attr("class", "axis axis--x")
-            .attr("transform", "translate(0," + height + ")")
+            .attr("transform", "translate(0," + height/4 + ")")
             .call(d3.axisBottom(x));
 
         g.append("g")
@@ -133,14 +134,14 @@ var ballance_chart = (function(d3) {
         var x_ = x(time);
         moving_line
             .transition()
-            .duration(500)
+            .duration(transitionTime)
             .ease(d3.easeLinear)
             .attr('x1', x_)
             .attr('x2', x_);
 
         current_clip_path
             .transition()
-            .duration(500)
+            .duration(transitionTime)
             .ease(d3.easeLinear)
             .attr("width", x_);
     };
@@ -161,7 +162,7 @@ var ballance_chart = (function(d3) {
 
             time = elapsed;
             ballance_chart.move_line(timeScale.invert(elapsed));
-        }, 500);
+        }, transitionTime);
     };
 
 
