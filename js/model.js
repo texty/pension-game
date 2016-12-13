@@ -41,8 +41,7 @@ var model = (function(){
         var pensioners = module.calcPensioners('both', pension_age, year); //millions
         var payers = payers_rate * workForce; //millions
 
-        // var salary_avg = pension_avg * 3;
-        var salary_avg = 1850 * 3;
+        var salary_avg = pension_avg * 3;
 
         var income = salary_avg * payers * esv_rate * 12 / 1000; //billions UAH 
         var outcome = pensioners * pension_avg * 12 / 1000; //billions UAH
