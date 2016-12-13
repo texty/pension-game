@@ -1,4 +1,4 @@
-var sliders = (function() {
+var controls = (function() {
     var module = {}
         , _onChange = function(){}
         ;
@@ -10,7 +10,7 @@ var sliders = (function() {
         return module;
     };
     
-    module.sliders  = {
+    module.controls  = {
         pension_age: init_slider('#age', 55, 65, 1, 60, _onChange),
         payers_rate: init_slider('#payers', .35, .45, .01, .4, _onChange),
         esv_rate: init_slider('#esv', .1, .5, .005, .175, _onChange),
@@ -24,13 +24,6 @@ var sliders = (function() {
             esv_rate: +$('#esv').val(),
             pension_avg: +$('#pension').val()
         };
-        //todo
-        // return {
-        //     pension_age: 55,
-        //     payers_rate: .5,
-        //     esv_rate: .1,
-        //     pension_avg: 1000
-        // }
     };
 
     function init_slider(slider, min, max, step, value) {
@@ -51,28 +44,7 @@ var sliders = (function() {
         control
             .val(value)
             .trigger('change');
-
-
-
-
-        //
-        // var obj = {};
-        // obj.handle = $(handle);
-        // obj.slider = $(slider).slider({
-        //     orientation: "vertical",
-        //     create: function () {
-        //         obj.handle.text($(this).slider("value"));
-        //     },
-        //     slide: function (event, ui) {
-        //         obj.handle.text(ui.value);
-        //     },
-        //     change: function(args){return _onChange(args)},
-        //     min: min,
-        //     max: max,
-        //     step: step,
-        //     value: value
-        // });
-        //
+        
         return control;
     }
 

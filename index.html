@@ -161,6 +161,13 @@
                     <svg id="ballance_chart" width="800" height="414"></svg>
 
                     <div class="row">
+                        <div class="col-xs-3">
+                            <button type="button" class="btn btn-info" id="increase-pension-age">Збільшити пенсійний вік</button>
+
+                        </div>
+                    </div>
+
+                    <div class="row">
                         <div class="col-xs-3"><p>Пенсійний</p><input type="text" value="75" class="dial" id="age" data-inputColor="#222222" data-fgColor="#222222"></div>
                         <div class="col-xs-3"><p>ЄСВ</p></з><input type="text" value="75" class="dial" id="esv" data-inputColor="#222222" data-fgColor="#222222"></div>
                         <div class="col-xs-3"><p>% платників</p></з><input type="text" value="75" class="dial" id="payers" data-inputColor="#222222" data-fgColor="#222222"></div>
@@ -201,22 +208,9 @@
 <script src="lib/d3-jetpack.js"></script>
 <script src="js/demographics.js"></script>
 <script src="js/model.js"></script>
-<script src="js/sliders.js"></script>
+<script src="js/controls.js"></script>
 <script src="js/ballance_chart.js"></script>
 <script src="js/main.js"></script>
-<script>
-    $(function() {
-        $(".dial").knob({
-//            min: 10,
-//            max: 40,
-            fgColor: "#FF0000",
-            skin: "tron",
-            cursor: true,
-            height: 100,
-            width: 100
-        });
-    });
-</script>
 
 <!--  Google analytics -->
 <!--ADD LATER-->

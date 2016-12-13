@@ -29,9 +29,6 @@ var ballance_chart = (function(d3) {
         , maxYear = 2050
         , playDuration = 100000
         , transitionTime = 500
-        // , z
-
-
         ;
 
     module.init = function(_) {
@@ -45,7 +42,6 @@ var ballance_chart = (function(d3) {
 
         x = d3.scaleTime().range([0, width]);
         y = d3.scaleLinear().range([height, 0]);
-        // z = d3.scaleOrdinal(d3.schemeCategory10);
 
         x.domain([new Date(minYear,1,1), new Date(maxYear,1,1)]);
         y.domain([-150, 50]);
@@ -109,7 +105,6 @@ var ballance_chart = (function(d3) {
             .attr("y", 200)
             .attr("textLength", 130)
             .attr("lengthAdjust", "spacingAndGlyphs");
-
 
         timeScale = d3.scaleTime().domain([new Date(minYear,1,1), new Date(maxYear,1,1)]).range([0, playDuration]);
     };
