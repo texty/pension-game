@@ -12,7 +12,7 @@ var controls = (function() {
     module.controls  = {
         pension_age: init_slider('#age', 55, 65, 1, 60),
         payers_rate: init_slider('#payers', .35, .45, .01, .4),
-        esv_rate: init_slider('#esv', .1, .5, .005, .175),
+        esv_rate: init_slider('#esv', .1, .35, .005, .175),
         pension_avg: init_slider('#pension', 1700, 5000, 100, 1700)
     };
     
