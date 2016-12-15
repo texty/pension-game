@@ -36,7 +36,7 @@ var model = (function(){
         ) / 1000;
     };
 
-    module.calcBalance = function(pension_age, payers_rate, esv_rate, pension_avg, year) {
+    module.calcBalance = function(pension_age, payers_rate, esv_rate, pension_avg, salary_avg, year) {
         var workForce = module.calcWorkForce('both', pension_age, year); //millions
         var pensioners = module.calcPensioners('both', pension_age, year); //millions
         var payers = payers_rate * workForce; //millions
@@ -44,7 +44,7 @@ var model = (function(){
         // var years_past = year - 2016;
         // pension_avg = pension_avg * Math.pow(1.02, years_past);
 
-        var salary_avg = pension_avg * 3;
+        // var salary_avg = pension_avg * 3;
 
         var income = salary_avg * payers * esv_rate * 12 / 1000; //billions UAH 
         var outcome = pensioners * pension_avg * 12 / 1000; //billions UAH
@@ -59,6 +59,10 @@ var model = (function(){
         // console.log("\n");
 
         return income - outcome;
+    };
+
+    module.calcBalanceFixedSalary = function(pension_age, payers_rate, esv_rate, pension_avg, year) {
+        return module.calcBalance(pension_age, payers_rate, esv_rate, pension_avg, pension_avg * 3, year);
     };
 
 

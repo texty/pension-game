@@ -2,7 +2,7 @@ var parameters = (function() {
     var module = {}
         ;
     
-    var _onChange = function() {console.log("stub")};
+    var _onChange = function() {console.log("p stub")};
 
     module.onChange = function(_) {
         if (!arguments.length) return _onChange;
@@ -35,7 +35,8 @@ var parameters = (function() {
     module.payers_rate = new Parameter('payers_rate', .4, .35, .45);
     module.esv_rate = new Parameter('esv', .175, .1, .5);
     module.pension_avg = new Parameter('pension', 1700,  1700, 5000);
-    
+    module.salary_avg = new Parameter('salary', 1700 * 2, 1700 * 3, 5000 * 3);
+
     return module;
 
 })();

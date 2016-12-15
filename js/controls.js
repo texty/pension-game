@@ -1,6 +1,6 @@
 var controls = (function() {
     var module = {}
-        , _onChange = function(){console.log("stub")};
+        , _onChange = function(){console.log("c stub")};
     
     module.onChange = function(_) {
         if (!arguments.length) return _onChange;
@@ -13,7 +13,8 @@ var controls = (function() {
         pension_age: init_slider('#age', 55, 70, 1, 60),
         payers_rate: init_slider('#payers', .35, .45, .01, .4),
         esv_rate: init_slider('#esv', .1, .35, .005, .175),
-        pension_avg: init_slider('#pension', 1700, 5000, 100, 1700)
+        pension_avg: init_slider('#pension', 1700, 5000, 100, 1700),
+        salary_avg: init_slider('#salary', 1700 * 2, 5000 * 3, 100, 1700 * 3)
     };
     
     module.currentValues = function() {
@@ -21,20 +22,14 @@ var controls = (function() {
             pension_age: module.controls.pension_age.value(),
             payers_rate: module.controls.payers_rate.value(),
             esv_rate: module.controls.esv_rate.value(),
-            pension_avg: module.controls.pension_avg.value()
+            pension_avg: module.controls.pension_avg.value(),
+            salary_avg: module.controls.salary_avg.value()
         }
     };
 
     function init_slider(container, min, max, step, value) {
         var control = $(container);
 
-        // control.ionRangeSlider({
-        //     type: "double",
-        //     min: 1000000,
-        //     max: 2000000,
-        //     grid: true
-        // });
-        //
         control.ionRangeSlider({
             min: min,
             max: max,
@@ -44,24 +39,8 @@ var controls = (function() {
             // grid: true
             onChange: function(val) {return _onChange(val)},
 
-            // from_min: min + 1,
-            // from_max: max - 1,
             from_shadow: true
         });
-
-
-        // control.slider({
-        //     value: value,
-        //     min: min,
-        //     max: max,
-        //     step: step,
-        //     orientation: "vertical",
-        //     tooltip: "always",
-        //     reversed: true
-        //     // ,
-        //     // rangeHighlights: [{"start": min, "end": max}]
-        // }).on('slide', function(val) {return _onChange(val)});
-
 
         control.value = function(_) {
             if (!arguments.length) return +control.val();
@@ -86,8 +65,6 @@ var controls = (function() {
 
         function onIntervalChanged() {
             control.data("ionRangeSlider").update({from_min: _interval[0], from_max: _interval[1]});
-            control.trigger('change');
-            console.log("i changed");
             _onChange();
         }
 
