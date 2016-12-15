@@ -19,8 +19,12 @@ var ballance_chart = (function(d3) {
 
         , moving_line
         , timer
-        , time = 0
+        , ms_time = 0
+        , year
+
         , timeScale
+        // , _onTimer = function() {console.log('_onTimer stub')}
+        , _onYear = function() {console.log('_onYear stub')}
 
         , previous_data
         , background_year
@@ -50,6 +54,28 @@ var ballance_chart = (function(d3) {
             .curve(d3.curveMonotoneX)
             .x(function(d) { return x(d.year); })
             .y(function(d) { return y(d.ballance); });
+
+        // g.append("rect")
+        //     .attr("class", "green-zone")
+        //     .attr("x", 0)
+        //     .attr("y", 0)
+        //     .attr("width", width)
+        //     .attr("height", height/4);
+        //
+        // g.append("rect")
+        //     .attr("class", "yellow-zone")
+        //     .attr("x", 0)
+        //     .attr("y", height/4)
+        //     .attr("width", width)
+        //     .attr("height", height/4);
+        //
+        // g.append("rect")
+        //     .attr("class", "red-zone")
+        //     .attr("x", 0)
+        //     .attr("y", height/2)
+        //     .attr("width", width)
+        //     .attr("height", height/2);
+
 
         g.append("g")
             .attr("class", "axis axis--x")
@@ -107,11 +133,13 @@ var ballance_chart = (function(d3) {
             .attr("lengthAdjust", "spacingAndGlyphs");
 
         timeScale = d3.scaleTime().domain([new Date(minYear,1,1), new Date(maxYear,1,1)]).range([0, playDuration]);
+        year = timeScale.invert(0).getFullYear() - 1;
+        return module;
     };
 
     module.draw = function(data) {
-        if (time != 0) {
-            var elapsed_date = timeScale.invert(time);
+        if (ms_time != 0) {
+            var elapsed_date = timeScale.invert(ms_time);
 
             var prev_part = previous_data.filter(function(d) {return d.year <= elapsed_date});
             var future_part = data.filter(function(d) {return d.year > elapsed_date});
@@ -157,7 +185,7 @@ var ballance_chart = (function(d3) {
             .attr('x1', 0)
             .attr('x2', 0);
         
-        time = 0;
+        ms_time = 0;
     };
     
     module.start_timer = function() {
@@ -166,9 +194,29 @@ var ballance_chart = (function(d3) {
         timer = d3.interval(function(elapsed) {
             if (elapsed > playDuration) timer.stop();
 
-            time = elapsed;
-            ballance_chart.move_line(timeScale.invert(elapsed));
+            ms_time = elapsed;
+            var dateTime = timeScale.invert(elapsed);
+
+            ballance_chart.move_line(dateTime);
+            
+            onTimer(dateTime);
+
+            // var pension_val = controls.controls.pension_avg.value(); 
+            // controls.controls.pension_avg.value(pension_val + 10);
+
         }, transitionTime);
+    };
+
+    function onTimer(dateTime) {
+        var new_year = dateTime.getFullYear();
+
+        if (new_year != year) _onYear(new_year);
+        year = new_year;
+    }
+
+    module.onYear = function(_) {
+        _onYear = _;
+        return module;
     };
 
 

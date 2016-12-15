@@ -54,21 +54,7 @@ h4 {
     /*padding-top: 20px;*/
 }
 
-#age-handle,
-#payers-handle,
-#esv-handle,
-#pension-handle {
-    background: #337ab7;
-    color: white;
-}
 
-#age,
-#payers,
-#esv,
-#pension {
-    background: #95adc1;
-    text-align: center;
-}
 
 .min {
     position: absolute;

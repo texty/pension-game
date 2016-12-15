@@ -33,6 +33,18 @@
     margin-left: -53px;
 }
 
+#ballance_chart .green-zone{
+    fill: #4f803e;
+}
+
+#ballance_chart .yellow-zone{
+    fill: #ffff73;
+}
+
+#ballance_chart .red-zone{
+    fill: #ff7f80;
+}
+
 /*body {*/
     /*background-image: url(../img/back1.jpg);*/
 /*}*/

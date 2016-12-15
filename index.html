@@ -11,15 +11,21 @@
     <title>Pension Game</title>
 
     <!--jQuery UI CSS-->
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <!--<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">-->
     <!--<link rel="stylesheet" href="css/jquery-ui.css">-->
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!--<link href="css/bootstrap-slider.min.css" rel="stylesheet">-->
+    <!--<link href="css/incrementer.css" rel="stylesheet">-->
 
     <!-- Base CSS for header and footer-->
     <link href="css/template-style.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
+    <!--<link href="css/normalize.css" rel="stylesheet">-->
+    <link href="css/ion.rangeSlider.css" rel="stylesheet">
+    <link href="css/ion.rangeSlider.skinModern.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
 
     <link href="css/ballance_chart.css" rel="stylesheet">
     <!-- Custom Fonts -->
@@ -160,18 +166,30 @@
                 <div id="deficit">
                     <svg id="ballance_chart" width="800" height="414"></svg>
 
-                    <div class="row">
-                        <div class="col-xs-3">
-                            <button type="button" class="btn btn-info" id="increase-pension-age">Збільшити пенсійний вік</button>
-
+                        <div class="col-xs-6">
+                            <span>Пенсійний вік</span>
+                            <input id="age"/>
                         </div>
-                    </div>
 
-                    <div class="row">
-                        <div class="col-xs-3"><p>Пенсійний</p><input type="text" value="75" class="dial" id="age" data-inputColor="#222222" data-fgColor="#222222"></div>
-                        <div class="col-xs-3"><p>ЄСВ</p></з><input type="text" value="75" class="dial" id="esv" data-inputColor="#222222" data-fgColor="#222222"></div>
-                        <div class="col-xs-3"><p>% платників</p></з><input type="text" value="75" class="dial" id="payers" data-inputColor="#222222" data-fgColor="#222222"></div>
-                        <div class="col-xs-3"><p>пенсія</p></з><input type="text" value="75" class="dial" id="pension" data-inputColor="#222222" data-fgColor="#222222"></div>
+                        <div class="col-xs-6">
+                            <span>ЄСВ</span>
+                            <input id="esv"/>
+                        </div>
+
+                        <div class="col-xs-6">
+                            <span>% платників</span>
+                            <input id="payers"/>
+                        </div>
+
+                        <div class="col-xs-6">
+                            <span>Середня пенсія</span>
+                            <input id="pension"/>
+                        </div>
+
+                        <!--<div class="col-xs-3"><p>Пенсійний</p><input type="text" value="75" class="dial" id="age" data-inputColor="#222222" data-fgColor="#222222"></div>-->
+                        <!--<div class="col-xs-3"><p>ЄСВ</p><input type="text" value="75" class="dial" id="esv" data-inputColor="#222222" data-fgColor="#222222"></div>-->
+                        <!--<div class="col-xs-3"><p>% платників</p><input type="text" value="75" class="dial" id="payers" data-inputColor="#222222" data-fgColor="#222222"></div>-->
+                        <!--<div class="col-xs-3"><p>пенсія</p><input type="text" value="75" class="dial" id="pension" data-inputColor="#222222" data-fgColor="#222222"></div>-->
                     </div>
 
                     <!--&lt;!&ndash;<img src="img/projections-template.jpg" alt="">&ndash;&gt;-->
@@ -198,9 +216,11 @@
 
 
 <script src="lib/jquery-2.1.4.min.js"></script>
-<script src="lib/jquery.knob.min.js"></script>
+<!--<script src="lib/jquery.knob.min.js"></script>-->
 <!--<script src="lib/jquery-ui-1.12.1.js"></script>-->
 <script src="lib/bootstrap.min.js"></script>
+<!--<script src="lib/bootstrap-slider.min.js"></script>-->
+<script src="lib/ion.rangeSlider.min.js"></script>
 <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
 <script src="lib/share-behavior.js"></script>
 
@@ -208,6 +228,7 @@
 <script src="lib/d3-jetpack.js"></script>
 <script src="js/demographics.js"></script>
 <script src="js/model.js"></script>
+<script src="js/parameters.js"></script>
 <script src="js/controls.js"></script>
 <script src="js/ballance_chart.js"></script>
 <script src="js/main.js"></script>

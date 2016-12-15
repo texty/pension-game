@@ -5,7 +5,7 @@ var model = (function(){
         , minYear = window.__minYear__
         , maxYear = window.__maxYear__
         ;
-    
+
     module.demographics = function() {
         return demographics;
     };
@@ -40,6 +40,9 @@ var model = (function(){
         var workForce = module.calcWorkForce('both', pension_age, year); //millions
         var pensioners = module.calcPensioners('both', pension_age, year); //millions
         var payers = payers_rate * workForce; //millions
+
+        // var years_past = year - 2016;
+        // pension_avg = pension_avg * Math.pow(1.02, years_past);
 
         var salary_avg = pension_avg * 3;
 
