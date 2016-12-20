@@ -1,0 +1,45 @@
+.singlechart {
+    shape-rendering: crispEdges;
+}
+
+.singlechart .axis--x path {
+    /*display: none;*/
+}
+
+.singlechart .axis path {
+    opacity: 0.2;
+    stroke-width: 1;
+}
+
+.singlechart .tick line {
+    opacity: 0.2;
+    stroke-width: 1;
+}
+
+.singlechart .line {
+    fill: none;
+    stroke-width: 2px;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    shape-rendering: auto;
+}
+.singlechart .line.historical {
+    stroke: black;
+}
+
+.singlechart .line.future {
+    stroke: grey;
+    stroke-dasharray: 3,3;
+}
+
+svg.singlechart {
+    /*margin-left: -50px;*/
+}
+
+.singlechart circle {
+    fill-opacity: 0;
+    stroke: black;
+    stroke-width: 1px;
+    cursor: pointer;
+    stroke-opacity: 0;
+}

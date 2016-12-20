@@ -51,7 +51,7 @@ var ballance_chart = (function(d3) {
         y.domain([-150, 50]);
 
         line = d3.line()
-            .curve(d3.curveMonotoneX)
+            //.curve(d3.curveMonotoneX)
             .x(function(d) { return x(d.year); })
             .y(function(d) { return y(d.ballance); });
 

@@ -8,12 +8,19 @@ var maxYear = 2061;
 var both = require('./json/both.json');
 var males = require('./json/males.json');
 var females = require('./json/females.json');
+var history = require('./json/history.json');
 
 var result = {};
 
 result.males = toMatrix(males);
 result.females = toMatrix(females);
 result.both = toMatrix(both);
+result.history = {
+    pension_age: history.map(function(d){return {year: +d.year, value: +d.pension_age}}),
+    pension_avg: history.map(function(d){return {year: +d.year, value: +d.pension_avg}}),
+    esv_rate: history.map(function(d){return {year: +d.year, value: +d.esv_rate}}),
+    payers_rate: history.map(function(d){return {year: +d.year, value: +d.payers_rate}})
+};
 
 var jsonContent = JSON.stringify(result);
 var jsContent = ";" + 

@@ -28,6 +28,7 @@
     <link href="css/main.css" rel="stylesheet">
 
     <link href="css/ballance_chart.css" rel="stylesheet">
+    <link href="css/singlechart.css" rel="stylesheet">
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,800&subset=cyrillic,latin' rel='stylesheet' type='text/css'>
@@ -107,7 +108,9 @@
             <div class="col-md-4">
                 <h4>Пенсійний вік</h4>
                 <p>Зараз чоловіки йдуть на пенсію у 60 років. Для жінок пенсійний вік зростає щороку на 6 місяців і у 2021-му буде таким же, як у чоловіків</p>
-
+                <div>
+                    <svg id="pension_age" class="singlechart" width="350" height="200"></svg>
+                </div>
                 <!-- перший слайдер (пенсійний вік) -->
                 <!--<div id="age">-->
                     <!--&lt;!&ndash;<div class="pull-left"><span class="min">55</span></div>&ndash;&gt;-->
@@ -119,7 +122,9 @@
 
                 <h4>Ставка ЄСВ, що йде в Пенсійний фонд</h4>
                 <p>Кошти зі сплати Єдиного соціального внеску, що йдуть на пенсійні виплати</p>
-
+                <div>
+                    <svg id="test" class="singlechart" width="350" height="200"></svg>
+                </div>
                 <!--другий слайдер (частка платників)-->
                 <!--<div id="esv">-->
                     <!--&lt;!&ndash;<div class="pull-left"><span class="min">10%</span></div>&ndash;&gt;-->
@@ -131,7 +136,9 @@
 
                 <h4>Частка платників</h4>
                 <p>Відсоток тих, хто платить Єдиний соціальний внесок</p>
-
+                <div>
+                    <svg id="test" class="singlechart" width="350" height="200"></svg>
+                </div>
                 <!--третій слайдер (ставка ЄСВ)-->
                 <!--<div id="payers">-->
                     <!--&lt;!&ndash;<div class="pull-left"><span class="min">50%</span></div>&ndash;&gt;-->
@@ -143,7 +150,9 @@
 
                 <h4>Пенсія</h4>
                 <p>Розмір середньої пенсії за віком (станом на початок грудня 2016 року) становить 1800 грн. <b>Зазвичай середня зарплата УТРИЧІ вища, ніж середня пенсія</b></p>
-
+                <div>
+                    <svg id="test" class="singlechart" width="350" height="200"></svg>
+                </div>
                 <!--четвертий слайдер (середня пенсія)-->
                 <!--<div id="pension">-->
                     <!--&lt;!&ndash;<div class="pull-left"><span class="min">1000 грн</span></div>&ndash;&gt;-->
@@ -233,6 +242,7 @@
 <script src="lib/d3.v4.min.js"></script>
 <script src="lib/d3-jetpack.js"></script>
 <script src="js/demographics.js"></script>
+<script src="js/singlechart.js"></script>
 <script src="js/model.js"></script>
 <script src="js/parameters.js"></script>
 <script src="js/controls.js"></script>
