@@ -4,7 +4,8 @@
 
     var history = window.__demographics__.history;
     var future = {
-        pension_age: years.slice(1).map(function(y){return {year: y, value: history.pension_age[0].value}})
+        pension_age: years.slice(1).map(function(y){return {year: y, value: last(history.pension_age).value}}),
+        esv_rate: years.slice(1).map(function(y){return {year: y, value: last(history.esv_rate).value}})
     };
 
     var pension_age = singlechart()
@@ -13,12 +14,19 @@
         .minY(50)
         .maxY(70);
 
+    var esv_rate = singlechart()
+        .historical(history.esv_rate)
+        .future(future.esv_rate);
+        // .minY(50)
+        // .maxY(70);
+
     var chart = singlechart()
         .historical([{year: new Date(2013, 0, 1), value: 3.0}, {year: new Date(2014, 0,1), value: 3.14159}, {year: new Date(2015, 0,1), value: 2.71}, {year: new Date(2016, 0,1), value: 3.0}])
         .future([{year: new Date(2017, 0,1), value: 4.2}, {year: new Date(2018, 0,1), value: 4.2}, {year: new Date(2019, 0,1), value: 4.2}])
         ;
 
     d3.select('#pension_age').call(pension_age);
+    d3.select('#esv_rate').call(esv_rate);
 
 
     d3.selectAll('#test').call(chart);
@@ -86,5 +94,9 @@
             salary_avg: parameters.salary_avg.value(),
             payers_rate: parameters.payers_rate.value()
         }
+    }
+
+    function last(arr) {
+        return arr[arr.length-1];
     }
 })();
