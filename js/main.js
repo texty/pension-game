@@ -33,15 +33,13 @@
     var pension_avg = singlechart()
         .historical(history.pension_avg)
         .future(future.pension_avg)
-        .maxY(5000);
+        .maxY(5000)
+        .maxStep(1000);
 
-    d3.select('#pension_age')
-        .call(pension_age)
-        .on("change", function(d) {console.log(d3.event)});
-    
-    d3.select('#esv_rate').call(esv_rate);
-    d3.select('#payers_rate').call(payers_rate);
-    d3.select('#pension_avg').call(pension_avg);
+    d3.select('#pension_age').call(pension_age).on("change", update.bind(null, 'pension_age'));
+    d3.select('#esv_rate').call(esv_rate).on("change", update.bind(null, 'esv_rate'));
+    d3.select('#payers_rate').call(payers_rate).on("change", update.bind(null, 'payers_rate'));
+    d3.select('#pension_avg').call(pension_avg).on("change", update.bind(null, 'pension_avg'));
 
     ballance_chart
         .init('#ballance_chart')
@@ -108,5 +106,18 @@
 
     function last(arr) {
         return arr[arr.length-1];
+    }
+
+    function update(chart) {
+        var ballance = future_years.map(function(y, i) {
+            return {
+                year: new Date(y, 1, 1),
+                ballance: model.calcBalanceFixedSalary(future.pension_age[i].value, future.payers_rate[i].value, future.esv_rate[i].value, future.pension_avg[i].value, y)
+            }
+        });
+
+        ballance_chart.draw(ballance);
+
+        // console.log(chart);
     }
 })();

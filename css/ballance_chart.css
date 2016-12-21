@@ -18,7 +18,7 @@
 
 #ballance_chart .line {
     fill: none;
-    stroke-width: 1px;
+    stroke-width: 2px;
     stroke: black;
     shape-rendering: auto;
 }
@@ -28,6 +28,7 @@
 
 #ballance_chart .prediction .line {
     stroke-opacity: 0.6;
+    stroke-dasharray: 3,3;
 }
 
 #ballance_chart .moving-line {

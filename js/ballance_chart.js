@@ -150,13 +150,13 @@ var ballance_chart = (function(d3) {
         var line_d = line(data);
 
         prediction_path
-            .transition()
-            .duration(200)
+            // .transition()
+            // .duration(200)
             .attr("d", line_d);
 
         actual_path
-            .transition()
-            .duration(200)
+            // .transition()
+            // .duration(200)
             .attr("d", line_d);
 
         previous_data = data;

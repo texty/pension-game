@@ -51,6 +51,16 @@
     <meta name="twitter:image:width" content="1200"/>
     <meta name="twitter:image:height" content="630"/>
 
+    <style>
+        #deficit {
+            /*width:;!* add the width here *!*/
+            position:relative;
+        }
+        #deficit.scrolling {
+            position:fixed;
+            top:200px;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -196,6 +206,17 @@
 <script src="js/controls.js"></script>
 <script src="js/ballance_chart.js"></script>
 <script src="js/main.js"></script>
+<script>
+    $(window).scroll(function () {
+        if($(this).scrollTop() > 700) // change 50 to what you want (work out how far the nav is from the top of the page alraedy and add it there, that'll make it smoother transition)
+        {
+            $('#deficit').addClass('scrolling');
+        } else {
+            $('#deficit').removeClass('scrolling');
+        }
+    });
+</script>
+
 
 <!--todo add Google analytics -->
 
