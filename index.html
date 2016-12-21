@@ -10,10 +10,6 @@
 
     <title>Pension Game</title>
 
-    <!--jQuery UI CSS-->
-    <!--<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">-->
-    <!--<link rel="stylesheet" href="css/jquery-ui.css">-->
-
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <!--<link href="css/bootstrap-slider.min.css" rel="stylesheet">-->
@@ -57,7 +53,6 @@
 
 </head>
 <body>
-        <!--лого і соцмережі-->
     <div class="container">
         <div class="row">
             <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
@@ -75,7 +70,7 @@
             <h1 class="text-center header-text">Врятуй бюджет Пенсійного фонду</h1>
         </div>
 
-        <div class="container container-intro text-center">
+        <div class="container-intro text-center">
             <p class="intro-text article-text">Ви прокралися до таємного пункту керування українською пенсійною системою. Рухаючи наданими параметрами, Ви можете керувати балансом Пенсійного фонду і запобігти колапсу усієї системи. Ваше завдання — зменшити дефіцит Пенсійного фонду, не допустивши його падіння до катастрофічної цифри — 100 млрд грн. Від Вас залежить доля понад 10 мільйонів пенсіонерів. І Ваша доля також — Ви ж теж через якийсь час станете одним із них.</p>
 
             <div class="row">
@@ -106,64 +101,24 @@
         <hr>
         <div class="row">
             <div class="col-md-4">
+
                 <h4>Пенсійний вік</h4>
                 <p>Зараз чоловіки йдуть на пенсію у 60 років. Для жінок пенсійний вік зростає щороку на 6 місяців і у 2021-му буде таким же, як у чоловіків</p>
-                <div>
-                    <svg id="pension_age" class="singlechart" width="350" height="200"></svg>
-                </div>
-                <!-- перший слайдер (пенсійний вік) -->
-                <!--<div id="age">-->
-                    <!--&lt;!&ndash;<div class="pull-left"><span class="min">55</span></div>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<div class="pull-right"><span class="max">65</span></div>&ndash;&gt;-->
-                    <!--<div id="age-handle" class="ui-slider-handle"></div>-->
-                <!--</div>-->
-
-                <!--<img src="img/graph-template.png" alt="" class="img-template">-->
+                <div><svg id="pension_age" class="singlechart" width="350" height="200"></svg></div>
 
                 <h4>Ставка ЄСВ, що йде в Пенсійний фонд</h4>
                 <p>Кошти зі сплати Єдиного соціального внеску, що йдуть на пенсійні виплати</p>
-                <div>
-                    <svg id="esv_rate" class="singlechart" width="350" height="200"></svg>
-                </div>
-                <!--другий слайдер (частка платників)-->
-                <!--<div id="esv">-->
-                    <!--&lt;!&ndash;<div class="pull-left"><span class="min">10%</span></div>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<div class="pull-right"><span class="max">50%</span></div>&ndash;&gt;-->
-                    <!--<div id="esv-handle" class="ui-slider-handle"></div>-->
-                <!--</div>-->
-
-                <!--<img src="img/graph-template.png" alt="" class="img-template">-->
+                <div><svg id="esv_rate" class="singlechart" width="350" height="200"></svg></div>
 
                 <h4>Частка платників</h4>
                 <p>Відсоток тих, хто платить Єдиний соціальний внесок</p>
-                <div>
-                    <svg id="test" class="singlechart" width="350" height="200"></svg>
-                </div>
-                <!--третій слайдер (ставка ЄСВ)-->
-                <!--<div id="payers">-->
-                    <!--&lt;!&ndash;<div class="pull-left"><span class="min">50%</span></div>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<div class="pull-right"><span class="max">90%</span></div>&ndash;&gt;-->
-                    <!--<div id="payers-handle" class="ui-slider-handle"></div>-->
-                <!--</div>-->
-
-                <!--<img src="img/graph-template.png" alt="" class="img-template">-->
+                <div><svg id="payers_rate" class="singlechart" width="350" height="200"></svg></div>
 
                 <h4>Пенсія</h4>
                 <p>Розмір середньої пенсії за віком (станом на початок грудня 2016 року) становить 1800 грн. <b>Зазвичай середня зарплата УТРИЧІ вища, ніж середня пенсія</b></p>
-                <div>
-                    <svg id="test" class="singlechart" width="350" height="200"></svg>
-                </div>
-                <!--четвертий слайдер (середня пенсія)-->
-                <!--<div id="pension">-->
-                    <!--&lt;!&ndash;<div class="pull-left"><span class="min">1000 грн</span></div>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<div class="pull-right"><span class="max">10000 грн</span></div>&ndash;&gt;-->
-                    <!--<div id="pension-handle" class="ui-slider-handle"></div>-->
-                <!--</div>-->
-
-                <!--<img src="img/graph-template.png" alt="" class="img-template">-->
+                <div><svg id="pension_avg" class="singlechart" width="350" height="200"></svg></div>
 
                 <button id="start" type="button" class="btn btn-success">Start</button>
-
             </div>
 
             <div class="col-md-8">
@@ -176,28 +131,23 @@
                     <svg id="ballance_chart" width="800" height="414"></svg>
 
                         <div class="col-xs-6">
-                            <span>Пенсійний вік</span>
-                            <input id="age"/>
+                            <span>Пенсійний вік</span><input id="age"/>
                         </div>
 
                         <div class="col-xs-6">
-                            <span>ЄСВ</span>
-                            <input id="esv"/>
+                            <span>ЄСВ</span><input id="esv"/>
                         </div>
 
                         <div class="col-xs-6">
-                            <span>% платників</span>
-                            <input id="payers"/>
+                            <span>% платників</span><input id="payers"/>
                         </div>
 
                         <div class="col-xs-6">
-                            <span>Середня пенсія</span>
-                            <input id="pension"/>
+                            <span>Середня пенсія</span><input id="pension"/>
                         </div>
 
                         <div class="col-xs-6">
-                            <span>Середня ЗП</span>
-                            <input id="salary"/>
+                            <span>Середня ЗП</span><input id="salary"/>
                         </div>
 
 
@@ -205,7 +155,7 @@
                         <!--<div class="col-xs-3"><p>ЄСВ</p><input type="text" value="75" class="dial" id="esv" data-inputColor="#222222" data-fgColor="#222222"></div>-->
                         <!--<div class="col-xs-3"><p>% платників</p><input type="text" value="75" class="dial" id="payers" data-inputColor="#222222" data-fgColor="#222222"></div>-->
                         <!--<div class="col-xs-3"><p>пенсія</p><input type="text" value="75" class="dial" id="pension" data-inputColor="#222222" data-fgColor="#222222"></div>-->
-                    </div>
+                    <!--</div>-->
 
                     <!--&lt;!&ndash;<img src="img/projections-template.jpg" alt="">&ndash;&gt;-->
                     <!--<br>-->
@@ -222,13 +172,11 @@
                     <!--<br>-->
 
                     <!--<h3 id="result9">Баланс Пенс. фонду: x грн</h3>-->
-                </div> <!--end of #deficit-->
+                </div>
             </div>
-            <!--</div> &lt;!&ndash;right part&ndash;&gt;-->
-        </div> <!--end of .row-->
+        </div>
     </div>
 <!-- End of your content -->
-
 
 <script src="lib/jquery-2.1.4.min.js"></script>
 <!--<script src="lib/jquery.knob.min.js"></script>-->
@@ -249,8 +197,7 @@
 <script src="js/ballance_chart.js"></script>
 <script src="js/main.js"></script>
 
-<!--  Google analytics -->
-<!--ADD LATER-->
+<!--todo add Google analytics -->
 
 </body>
 </html>

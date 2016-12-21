@@ -79,7 +79,7 @@ var ballance_chart = (function(d3) {
 
         g.append("g")
             .attr("class", "axis axis--x")
-            .attr("transform", "translate(0," + height/4 + ")")
+            .attr("transform", "translate(0," + height + ")")
             .call(d3.axisBottom(x));
 
         g.append("g")

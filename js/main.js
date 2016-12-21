@@ -3,35 +3,45 @@
     for (var y = 2016; y <= 2050; y++) years.push(y);
 
     var history = window.__demographics__.history;
+
+    var future_years = years.slice(1);
     var future = {
-        pension_age: years.slice(1).map(function(y){return {year: y, value: last(history.pension_age).value}}),
-        esv_rate: years.slice(1).map(function(y){return {year: y, value: last(history.esv_rate).value}})
+        pension_age: future_years.map(function(y){return {year: y, value: last(history.pension_age).value}}),
+        pension_avg: future_years.map(function(y){return {year: y, value: last(history.pension_avg).value}}),
+        esv_rate: future_years.map(function(y){return {year: y, value: last(history.esv_rate).value}}),
+        payers_rate: future_years.map(function(y){return {year: y, value: last(history.payers_rate).value}})
     };
 
     var pension_age = singlechart()
         .historical(history.pension_age)
         .future(future.pension_age)
         .minY(50)
-        .maxY(70);
+        .maxY(70)
+        .maxStep(0.5);
 
     var esv_rate = singlechart()
         .historical(history.esv_rate)
-        .future(future.esv_rate);
-        // .minY(50)
-        // .maxY(70);
+        .future(future.esv_rate)
+        .maxStep(0.05);
+    
+    var payers_rate = singlechart()
+        .historical(history.payers_rate)
+        .future(future.payers_rate)
+        .minY(0.2)
+        .maxY(0.6);
 
-    var chart = singlechart()
-        .historical([{year: new Date(2013, 0, 1), value: 3.0}, {year: new Date(2014, 0,1), value: 3.14159}, {year: new Date(2015, 0,1), value: 2.71}, {year: new Date(2016, 0,1), value: 3.0}])
-        .future([{year: new Date(2017, 0,1), value: 4.2}, {year: new Date(2018, 0,1), value: 4.2}, {year: new Date(2019, 0,1), value: 4.2}])
-        ;
+    var pension_avg = singlechart()
+        .historical(history.pension_avg)
+        .future(future.pension_avg)
+        .maxY(5000);
 
-    d3.select('#pension_age').call(pension_age);
+    d3.select('#pension_age')
+        .call(pension_age)
+        .on("change", function(d) {console.log(d3.event)});
+    
     d3.select('#esv_rate').call(esv_rate);
-
-
-    d3.selectAll('#test').call(chart);
-
-
+    d3.select('#payers_rate').call(payers_rate);
+    d3.select('#pension_avg').call(pension_avg);
 
     ballance_chart
         .init('#ballance_chart')
