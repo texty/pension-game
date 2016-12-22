@@ -51,7 +51,7 @@ var ballance_chart = (function(d3) {
         y.domain([-150, 50]);
 
         line = d3.line()
-            .curve(d3.curveMonotoneX)
+            // .curve(d3.curveMonotoneX)
             .x(function(d) { return x(d.year); })
             .y(function(d) { return y(d.ballance); });
 
@@ -84,7 +84,7 @@ var ballance_chart = (function(d3) {
 
         g.append("g")
             .attr("class", "axis axis--y")
-            .call(d3.axisLeft(y))
+            .call(d3.axisLeft(y).ticks(3))
             .append("text")
             .attr("transform", "rotate(-90)")
             .attr("y", 6)
@@ -138,6 +138,8 @@ var ballance_chart = (function(d3) {
     };
 
     module.draw = function(data) {
+        console.log(data);
+
         if (ms_time != 0) {
             var elapsed_date = timeScale.invert(ms_time);
 

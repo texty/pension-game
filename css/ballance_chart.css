@@ -59,6 +59,10 @@
     fill: #ff7f80;
 }
 
+#ballance_chart .axis.axis--x path, .axis.axis--x .tick line {
+    display: none;
+}
+
 /*body {*/
     /*background-image: url(../img/back1.jpg);*/
 /*}*/
