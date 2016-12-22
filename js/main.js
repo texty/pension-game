@@ -45,23 +45,23 @@
         .maxY(5000)
         .maxStep(1000);
 
-    d3.select('#pension_age').call(pension_age).on("change", update.bind(null, 'pension_age'));
-    d3.select('#esv_rate').call(esv_rate).on("change", update.bind(null, 'esv_rate'));
-    d3.select('#payers_rate').call(payers_rate).on("change", update.bind(null, 'payers_rate'));
-    d3.select('#pension_avg').call(pension_avg).on("change", update.bind(null, 'pension_avg'));
 
-    ballance_chart
-        .init('#ballance_chart')
-        ;
-    
-    ballance_chart.draw(ballance_data());
+    d3.select('#pension_age').call(pension_age).on("change", update);
+    d3.select('#esv_rate').call(esv_rate).on("change", update);
+    d3.select('#payers_rate').call(payers_rate).on("change", update);
+    d3.select('#pension_avg').call(pension_avg).on("change", update);
+
+    var main_chart = ballance_chart();
+
+    d3.select("#ballance_chart").call(main_chart);
+    main_chart.update(ballance_data());
 
     function last(arr) {
         return arr[arr.length-1];
     }
 
-    function update(chart) {
-        ballance_chart.draw(ballance_data());
+    function update() {
+        main_chart.update(ballance_data());
     }
 
     function ballance_data() {

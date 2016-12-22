@@ -1,14 +1,9 @@
-var ballance_chart = (function(d3) {
-    var module = {}
-        , container
-
-        , svg
-        , margin
-        , width
+function ballance_chart() {
+        var width
         , height
         , g
-        , prediction_g
-        , actual_g
+        // , prediction_g
+        // , actual_g
         , prediction_path
         , actual_path
         , area
@@ -35,113 +30,114 @@ var ballance_chart = (function(d3) {
         // , playDuration = 100000
         // , transitionTime = 500
         ;
+    
+    function my(selection) {
+        selection.each(function(d){
+            
+            var svg = d3.select(this)
+                , margin = {top: 20, right: 80, bottom: 30, left: 50}
+                , width = svg.attr("width") - margin.left - margin.right
+                , height = svg.attr("height") - margin.top - margin.bottom
+                , g = svg.append("g").translate([margin.left, margin.top])
+                ;
 
-    module.init = function(_) {
-        container = _;
+            x = d3.scaleLinear().range([0, width]);
+            y = d3.scaleLinear().range([height, 0]);
 
-        svg = d3.select(container);
-        margin = {top: 20, right: 80, bottom: 30, left: 50};
-        width = svg.attr("width") - margin.left - margin.right;
-        height = svg.attr("height") - margin.top - margin.bottom;
-        g = svg.append("g").translate([margin.left, margin.top]);
+            x.domain([minYear, maxYear]);
+            y.domain([-150, 50]);
 
-        x = d3.scaleLinear().range([0, width]);
-        y = d3.scaleLinear().range([height, 0]);
-
-        x.domain([minYear, maxYear]);
-        y.domain([-150, 50]);
-
-        line = d3.line()
+            line = d3.line()
             // .curve(d3.curveMonotoneX)
-            .x(function(d) { return x(d.year); })
-            .y(function(d) { return y(d.ballance); });
+                .x(function(d) { return x(d.year); })
+                .y(function(d) { return y(d.ballance); });
 
-        // g.append("rect")
-        //     .attr("class", "green-zone")
-        //     .attr("x", 0)
-        //     .attr("y", 0)
-        //     .attr("width", width)
-        //     .attr("height", height/4);
-        //
-        // g.append("rect")
-        //     .attr("class", "yellow-zone")
-        //     .attr("x", 0)
-        //     .attr("y", height/4)
-        //     .attr("width", width)
-        //     .attr("height", height/4);
-        //
-        // g.append("rect")
-        //     .attr("class", "red-zone")
-        //     .attr("x", 0)
-        //     .attr("y", height/2)
-        //     .attr("width", width)
-        //     .attr("height", height/2);
-        //
-        // moving_line = g.append('line')
-        //     .attr('class', 'moving-line')
-        //     .attr('x1', 0)
-        //     .attr('x2', 0)
-        //     .attr('y1', 0)
-        //     .attr('y2', height);
+            // g.append("rect")
+            //     .attr("class", "green-zone")
+            //     .attr("x", 0)
+            //     .attr("y", 0)
+            //     .attr("width", width)
+            //     .attr("height", height/4);
+            //
+            // g.append("rect")
+            //     .attr("class", "yellow-zone")
+            //     .attr("x", 0)
+            //     .attr("y", height/4)
+            //     .attr("width", width)
+            //     .attr("height", height/4);
+            //
+            // g.append("rect")
+            //     .attr("class", "red-zone")
+            //     .attr("x", 0)
+            //     .attr("y", height/2)
+            //     .attr("width", width)
+            //     .attr("height", height/2);
+            //
+            // moving_line = g.append('line')
+            //     .attr('class', 'moving-line')
+            //     .attr('x1', 0)
+            //     .attr('x2', 0)
+            //     .attr('y1', 0)
+            //     .attr('y2', height);
 
-        prediction_g = g
-            .append('g')
-            .attr("class", "prediction");
+            var prediction_g = g
+                .append('g')
+                .attr("class", "prediction");
 
-        actual_g = g
-            .append('g')
-            .attr("class", "actual");
+            var actual_g = g
+                .append('g')
+                .attr("class", "actual");
             // .attr("clip-path", "url(#current-clip-path)");
 
-        actual_path = actual_g
-            .append("path")
-            .attr("class", "line");
+            actual_path = actual_g
+                .append("path")
+                .attr("class", "line");
 
-        area = prediction_g
-            .append("path")
-            .attr("class", "area");
+            area = prediction_g
+                .append("path")
+                .attr("class", "area");
 
-        prediction_path = prediction_g
-            .append("path")
-            .attr("class", "line");
+            prediction_path = prediction_g
+                .append("path")
+                .attr("class", "line");
 
-        g.append("g")
-            .attr("class", "axis axis--x")
-            .attr("transform", "translate(0," + height + ")")
-            .call(d3.axisBottom(x).tickFormat(d3.format("d")));
+            g.append("g")
+                .attr("class", "axis axis--x")
+                .attr("transform", "translate(0," + height + ")")
+                .call(d3.axisBottom(x).tickFormat(d3.format("d")));
 
-        g.append("g")
-            .attr("class", "axis axis--y")
-            .call(d3.axisLeft(y).ticks(3))
-            .append("text")
-            .attr("transform", "rotate(-90)")
-            .attr("y", 6)
-            .attr("dy", "0.71em")
-            .attr("fill", "#000")
-            .text("Баланс, млрд. грн");
+            g.append("g")
+                .attr("class", "axis axis--y")
+                .call(d3.axisLeft(y).ticks(3))
+                .append("text")
+                .attr("transform", "rotate(-90)")
+                .attr("y", 6)
+                .attr("dy", "0.71em")
+                .attr("fill", "#000")
+                .text("Баланс, млрд. грн");
 
-        // current_clip_path = svg.append("defs")
-        //     .append("clipPath")
-        //     .attr("id", "current-clip-path")
-        //     .append("rect")
-        //     .attr("x", 0)
-        //     .attr("y", 0)
-        //     .attr("height", height)
-        //     .attr("width", 0);
+            // current_clip_path = svg.append("defs")
+            //     .append("clipPath")
+            //     .attr("id", "current-clip-path")
+            //     .append("rect")
+            //     .attr("x", 0)
+            //     .attr("y", 0)
+            //     .attr("height", height)
+            //     .attr("width", 0);
 
-        // background_year = g.append('text')
-        //     .attr("class", "background-year")
-        //     .attr("x", 260)
-        //     .attr("y", 200)
-        //     .attr("textLength", 130)
-        //     .attr("lengthAdjust", "spacingAndGlyphs");
+            // background_year = g.append('text')
+            //     .attr("class", "background-year")
+            //     .attr("x", 260)
+            //     .attr("y", 200)
+            //     .attr("textLength", 130)
+            //     .attr("lengthAdjust", "spacingAndGlyphs");
 
-        // timeScale = d3.scaleTime().domain([new Date(minYear,1,1), new Date(maxYear,1,1)]).range([0, playDuration]);
-        // year = timeScale.invert(0).getFullYear() - 1;
-        return module;
-    };
-
-    module.draw = function(data) {
+            // timeScale = d3.scaleTime().domain([new Date(minYear,1,1), new Date(maxYear,1,1)]).range([0, playDuration]);
+            // year = timeScale.invert(0).getFullYear() - 1;
+        });
+    }
+    
+    my.update = function(data) {
         // if (ms_time != 0) {
         //     var elapsed_date = timeScale.invert(ms_time);
         //
@@ -158,19 +154,9 @@ var ballance_chart = (function(d3) {
             .y0(y(0))
             .y1(function(d) { return y(d.ballance) });
 
-        prediction_path
-            // .transition()
-            // .duration(200)
-            .attr("d", line_d);
-
-        actual_path
-            // .transition()
-            // .duration(200)
-            .attr("d", line_d);
-
+        prediction_path.attr("d", line_d);
+        actual_path.attr("d", line_d);
         area.attr("d", area_gen(data));
-
-        // previous_data = data;
     };
 
     // module.move_line = function(time) {
@@ -230,5 +216,5 @@ var ballance_chart = (function(d3) {
     //     return module;
     // };
 
-    return module;
-})(d3);
+    return my;
+}
