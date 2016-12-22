@@ -16,7 +16,7 @@
         .historical(history.pension_age)
         .future(future.pension_age)
         .minY(50)
-        .maxY(70)
+        .maxY(65)
         .maxStep(0.5);
 
     var esv_rate = singlechart()
