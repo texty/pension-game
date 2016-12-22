@@ -15,12 +15,15 @@ var result = {};
 result.males = toMatrix(males);
 result.females = toMatrix(females);
 result.both = toMatrix(both);
-result.history = {
-    pension_age: history.map(function(d){return {year: +d.year, value: +d.pension_age}}),
-    pension_avg: history.map(function(d){return {year: +d.year, value: +d.pension_avg}}),
-    esv_rate: history.map(function(d){return {year: +d.year, value: +d.esv_rate}}),
-    payers_rate: history.map(function(d){return {year: +d.year, value: +d.payers_rate}})
-};
+result.history = history.map(function(d){ 
+   return {
+       year: +d.year,
+       pension_age: +d.pension_age,
+       pension_avg: +d.pension_avg,
+       esv_rate: +d.esv_rate,
+       payers_rate: +d.payers_rate
+   }
+});
 
 var jsonContent = JSON.stringify(result);
 var jsContent = ";" + 

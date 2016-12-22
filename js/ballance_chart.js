@@ -45,10 +45,10 @@ var ballance_chart = (function(d3) {
         height = svg.attr("height") - margin.top - margin.bottom;
         g = svg.append("g").translate([margin.left, margin.top]);
 
-        x = d3.scaleTime().range([0, width]);
+        x = d3.scaleLinear().range([0, width]);
         y = d3.scaleLinear().range([height, 0]);
 
-        x.domain([new Date(minYear,0,1), new Date(maxYear,0,1)]);
+        x.domain([minYear, maxYear]);
         y.domain([-150, 50]);
 
         line = d3.line()
@@ -76,22 +76,6 @@ var ballance_chart = (function(d3) {
         //     .attr("y", height/2)
         //     .attr("width", width)
         //     .attr("height", height/2);
-
-
-        g.append("g")
-            .attr("class", "axis axis--x")
-            .attr("transform", "translate(0," + height + ")")
-            .call(d3.axisBottom(x));
-
-        g.append("g")
-            .attr("class", "axis axis--y")
-            .call(d3.axisLeft(y).ticks(3))
-            .append("text")
-            .attr("transform", "rotate(-90)")
-            .attr("y", 6)
-            .attr("dy", "0.71em")
-            .attr("fill", "#000")
-            .text("Баланс, млрд. грн");
         //
         // moving_line = g.append('line')
         //     .attr('class', 'moving-line')
@@ -120,6 +104,21 @@ var ballance_chart = (function(d3) {
         prediction_path = prediction_g
             .append("path")
             .attr("class", "line");
+
+        g.append("g")
+            .attr("class", "axis axis--x")
+            .attr("transform", "translate(0," + height + ")")
+            .call(d3.axisBottom(x).tickFormat(d3.format("d")));
+
+        g.append("g")
+            .attr("class", "axis axis--y")
+            .call(d3.axisLeft(y).ticks(3))
+            .append("text")
+            .attr("transform", "rotate(-90)")
+            .attr("y", 6)
+            .attr("dy", "0.71em")
+            .attr("fill", "#000")
+            .text("Баланс, млрд. грн");
 
         // current_clip_path = svg.append("defs")
         //     .append("clipPath")

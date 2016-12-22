@@ -1,7 +1,8 @@
 function singlechart() {
 
     
-    var historical = []
+    var varName
+        , historical = []
         , future = []
         , minY
         , maxY
@@ -27,7 +28,7 @@ function singlechart() {
 
             var line = d3.line()
                 .x(function(d) { return x(d.year); })
-                .y(function(d) { return y(d.value); });
+                .y(function(d) { return y(d[varName]); });
 
             var all = historical.concat(future);
 
@@ -37,7 +38,7 @@ function singlechart() {
             x.domain(d3.extent(all, function(d) {return d.year}));
 
             if (!minY) minY = 0;
-            if (!maxY) maxY = d3.max(all, function(d) {return d.value});
+            if (!maxY) maxY = d3.max(all, function(d) {return d[varName]});
 
             y.domain([minY, maxY]);
 
@@ -88,7 +89,7 @@ function singlechart() {
                 .append('circle')
                 .attr("class", 'handle future')
                 .attr('cx', function(d) {return x(d.year)})
-                .attr('cy', function(d) {return y(d.value)})
+                .attr('cy', function(d) {return y(d[varName])})
                 .attr('r', 5.0)
                 .call(d3.drag().on("drag", dragged));
 
@@ -97,13 +98,13 @@ function singlechart() {
                 v = Math.min(Math.max(v, minY), maxY);
 
                 if (maxStep) {
-                    var v0 = future_start[0].value;
+                    var v0 = future_start[0][varName];
                     var diff = v - v0;
 
-                    d.value = diff > 0 ? Math.min(v, v0 + maxStep*(i+1)) : Math.max(v, v0 - maxStep*(i+1));
-                    d3.select(this).attr("cy", d.y = y(d.value));
+                    d[varName] = diff > 0 ? Math.min(v, v0 + maxStep*(i+1)) : Math.max(v, v0 - maxStep*(i+1));
+                    d3.select(this).attr("cy", d.y = y(d[varName]));
                 } else {
-                    d.value = v;
+                    d[varName] = v;
                     d3.select(this).attr("cy", d.y = d3.event.y);
                 }
 
@@ -114,33 +115,33 @@ function singlechart() {
 
             function update() {
                 future_path.attr("d", line);
-                circles.attr("cy", function(d){return y(d.value)});
+                circles.attr("cy", function(d){return y(d[varName])});
             }
 
             function repair_data(idx) {
                 if (!maxStep) return;
 
-                var idx_value = future[idx].value;
+                var idx_value = future[idx][varName];
                 var previous_value, i, value;
 
                 previous_value = idx_value;
                 for (i = idx + 1; i < future.length; i++) {
-                    value = future[i].value;
+                    value = future[i][varName];
                     if (Math.abs(value - previous_value) <= maxStep) break;
 
-                    future[i].value = value - previous_value > 0 ? previous_value + maxStep : previous_value - maxStep;
-                    future[i].y = y(future[i].value);
-                    previous_value = future[i].value;
+                    future[i][varName] = value - previous_value > 0 ? previous_value + maxStep : previous_value - maxStep;
+                    future[i].y = y(future[i][varName]);
+                    previous_value = future[i][varName];
                 }
 
                 previous_value = idx_value;
                 for (i = idx - 1; i >=0 ; i--) {
-                    value = future[i].value;
+                    value = future[i][varName];
                     if (Math.abs(value - previous_value) <= maxStep) break;
 
-                    future[i].value = value - previous_value > 0 ? previous_value + maxStep : previous_value - maxStep;
-                    future[i].y = y(future[i].value);
-                    previous_value = future[i].value;
+                    future[i][varName] = value - previous_value > 0 ? previous_value + maxStep : previous_value - maxStep;
+                    future[i].y = y(future[i][varName]);
+                    previous_value = future[i][varName];
                 }
             }
 
@@ -151,6 +152,12 @@ function singlechart() {
             }
         });
     }
+
+    my.varName = function(value) {
+        if (!arguments.length) return varName;
+        varName = value;
+        return my;
+    };
 
     my.future = function(value) {
         if (!arguments.length) return future;
