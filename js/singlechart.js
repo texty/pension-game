@@ -35,7 +35,11 @@ function singlechart() {
 
 
             x.domain(d3.extent(all, function(d) {return d.year}));
-            y.domain([minY || 0, maxY || d3.max(all, function(d) {return d.value})]);
+
+            if (!minY) minY = 0;
+            if (!maxY) maxY = d3.max(all, function(d) {return d.value});
+
+            y.domain([minY, maxY]);
 
             var xAxis = d3.axisBottom(x)
                 .ticks(4)
@@ -90,6 +94,7 @@ function singlechart() {
 
             function dragged(d, i) {
                 var v = y.invert(d3.event.y);
+                v = Math.min(Math.max(v, minY), maxY);
 
                 if (maxStep) {
                     var v0 = future_start[0].value;
