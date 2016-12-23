@@ -28,30 +28,35 @@
         .varName('pension_age')
         .minY(55)
         .maxY(65)
-        .maxStep(0.5*5);
+        .maxStep(0.5*5)
+        .yTickValues([55, 60, 65]);
 
     var esv_rate = singlechart()
         .varName('esv_rate')
         .historical(history)
         .future(future)
         .minY(0.1)
+        .maxY(0.4)
         .maxStep(0.1)
-        .yFormat(d3.format('.0%'));
+        .yFormat(d3.format('.0%'))
+        .yTickValues([.1, .2, .3, .4]);
 
     var payers_rate = singlechart()
         .varName('payers_rate')
         .historical(history)
         .future(future)
-        .minY(0.2)
+        .minY(0.3)
         .maxY(0.6)
+        .yTickValues([.3, .4, .5, .6])
         .yFormat(d3.format('.0%'));
 
     var pension_avg = singlechart()
         .varName('pension_avg')
         .historical(history)
         .future(future)
-        .maxY(5000)
-        .maxStep(1000 * 2);
+        .maxY(4000)
+        .maxStep(1000 * 2)
+        .yTickValues([0, 1000, 2000, 3000, 4000]);
 
     d3.select('#pension_age').call(pension_age).on("change", update);
     d3.select('#esv_rate').call(esv_rate).on("change", update);

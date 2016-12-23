@@ -8,6 +8,7 @@ function singlechart() {
         , maxY
         , maxStep
         , yFormat
+        , yTickValues
         // , handlePoints = [2020, 2025, 2030, 2035, 2040, 2045, 2050]
         ;
 
@@ -15,7 +16,7 @@ function singlechart() {
         selection.each(function(d) {
 
             var svg = d3.select(this)
-                , margin = {top: 20, right: 20, bottom: 30, left: 50}
+                , margin = {top: 5, right: 15, bottom: 15, left: 40}
                 , width = +svg.attr("width") - margin.left - margin.right
                 , height = +svg.attr("height") - margin.top - margin.bottom
                 , g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")")
@@ -25,7 +26,7 @@ function singlechart() {
                 .range([0, width]);
 
             var y = d3.scaleLinear()
-                .rangeRound([height, 0]);
+                .range([height, 0]);
 
             var line = d3.line()
                 .x(function(d) { return x(d.year); })
@@ -47,16 +48,17 @@ function singlechart() {
                 .ticks(4)
                 .tickSizeOuter(0)
                 .tickSizeInner(-height)
-                .tickPadding(15)
+                .tickPadding(5)
                 .tickFormat(d3.format("d"));
 
             var yAxis = d3.axisLeft(y)
                 .ticks(5)
                 .tickSizeOuter(0)
                 .tickSizeInner(-width)
-                .tickPadding(15);
+                .tickPadding(5);
 
             if (yFormat) yAxis.tickFormat(yFormat);
+            if (yTickValues) yAxis.tickValues(yTickValues);
 
             g.append("g")
                 .attr("class", "axis axis--x")
@@ -192,6 +194,12 @@ function singlechart() {
     my.yFormat = function(value) {
         if (!arguments.length) return yFormat;
         yFormat = value;
+        return my;
+    };
+
+    my.yTickValues = function(value) {
+        if (!arguments.length) return yTickValues;
+        yTickValues = value;
         return my;
     };
     
