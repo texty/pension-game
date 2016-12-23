@@ -1,16 +1,19 @@
 function ballance_chart() {
-        var width
+    var width
         , height
         , prediction_path
         , actual_path
         , area
+        , area_gen
+
         , line
 
         , x
         , y
 
-        , minYear = 2016
+        , minYear = 2005
         , maxYear = 2050
+        , history
         ;
     
     function my(selection) {
@@ -34,6 +37,11 @@ function ballance_chart() {
                 .x(function(d) { return x(d.year); })
                 .y(function(d) { return y(d.ballance); });
 
+            area_gen = d3.area()
+                .x(function(d) { return x(d.year) })
+                .y0(y(0))
+                .y1(function(d) { return y(d.ballance) });
+
             var prediction_g = g
                 .append('g')
                 .attr("class", "prediction");
@@ -42,9 +50,16 @@ function ballance_chart() {
                 .append('g')
                 .attr("class", "actual");
 
+            actual_g
+                .append("path")
+                .attr("class", "area")
+                .attr("d", area_gen(history));
+
             actual_path = actual_g
                 .append("path")
-                .attr("class", "line");
+                .attr("class", "line")
+                .attr("d", line(history));
+
 
             area = prediction_g
                 .append("path")
@@ -67,21 +82,22 @@ function ballance_chart() {
                 .attr("y", 6)
                 .attr("dy", "0.71em")
                 .attr("fill", "#000")
-                .text("Баланс, млрд. грн");
+                .text("млрд. грн");
         });
     }
     
     my.update = function(data) {
         var line_d = line(data);
 
-        var area_gen = d3.area()
-            .x(function(d) { return x(d.year) })
-            .y0(y(0))
-            .y1(function(d) { return y(d.ballance) });
-
         prediction_path.attr("d", line_d);
-        actual_path.attr("d", line_d);
         area.attr("d", area_gen(data));
+        return my;
+    };
+    
+    my.history = function(value) {
+        if (!arguments.length) return history;
+        history = value;
+        return my;
     };
 
     return my;

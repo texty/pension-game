@@ -196,7 +196,5 @@ function singlechart() {
     // };
 
 
-
-
     return my;
 }
