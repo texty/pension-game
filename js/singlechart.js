@@ -9,6 +9,8 @@ function singlechart() {
         , maxStep
         , yFormat
         , yTickValues
+        , snapFunction
+        , sticky
         // , handlePoints = [2020, 2025, 2030, 2035, 2040, 2045, 2050]
         ;
 
@@ -99,18 +101,34 @@ function singlechart() {
 
             function dragged(d, i) {
                 var v = y.invert(d3.event.y);
-                v = Math.min(Math.max(v, minY), maxY);
-                
+                v = Math.min(Math.max(v, minY), maxY); //todo change to minmax
+
+                if (snapFunction) {
+                    v = snapFunction(v);
+                    d3.event.y = y(v);
+                }
+
                 if (maxStep) {
                     var v0 = future_start[0][varName];
                     var diff = v - v0;
 
-                    d[varName] = diff > 0 ? Math.min(v, v0 + maxStep*(i+1)) : Math.max(v, v0 - maxStep*(i+1));
-                    d3.select(this).attr("cy", y(d[varName]));
+                    v = diff > 0 ? Math.min(v, v0 + maxStep*(i+1)) : Math.max(v, v0 - maxStep*(i+1));
+                    d3.select(this).attr("cy", y(v));
                 } else {
-                    d[varName] = v;
                     d3.select(this).attr("cy", d3.event.y);
                 }
+
+                if (sticky) {
+                    var prev_val = d[varName];
+                    var eps = v - prev_val;
+
+                    for (var j=i+1; j < future.length; j++) {
+                        var f_new = future[j][varName] + eps;
+                        future[j][varName] = minmax(f_new, minY, maxY);
+                    }
+                }
+
+                d[varName] = v;
 
                 repair_data(i);
                 update();
@@ -151,6 +169,10 @@ function singlechart() {
                 selection.each(function (d) {
                     d3.select(this).node().dispatchEvent(new CustomEvent(name, e));
                 });
+            }
+
+            function minmax(v, min, max) {
+                return Math.min(Math.max(v, min), max);
             }
         });
     }
@@ -200,6 +222,18 @@ function singlechart() {
     my.yTickValues = function(value) {
         if (!arguments.length) return yTickValues;
         yTickValues = value;
+        return my;
+    };
+    
+    my.snapFunction = function(value) {
+        if (!arguments.length) return snapFunction;
+        snapFunction = value;
+        return my;
+    };
+
+    my.sticky = function(value) {
+        if (!arguments.length) return sticky;
+        sticky = value;
         return my;
     };
     

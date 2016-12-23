@@ -29,7 +29,9 @@
         .minY(55)
         .maxY(65)
         .maxStep(0.5*5)
-        .yTickValues([55, 60, 65]);
+        .yTickValues([55, 60, 65])
+        .snapFunction(Math.round)
+        .sticky(true);
 
     var esv_rate = singlechart()
         .varName('esv_rate')
