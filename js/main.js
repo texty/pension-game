@@ -41,7 +41,8 @@
         .maxY(0.4)
         .maxStep(0.1)
         .yFormat(d3.format('.0%'))
-        .yTickValues([.1, .2, .3, .4]);
+        .yTickValues([.1, .2, .3, .4])
+        .sticky(true);
 
     var payers_rate = singlechart()
         .varName('payers_rate')
@@ -50,7 +51,8 @@
         .minY(0.3)
         .maxY(0.6)
         .yTickValues([.3, .4, .5, .6])
-        .yFormat(d3.format('.0%'));
+        .yFormat(d3.format('.0%'))
+        .sticky(true);
 
     var pension_avg = singlechart()
         .varName('pension_avg')
@@ -58,7 +60,8 @@
         .future(future)
         .maxY(4000)
         .maxStep(1000 * 2)
-        .yTickValues([0, 1000, 2000, 3000, 4000]);
+        .yTickValues([0, 1000, 2000, 3000, 4000])
+        .sticky(true);
 
     d3.select('#pension_age').call(pension_age).on("change", update);
     d3.select('#esv_rate').call(esv_rate).on("change", update);
