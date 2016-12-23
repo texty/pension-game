@@ -34,7 +34,7 @@
         .varName('esv_rate')
         .historical(history)
         .future(future)
-        .maxStep(0.05*5);
+        .maxStep(0.1);
 
     var payers_rate = singlechart()
         .varName('payers_rate')
@@ -48,7 +48,7 @@
         .historical(history)
         .future(future)
         .maxY(5000)
-        .maxStep(1000 * 5);
+        .maxStep(1000 * 2);
 
     d3.select('#pension_age').call(pension_age).on("change", update);
     d3.select('#esv_rate').call(esv_rate).on("change", update);
