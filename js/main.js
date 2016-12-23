@@ -26,7 +26,7 @@
         .historical(history)
         .future(future)
         .varName('pension_age')
-        .minY(50)
+        .minY(55)
         .maxY(65)
         .maxStep(0.5*5);
 
@@ -34,14 +34,17 @@
         .varName('esv_rate')
         .historical(history)
         .future(future)
-        .maxStep(0.1);
+        .minY(0.1)
+        .maxStep(0.1)
+        .yFormat(d3.format('.0%'));
 
     var payers_rate = singlechart()
         .varName('payers_rate')
         .historical(history)
         .future(future)
         .minY(0.2)
-        .maxY(0.6);
+        .maxY(0.6)
+        .yFormat(d3.format('.0%'));
 
     var pension_avg = singlechart()
         .varName('pension_avg')

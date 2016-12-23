@@ -188,6 +188,13 @@ function singlechart() {
         maxStep = value;
         return my;
     };
+
+    my.yFormat = function(value) {
+        if (!arguments.length) return yFormat;
+        yFormat = value;
+        return my;
+    };
+    
     //
     // my.handlePoints = function(value) {
     //     if (!arguments.length) return handlePoints;
