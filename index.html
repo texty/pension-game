@@ -210,7 +210,6 @@
     $(function(){
         var top = $("#deficit").offset().top - 120;
         $(window).scroll(function () {
-            console.log('scroll');
             if($(this).scrollTop() > top) {
                 $('#deficit').addClass('scrolling');
             } else {

@@ -8,6 +8,7 @@ function singlechart() {
         , maxY
         , maxStep
         , yFormat
+        // , handlePoints = [2020, 2025, 2030, 2035, 2040, 2045, 2050]
         ;
 
     function my(selection) {
@@ -83,11 +84,12 @@ function singlechart() {
                 .attr("class", "line future")
                 .attr("d", line);
 
-            var circles = g.selectAll("circle.handle.future")
+            // var handle_points_set = handlePoints.reduce(function(o,v) {o[v] = true; return o}, {});
+            var circles = g.selectAll("circle.handle")
                 .data(future)
                 .enter()
                 .append('circle')
-                .attr("class", 'handle future')
+                .attr("class", 'handle')
                 .attr('cx', function(d) {return x(d.year)})
                 .attr('cy', function(d) {return y(d[varName])})
                 .attr('r', 5.0)
@@ -96,16 +98,16 @@ function singlechart() {
             function dragged(d, i) {
                 var v = y.invert(d3.event.y);
                 v = Math.min(Math.max(v, minY), maxY);
-
+                
                 if (maxStep) {
                     var v0 = future_start[0][varName];
                     var diff = v - v0;
 
                     d[varName] = diff > 0 ? Math.min(v, v0 + maxStep*(i+1)) : Math.max(v, v0 - maxStep*(i+1));
-                    d3.select(this).attr("cy", d.y = y(d[varName]));
+                    d3.select(this).attr("cy", y(d[varName]));
                 } else {
                     d[varName] = v;
-                    d3.select(this).attr("cy", d.y = d3.event.y);
+                    d3.select(this).attr("cy", d3.event.y);
                 }
 
                 repair_data(i);
@@ -130,7 +132,6 @@ function singlechart() {
                     if (Math.abs(value - previous_value) <= maxStep) break;
 
                     future[i][varName] = value - previous_value > 0 ? previous_value + maxStep : previous_value - maxStep;
-                    future[i].y = y(future[i][varName]);
                     previous_value = future[i][varName];
                 }
 
@@ -140,7 +141,6 @@ function singlechart() {
                     if (Math.abs(value - previous_value) <= maxStep) break;
 
                     future[i][varName] = value - previous_value > 0 ? previous_value + maxStep : previous_value - maxStep;
-                    future[i].y = y(future[i][varName]);
                     previous_value = future[i][varName];
                 }
             }
@@ -188,6 +188,12 @@ function singlechart() {
         maxStep = value;
         return my;
     };
+    //
+    // my.handlePoints = function(value) {
+    //     if (!arguments.length) return handlePoints;
+    //     handlePoints = value;
+    //     return my;
+    // };
 
 
 

@@ -37,7 +37,7 @@ svg.singlechart {
 }
 
 .singlechart circle {
-    fill-opacity: 0;
+    fill-opacity: .1;
     stroke: black;
     stroke-width: 1px;
     cursor: pointer;

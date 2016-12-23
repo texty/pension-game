@@ -4,7 +4,10 @@
 
     var history = window.__demographics__.history;
 
-    var future_years = years.slice(1);
+    // var future_years = years.slice(1);
+    var future_years = [2020, 2025, 2030, 2035, 2040, 2045, 2050];
+
+    var future_start_years = [2016].concat(future_years);
 
     var last_in_history = last(history);
     var future = future_years.map(function(y){
@@ -17,19 +20,21 @@
        } 
     });
 
+    var future_start = [last(history)].concat(future);
+
     var pension_age = singlechart()
         .historical(history)
         .future(future)
         .varName('pension_age')
         .minY(50)
         .maxY(65)
-        .maxStep(0.5);
+        .maxStep(0.5*5);
 
     var esv_rate = singlechart()
         .varName('esv_rate')
         .historical(history)
         .future(future)
-        .maxStep(0.05);
+        .maxStep(0.05*5);
 
     var payers_rate = singlechart()
         .varName('payers_rate')
@@ -43,8 +48,7 @@
         .historical(history)
         .future(future)
         .maxY(5000)
-        .maxStep(1000);
-
+        .maxStep(1000 * 5);
 
     d3.select('#pension_age').call(pension_age).on("change", update);
     d3.select('#esv_rate').call(esv_rate).on("change", update);
@@ -65,10 +69,10 @@
     }
 
     function ballance_data() {
-        return future_years.map(function(y, i) {
+        return future_start_years.map(function(y, i) {
             return {
                 year: y,
-                ballance: model.calcBalanceFixedSalary(Math.round(future[i].pension_age), future[i].payers_rate, future[i].esv_rate, future[i].pension_avg, y)
+                ballance: model.calcBalanceFixedSalary(Math.round(future_start[i].pension_age), future_start[i].payers_rate, future_start[i].esv_rate, future_start[i].pension_avg, y)
             }
         });
     }
