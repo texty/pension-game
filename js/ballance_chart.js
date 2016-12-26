@@ -16,6 +16,9 @@ function ballance_chart() {
         , maxYear = 2050
         , history
         , first_update = true
+        , __data__
+        , __prev_data__
+        , message
         ;
     
     function my(selection) {
@@ -95,13 +98,21 @@ function ballance_chart() {
                 .attr("dy", "0.71em")
                 .attr("fill", "#000")
                 .text("млрд. $");
+
+            message = g.append("text")
+                .attr("class", "message")
+                .attr("y", 40)
+                .attr("x", 150);
         });
     }
     
     my.update = function(data) {
+        __data__ = data;
+
         var line_d = line(data);
 
         if (first_update) {
+            __prev_data__ = data;
             previous_path.attr("d", line_d);
             first_update = false;
         }
@@ -112,14 +123,27 @@ function ballance_chart() {
     };
 
     my.dragend = function() {
-        //redraw previous line
-        
-        console.log("ballance dragend");
+        var diff = __data__.map(function(d, i){
+            return d.ballance - __prev_data__[i].ballance;
+        }).reduce(function(o,v) {return o + v});
+
+        console.log(diff);
+
+        __prev_data__ = __data__;
 
         previous_path
             .transition()
             .duration(700)
             .attr("d", prediction_path.attr("d"));
+
+        message
+            .style("opacity", 1)
+            .text(d3.format("+.2f")(diff))
+            .transition()
+            .duration(1500)
+            .ease(d3.easeExpIn)
+            .style("opacity", 0);
+
 
         return my;
     };

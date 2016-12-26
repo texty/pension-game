@@ -139,7 +139,6 @@ function singlechart() {
             }
             
             function dragend() {
-                console.log("trigger dragend");
                 svg.call(triggerEvent, 'dragend');
             }
 
