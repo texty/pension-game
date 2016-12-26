@@ -5,8 +5,11 @@
 #ballance_chart .axis path {
     stroke-width: 1px;
     stroke: black;
+    stroke-opacity: .1;
+}
 
-    stroke-opacity: 0.2;
+#ballance_chart .axis .tick line {
+    stroke-opacity: .1;
 }
 
 #ballance_chart .axis--x path {
@@ -44,7 +47,7 @@
 }
 
 #ballance_chart {
-    margin-left: -53px;
+    /*margin-left: -53px;*/
 }
 
 #ballance_chart .green-zone{
@@ -59,7 +62,8 @@
     fill: #ff7f80;
 }
 
-#ballance_chart .axis.axis--x path, .axis.axis--x .tick line {
+#ballance_chart .axis.axis--x path,
+#ballance_chart .axis.axis--x .tick line {
     display: none;
 }
 
@@ -68,7 +72,7 @@
 }
 
 #ballance_chart .area {
-    fill: #cdd1da;
+    fill: #edf1fa;
 }
 
 /*body {*/

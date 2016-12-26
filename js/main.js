@@ -58,9 +58,9 @@
         .varName('pension_avg')
         .historical(history)
         .future(future)
-        .maxY(4000)
-        .maxStep(1000 * 2)
-        .yTickValues([0, 1000, 2000, 3000, 4000])
+        .maxY(200)
+        .maxStep(50)
+        .yTickValues([0, 50, 100, 150, 200])
         .sticky(true);
 
     d3.select('#pension_age').call(pension_age).on("change", update);

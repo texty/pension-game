@@ -7,13 +7,15 @@
 }
 
 .singlechart .axis path {
-    opacity: 0.2;
+    opacity: .1;
     stroke-width: 1;
+    display: none;
 }
 
 .singlechart .tick line {
-    opacity: 0.2;
+    opacity: .1;
     stroke-width: 1;
+    display: none;
 }
 
 .singlechart .line {

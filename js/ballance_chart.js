@@ -30,7 +30,7 @@ function ballance_chart() {
             y = d3.scaleLinear().range([height, 0]);
 
             x.domain([minYear, maxYear]);
-            y.domain([-150, 50]);
+            y.domain([-150/20, 50/20]);
 
             line = d3.line()
             // .curve(d3.curveMonotoneX)
@@ -82,7 +82,7 @@ function ballance_chart() {
                 .attr("y", 6)
                 .attr("dy", "0.71em")
                 .attr("fill", "#000")
-                .text("млрд. грн");
+                .text("млрд. $");
         });
     }
     
