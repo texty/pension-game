@@ -46,12 +46,6 @@ function ballance_chart() {
                 .x(function(d) { return x(d.year) })
                 .y0(y(0))
                 .y1(function(d) { return y(d.ballance) });
-            
-            // g layers
-            //
-            // var previous_g = g
-            //     .append("g")
-            //     .attr("class", "previous");
 
             var prediction_g = g
                 .append('g')
@@ -60,8 +54,7 @@ function ballance_chart() {
             var historical_g = g
                 .append('g')
                 .attr("class", "historical");
-            //
-            //
+
             historical_g
                 .append("path")
                 .attr("class", "area")
@@ -143,7 +136,6 @@ function ballance_chart() {
             .duration(1500)
             .ease(d3.easeExpIn)
             .style("opacity", 0);
-
 
         return my;
     };

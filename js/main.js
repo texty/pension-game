@@ -58,6 +58,7 @@
         .varName('pension_avg')
         .historical(history)
         .future(future)
+        .minY(50)
         .maxY(200)
         .maxStep(50)
         .yTickValues([0, 50, 100, 150, 200])
