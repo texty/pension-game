@@ -26,7 +26,7 @@
     shape-rendering: auto;
 }
 
-/*#ballance_chart .actual .line {*/
+/*#ballance_chart .historical .line {*/
 /*}*/
 
 #ballance_chart .prediction .line {
@@ -34,17 +34,21 @@
     stroke-dasharray: 3,3;
 }
 
-#ballance_chart .moving-line {
-    stroke: black;
-    stroke-width: 1px;
-    stroke-opacity: 0.2;
+#ballance_chart .prediction .previous.line {
+    stroke-opacity: 0.3;
 }
 
-#ballance_chart .background-year {
-    font-size: 44px;
-    font-weight: 800;
-    fill: #ccc;
-}
+/*#ballance_chart .moving-line {*/
+    /*stroke: black;*/
+    /*stroke-width: 1px;*/
+    /*stroke-opacity: 0.2;*/
+/*}*/
+
+/*#ballance_chart .background-year {*/
+    /*font-size: 44px;*/
+    /*font-weight: 800;*/
+    /*fill: #ccc;*/
+/*}*/
 
 #ballance_chart {
     /*margin-left: -53px;*/
@@ -67,7 +71,7 @@
     display: none;
 }
 
-#ballance_chart g.actual {
+#ballance_chart g.historical {
     /*display: none;*/
 }
 

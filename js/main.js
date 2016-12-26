@@ -63,16 +63,17 @@
         .yTickValues([0, 50, 100, 150, 200])
         .sticky(true);
 
-    d3.select('#pension_age').call(pension_age).on("change", update);
-    d3.select('#esv_rate').call(esv_rate).on("change", update);
-    d3.select('#payers_rate').call(payers_rate).on("change", update);
-    d3.select('#pension_avg').call(pension_avg).on("change", update);
-
     var main_chart = ballance_chart()
         .history(history);
 
     d3.select("#ballance_chart").call(main_chart);
     main_chart.update(ballance_data());
+
+    d3.select('#pension_age').call(pension_age).on("change", update).on("dragend", main_chart.dragend);
+    d3.select('#esv_rate').call(esv_rate).on("change", update).on("dragend", main_chart.dragend);
+    d3.select('#payers_rate').call(payers_rate).on("change", update).on("dragend", main_chart.dragend);
+    d3.select('#pension_avg').call(pension_avg).on("change", update).on("dragend", main_chart.dragend);
+
 
     function last(arr) {
         return arr[arr.length-1];

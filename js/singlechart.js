@@ -97,7 +97,10 @@ function singlechart() {
                 .attr('cx', function(d) {return x(d.year)})
                 .attr('cy', function(d) {return y(d[varName])})
                 .attr('r', 5.0)
-                .call(d3.drag().on("drag", dragged));
+                .call(d3.drag()
+                    .on("drag", dragged)
+                    .on("end", dragend)
+                );
 
             function dragged(d, i) {
                 var v = y.invert(d3.event.y);
@@ -133,6 +136,11 @@ function singlechart() {
                 repair_data(i);
                 update();
                 svg.call(triggerEvent, 'change', {detail: future});
+            }
+            
+            function dragend() {
+                console.log("trigger dragend");
+                svg.call(triggerEvent, 'dragend');
             }
 
             function update() {

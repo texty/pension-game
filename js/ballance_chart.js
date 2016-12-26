@@ -1,8 +1,9 @@
 function ballance_chart() {
     var width
         , height
+        , previous_path
         , prediction_path
-        , actual_path
+        , historical_path
         , area
         , area_gen
 
@@ -14,6 +15,7 @@ function ballance_chart() {
         , minYear = 2005
         , maxYear = 2050
         , history
+        , first_update = true
         ;
     
     function my(selection) {
@@ -41,29 +43,39 @@ function ballance_chart() {
                 .x(function(d) { return x(d.year) })
                 .y0(y(0))
                 .y1(function(d) { return y(d.ballance) });
+            
+            // g layers
+            //
+            // var previous_g = g
+            //     .append("g")
+            //     .attr("class", "previous");
 
             var prediction_g = g
                 .append('g')
                 .attr("class", "prediction");
 
-            var actual_g = g
+            var historical_g = g
                 .append('g')
-                .attr("class", "actual");
-
-            actual_g
+                .attr("class", "historical");
+            //
+            //
+            historical_g
                 .append("path")
                 .attr("class", "area")
                 .attr("d", area_gen(history));
 
-            actual_path = actual_g
+            historical_path = historical_g
                 .append("path")
                 .attr("class", "line")
                 .attr("d", line(history));
 
-
             area = prediction_g
                 .append("path")
                 .attr("class", "area");
+
+            previous_path = prediction_g
+                .append("path")
+                .attr("class", "line previous");
 
             prediction_path = prediction_g
                 .append("path")
@@ -76,7 +88,7 @@ function ballance_chart() {
 
             g.append("g")
                 .attr("class", "axis axis--y")
-                .call(d3.axisLeft(y).ticks(3))
+                .call(d3.axisLeft(y).ticks(4))
                 .append("text")
                 .attr("transform", "rotate(-90)")
                 .attr("y", 6)
@@ -89,8 +101,26 @@ function ballance_chart() {
     my.update = function(data) {
         var line_d = line(data);
 
+        if (first_update) {
+            previous_path.attr("d", line_d);
+            first_update = false;
+        }
+
         prediction_path.attr("d", line_d);
         area.attr("d", area_gen(data));
+        return my;
+    };
+
+    my.dragend = function() {
+        //redraw previous line
+        
+        console.log("ballance dragend");
+
+        previous_path
+            .transition()
+            .duration(700)
+            .attr("d", prediction_path.attr("d"));
+
         return my;
     };
     
