@@ -32,7 +32,7 @@ function ballance_chart() {
             y = d3.scaleLinear().range([height, 0]);
 
             x.domain([minYear, maxYear]);
-            y.domain([-150/20, 50/20]);
+            y.domain([-150/10, 100/10]);
 
             line = d3.line()
             // .curve(d3.curveMonotoneX)
