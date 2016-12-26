@@ -7,10 +7,13 @@ function singlechart() {
         , minY
         , maxY
         , maxStep
-        , yFormat
+        , yFormat = function(v) {return v}
         , yTickValues
         , snapFunction
         , sticky
+        , showTips
+
+        , tipText
         // , handlePoints = [2020, 2025, 2030, 2035, 2040, 2045, 2050]
         ;
 
@@ -88,6 +91,21 @@ function singlechart() {
                 .attr("class", "line future")
                 .attr("d", line);
 
+            var tip_g = g.append("g")
+                .attr("class", "tip");
+            
+            var tip_rect = tip_g.append("rect")
+                .attr("x", -22)
+                .attr("y", -15)
+                .attr("ry", 3)
+                .attr("rx", 3)
+                .attr("width", 25)
+                .attr("height", 20);
+
+            var tipText = tip_g.append("text").attr('text-anchor', "end");
+
+
+
             // var handle_points_set = handlePoints.reduce(function(o,v) {o[v] = true; return o}, {});
             var circles = g.selectAll("circle.handle")
                 .data(future)
@@ -116,10 +134,13 @@ function singlechart() {
                     var diff = v - v0;
 
                     v = diff > 0 ? Math.min(v, v0 + maxStep*(i+1)) : Math.max(v, v0 - maxStep*(i+1));
-                    d3.select(this).attr("cy", y(v));
+                    // d3.event.y = y(v);
                 } else {
-                    d3.select(this).attr("cy", d3.event.y);
+                    // d3.select(this).attr("cy", d3.event.y);
                 }
+
+                d3.event.y = y(v);
+                d3.select(this).attr("cy", d3.event.y);
 
                 if (sticky) {
                     var prev_val = d[varName];
@@ -133,12 +154,30 @@ function singlechart() {
 
                 d[varName] = v;
 
+                if (showTips) {
+                    tip_g
+                        .style("opacity", 1)
+                        .translate([d3.select(this).attr('cx') - 10, d3.event.y]);
+
+                    tipText.text(yFormat(v));
+                        // .attr("x", )
+                        // .attr("y", )
+                        // .text(yFormat(v))
+                }
+
                 repair_data(i);
                 update();
                 svg.call(triggerEvent, 'change', {detail: future});
             }
             
             function dragend() {
+                if (showTips) {
+                    tip_g
+                        .transition()
+                        .duration(700)
+                        .style("opacity", 0);
+                }
+
                 svg.call(triggerEvent, 'dragend');
             }
 
@@ -241,6 +280,12 @@ function singlechart() {
     my.sticky = function(value) {
         if (!arguments.length) return sticky;
         sticky = value;
+        return my;
+    };
+
+    my.showTips = function(value) {
+        if (!arguments.length) return showTips;
+        showTips = value;
         return my;
     };
     

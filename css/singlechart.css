@@ -1,5 +1,6 @@
-.singlechart {
+svg.singlechart {
     shape-rendering: crispEdges;
+    overflow: visible;
 }
 
 .singlechart .axis--x path {
@@ -34,9 +35,9 @@
     stroke-dasharray: 3,3;
 }
 
-svg.singlechart {
+/*svg.singlechart {*/
     /*margin-left: -50px;*/
-}
+/*}*/
 
 .singlechart circle {
     fill-opacity: .1;
@@ -44,4 +45,13 @@ svg.singlechart {
     stroke-width: 1px;
     cursor: pointer;
     stroke-opacity: 0;
+}
+
+.singlechart .tip {
+    opacity: 0;
+}
+
+.singlechart .tip rect {
+    stroke: none;
+    fill: rgba(205, 209, 218, 0.45);
 }

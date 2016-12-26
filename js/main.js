@@ -31,7 +31,8 @@
         .maxStep(0.5*5)
         .yTickValues([55, 60, 65])
         .snapFunction(Math.round)
-        .sticky(true);
+        .sticky(true)
+        .showTips(true);
 
     var esv_rate = singlechart()
         .varName('esv_rate')
@@ -42,7 +43,8 @@
         .maxStep(0.1)
         .yFormat(d3.format('.0%'))
         .yTickValues([.1, .2, .3, .4])
-        .sticky(true);
+        .sticky(true)
+        .showTips(true);
 
     var payers_rate = singlechart()
         .varName('payers_rate')
@@ -52,7 +54,8 @@
         .maxY(0.6)
         .yTickValues([.3, .4, .5, .6])
         .yFormat(d3.format('.0%'))
-        .sticky(true);
+        .sticky(true)
+        .showTips(true);
 
     var pension_avg = singlechart()
         .varName('pension_avg')
@@ -61,8 +64,10 @@
         .minY(50)
         .maxY(200)
         .maxStep(50)
-        .yTickValues([0, 50, 100, 150, 200])
-        .sticky(true);
+        .yTickValues([50, 100, 150, 200])
+        .yFormat(d3.format(".0f"))
+        .sticky(true)
+        .showTips(true);
 
     var main_chart = ballance_chart()
         .history(history);
