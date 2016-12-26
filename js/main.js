@@ -15,6 +15,7 @@
            year: y,
            pension_age: last_in_history.pension_age,
            pension_avg: last_in_history.pension_avg,
+           salary_avg: last_in_history.salary_avg,
            esv_rate: last_in_history.esv_rate,
            payers_rate: last_in_history.payers_rate
        } 
@@ -69,6 +70,19 @@
         .sticky(true)
         .showTips(true);
 
+
+    var salary_avg = singlechart()
+        .varName('salary_avg')
+        .historical(history)
+        .future(future)
+        .minY(0)
+        .maxY(600)
+        .maxStep(100)
+        .yTickValues([0, 200, 400, 600])
+        .yFormat(d3.format(".0f"))
+        .sticky(true)
+        .showTips(true);
+
     var main_chart = ballance_chart()
         .history(history);
 
@@ -79,6 +93,7 @@
     d3.select('#esv_rate').call(esv_rate).on("change", update).on("dragend", main_chart.dragend);
     d3.select('#payers_rate').call(payers_rate).on("change", update).on("dragend", main_chart.dragend);
     d3.select('#pension_avg').call(pension_avg).on("change", update).on("dragend", main_chart.dragend);
+    d3.select('#salary_avg').call(salary_avg).on("change", update).on("dragend", main_chart.dragend);
 
 
     function last(arr) {
@@ -93,7 +108,7 @@
         return future_start_years.map(function(y, i) {
             return {
                 year: y,
-                ballance: model.calcBalanceFixedSalary(Math.round(future_start[i].pension_age), future_start[i].payers_rate, future_start[i].esv_rate, future_start[i].pension_avg, y)
+                ballance: model.calcBalance(Math.round(future_start[i].pension_age), future_start[i].payers_rate, future_start[i].esv_rate, future_start[i].pension_avg, future_start[i].salary_avg,  y)
             }
         });
     }

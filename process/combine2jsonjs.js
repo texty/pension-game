@@ -20,6 +20,7 @@ result.history = history.map(function(d){
        year: +d.year,
        pension_age: +d.pension_age,
        pension_avg: +d.pension_avg,
+       salary_avg: +d.salary_avg,
        esv_rate: +d.esv_rate,
        payers_rate: +d.payers_rate,
        ballance: +d.ballance
