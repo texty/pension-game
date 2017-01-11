@@ -16,3 +16,13 @@
 /*.slider-rangeHighlight {*/
     /*background: #f70616;*/
 /*}*/
+
+
+.start-question {
+    font-size: 20px;
+}
+
+.start-question input {
+    /*font-size: 40px;*/
+    width: 110px;
+}

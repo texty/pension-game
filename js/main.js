@@ -1,4 +1,17 @@
-(function () {
+//todo wrap in closure
+
+d3.select("#submit").on("click", function() {
+    d3.select(".main-content").classed("hidden", false);
+    d3.select(".start-question").classed("hidden", true);
+    window.deficit_top = $("#deficit").offset().top - 120;
+
+    var pension_size = +d3.select('#input-pension').node().value;
+    var user_age = +d3.select('#input-age').node().value;
+
+    var user_pension_year = 2016 + 60 - user_age;
+
+    console.log(user_pension_year);
+
     var years = [];
     for (var y = 2016; y <= 2050; y++) years.push(y);
 
@@ -10,16 +23,22 @@
     var future_start_years = [2016].concat(future_years);
 
     var last_in_history = last(history);
-    var future = future_years.map(function(y){
+    var f_length = future_years.length;
+
+    var inter = d3.interpolateRound(last_in_history.pension_avg, pension_size);
+
+    var future = future_years.map(function(y, i) {
        return {
            year: y,
            pension_age: last_in_history.pension_age,
-           pension_avg: last_in_history.pension_avg,
+           pension_avg: inter((i + 1) / f_length),
            salary_avg: last_in_history.salary_avg,
            esv_rate: last_in_history.esv_rate,
            payers_rate: last_in_history.payers_rate
        } 
     });
+
+    console.log(future);
 
     var future_start = [last(history)].concat(future);
 
@@ -62,14 +81,13 @@
         .varName('pension_avg')
         .historical(history)
         .future(future)
-        .minY(50)
-        .maxY(200)
+        .minY(0)
+        // .maxY(200)
         .maxStep(50)
-        .yTickValues([50, 100, 150, 200])
+        // .yTickValues([50, 100, 150, 200])
         .yFormat(d3.format(".0f"))
         .sticky(true)
         .showTips(true);
-
 
     var salary_avg = singlechart()
         .varName('salary_avg')
@@ -77,7 +95,7 @@
         .future(future)
         .minY(0)
         .maxY(600)
-        .maxStep(100)
+        .maxStep(109)
         .yTickValues([0, 200, 400, 600])
         .yFormat(d3.format(".0f"))
         .sticky(true)
@@ -112,4 +130,5 @@
             }
         });
     }
-})();
+});
+

@@ -109,7 +109,18 @@
         </div>
 
         <hr>
-        <div class="row">
+        <div class="row start-question">
+            <div class="col-xs-3"></div>
+            <div class="col-xs-6 text-center center-block">
+                <p><span>Мені </span><input id="input-age" type="number" min="26" max="120" value="26" autocomplete="off"><span>років</span></p>
+                <p><span>Я хочу отримувати </span><input id="input-pension" min="0" max="1000" type="number" value="300" autocomplete="off"><span>$ пенсії</span></p>
+                <p><button class="btn btn-success" id="submit">Вжух</button></p>
+            </div>
+            <div class="col-xs-3"></div>
+        </div>
+        
+        
+        <div class="row main-content hidden">
             <div class="col-md-4">
 
                 <div style="height: 260px; font-size: 20px; padding-top: 115px; border: 1px solid grey">
@@ -215,9 +226,8 @@
 <script src="js/main.js"></script>
 <script>
     $(function(){
-        var top = $("#deficit").offset().top - 120;
         $(window).scroll(function () {
-            if($(this).scrollTop() > top) {
+            if($(this).scrollTop() > window.deficit_top) {
                 $('#deficit').addClass('scrolling');
             } else {
                 $('#deficit').removeClass('scrolling');

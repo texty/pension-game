@@ -12,8 +12,8 @@ function singlechart() {
         , snapFunction
         , sticky
         , showTips
+        , minCurve
 
-        , tipText
         // , handlePoints = [2020, 2025, 2030, 2035, 2040, 2045, 2050]
         ;
 
@@ -57,7 +57,7 @@ function singlechart() {
                 .tickFormat(d3.format("d"));
 
             var yAxis = d3.axisLeft(y)
-                .ticks(5)
+                .ticks(3)
                 .tickSizeOuter(0)
                 .tickSizeInner(-width)
                 .tickPadding(5);
@@ -122,7 +122,7 @@ function singlechart() {
 
             function dragged(d, i) {
                 var v = y.invert(d3.event.y);
-                v = Math.min(Math.max(v, minY), maxY); //todo change to minmax
+                v = minmax(v, minY, maxY);
 
                 if (snapFunction) {
                     v = snapFunction(v);
@@ -286,6 +286,14 @@ function singlechart() {
     my.showTips = function(value) {
         if (!arguments.length) return showTips;
         showTips = value;
+        return my;
+    };
+
+    my.minCurve = function(value) {
+        if (!arguments.length) return minCurve;
+        minCurve = value;
+        
+        //todo recalculate minimals
         return my;
     };
     
