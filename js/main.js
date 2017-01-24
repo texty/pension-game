@@ -7,11 +7,6 @@ d3.select("#submit").on("click", function() {
 
     var pension_size = +d3.select('#input-pension').node().value;
     var user_age = +d3.select('#input-age').node().value;
-
-    var user_pension_year = 2016 + 60 - user_age;
-
-    console.log(user_pension_year);
-
     var years = [];
     for (var y = 2016; y <= 2050; y++) years.push(y);
 
@@ -38,7 +33,9 @@ d3.select("#submit").on("click", function() {
        } 
     });
 
-    console.log(future);
+    var current_year = new Date().getFullYear();
+    var pension_year = calc_pension_year(current_year, user_age, future);
+    console.log(pension_year);
 
     var future_start = [last(history)].concat(future);
 
@@ -102,12 +99,13 @@ d3.select("#submit").on("click", function() {
         .showTips(true);
 
     var main_chart = ballance_chart()
-        .history(history);
+        .history(history)
+        .pension_year(pension_year);
 
     d3.select("#ballance_chart").call(main_chart);
     main_chart.update(ballance_data());
 
-    d3.select('#pension_age').call(pension_age).on("change", update).on("dragend", main_chart.dragend);
+    d3.select('#pension_age').call(pension_age).on("change", updatedPensionAge).on("dragend", main_chart.dragend);
     d3.select('#esv_rate').call(esv_rate).on("change", update).on("dragend", main_chart.dragend);
     d3.select('#payers_rate').call(payers_rate).on("change", update).on("dragend", main_chart.dragend);
     d3.select('#pension_avg').call(pension_avg).on("change", update).on("dragend", main_chart.dragend);
@@ -116,6 +114,14 @@ d3.select("#submit").on("click", function() {
 
     function last(arr) {
         return arr[arr.length-1];
+    }
+
+    function updatedPensionAge() {
+        var pension_year = calc_pension_year(current_year, user_age, future);
+        console.log(pension_year);
+        main_chart
+            .pension_year(pension_year)
+            .update(ballance_data());
     }
 
     function update() {
@@ -129,6 +135,28 @@ d3.select("#submit").on("click", function() {
                 ballance: model.calcBalance(Math.round(future_start[i].pension_age), future_start[i].payers_rate, future_start[i].esv_rate, future_start[i].pension_avg, future_start[i].salary_avg,  y)
             }
         });
+    }
+
+    function calc_pension_year(current_year, user_age, future) {
+        var f1, f2, age_y1, age_y2;
+
+        for (var i = 0; i < future.length - 1; i++) {
+            f1 = future[i];
+            f2 = future[i+1];
+
+            age_y1 = user_age + f1.year - current_year;
+            age_y2 = user_age + f2.year - current_year;
+
+            if (f1.pension_age >= age_y1 && f2.pension_age <= age_y2) break;
+        }
+
+        for (var y = f1.year; y <= f2.year; y++) {
+            var age_y = user_age + y - current_year;
+            var pension_age = f1.pension_age + (y - f1.year) / (f2.year - f1.year) * (f2.pension_age - f1.pension_age);
+
+            if (age_y >= pension_age) return y;
+        }
+        return y;
     }
 });
 

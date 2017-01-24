@@ -112,7 +112,7 @@
         <div class="row start-question">
             <div class="col-xs-3"></div>
             <div class="col-xs-6 text-center center-block">
-                <p><span>Мені </span><input id="input-age" type="number" min="26" max="120" value="26" autocomplete="off"><span>років</span></p>
+                <p><span>Мені </span><input id="input-age" type="number" min="26" max="120" value="35" autocomplete="off"><span>років</span></p>
                 <p><span>Я хочу отримувати </span><input id="input-pension" min="0" max="1000" type="number" value="300" autocomplete="off"><span>$ пенсії</span></p>
                 <p><button class="btn btn-success" id="submit">Вжух</button></p>
             </div>
@@ -155,8 +155,12 @@
 
 
                 <div id="deficit">
-                    <h3>Прогноз</h3>
-                    <svg id="ballance_chart" width="800" height="200"></svg>
+                    <!--<h3>Прогноз</h3>-->
+                    <svg id="ballance_chart" width="800" height="200">
+                        <marker id="arrowhead" viewBox="-10 -10 20 20" refX="0" refY="0" markerWidth="20" markerHeight="20" stroke-width="1" orient="auto"><polyline stroke-linejoin="bevel" points="-6.75,-6.75 0,0 -6.75,6.75"></polyline></marker>
+
+
+                    </svg>
 
                         <!--<div class="col-xs-6">-->
                             <!--<span>Пенсійний вік</span><input id="age"/>-->
@@ -211,12 +215,13 @@
 <!--<script src="lib/jquery-ui-1.12.1.js"></script>-->
 <script src="lib/bootstrap.min.js"></script>
 <!--<script src="lib/bootstrap-slider.min.js"></script>-->
-<script src="lib/ion.rangeSlider.min.js"></script>
+<!--<script src="lib/ion.rangeSlider.min.js"></script>-->
 <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
 <script src="lib/share-behavior.js"></script>
 
 <script src="lib/d3.v4.min.js"></script>
 <script src="lib/d3-jetpack.js"></script>
+<script src="lib/swoopyArrows.js"></script>
 <script src="js/demographics.js"></script>
 <script src="js/singlechart.js"></script>
 <script src="js/model.js"></script>

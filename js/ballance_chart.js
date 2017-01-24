@@ -19,6 +19,8 @@ function ballance_chart() {
         , __data__
         , __prev_data__
         , message
+        , pension_year
+        , pension_year_line_g
         ;
     
     function my(selection) {
@@ -69,6 +71,16 @@ function ballance_chart() {
                 .append("path")
                 .attr("class", "area");
 
+            pension_year_line_g = prediction_g
+                .append("g");
+
+            //line
+            pension_year_line_g
+                .append("line")
+                .attr("class", "line")
+                .attr("y1", 0 - margin.top)
+                .attr("y2", 2*height);
+
             previous_path = prediction_g
                 .append("path")
                 .attr("class", "line previous");
@@ -96,6 +108,27 @@ function ballance_chart() {
                 .attr("class", "message")
                 .attr("y", 40)
                 .attr("x", 150);
+
+            var swoopy = swoopyArrow()
+                .angle(Math.PI/2)
+                .clockwise(false)
+                .x(function(d) { return d[0]; })
+                .y(function(d) { return d[1]; });
+
+            pension_year_line_g
+                .append("path")
+                .attr('marker-end', 'url(#arrowhead)')
+                .attr('class', 'swoopy-pension-year')
+                .datum([[-40, height + 70], [0, height + 30]])
+                .attr("d", swoopy);
+
+            pension_year_line_g
+                .append("text")
+                .attr('y', height + 70)
+                .attr('x', -50)
+                .attr('text-anchor', "end")
+                .text('рік виходу на пенсію')
+
         });
     }
     
@@ -112,6 +145,8 @@ function ballance_chart() {
 
         prediction_path.attr("d", line_d);
         area.attr("d", area_gen(data));
+
+        pension_year_line_g.translate([x(pension_year), 0]);
         return my;
     };
 
@@ -120,7 +155,7 @@ function ballance_chart() {
             return d.ballance - __prev_data__[i].ballance;
         }).reduce(function(o,v) {return o + v});
 
-        console.log(diff);
+        console.log("diff " + diff);
 
         __prev_data__ = __data__;
 
@@ -130,8 +165,12 @@ function ballance_chart() {
             .attr("d", prediction_path.attr("d"));
 
         message
+            .classed("red", diff < 0)
+            .classed("green", diff > 0)
+            .transition()
+            .duration(0)
             .style("opacity", 1)
-            .text(d3.format("+.2f")(diff))
+            .text(d3.format("+.1f")(diff))
             .transition()
             .duration(1500)
             .ease(d3.easeExpIn)
@@ -143,6 +182,12 @@ function ballance_chart() {
     my.history = function(value) {
         if (!arguments.length) return history;
         history = value;
+        return my;
+    };
+
+    my.pension_year = function(value) {
+        if (!arguments.length) return pension_year;
+        pension_year = value;
         return my;
     };
 

@@ -1,5 +1,6 @@
 #ballance_chart {
     shape-rendering: crispEdges;
+    overflow: visible;
 }
 
 #ballance_chart .axis path {
@@ -50,6 +51,14 @@
     fill: #ccc;
 }
 
+#ballance_chart .message.red {
+    fill: #fee08b;
+}
+
+#ballance_chart .message.green {
+    fill: #d9ef8b;
+}
+
 #ballance_chart {
     /*margin-left: -53px;*/
 }
@@ -77,6 +86,12 @@
 
 #ballance_chart .area {
     fill: #edf1fa;
+}
+
+#ballance_chart .swoopy-pension-year {
+    stroke: black;
+    fill: none;
+    shape-rendering: initial;
 }
 
 /*body {*/
