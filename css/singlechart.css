@@ -51,6 +51,12 @@ svg.singlechart {
     opacity: 0;
 }
 
+.singlechart line.line.pension_year {
+    stroke: #ddd;
+    stroke-dasharray: 3 3;
+    stroke-linecap: initial;
+}
+
 .singlechart .tip rect {
     stroke: none;
     fill: rgba(205, 209, 218, 0.45);

@@ -13,6 +13,9 @@ function singlechart() {
         , sticky
         , showTips
         , minCurve
+        , pension_year
+        , pension_year_line
+        , x
 
         // , handlePoints = [2020, 2025, 2030, 2035, 2040, 2045, 2050]
         ;
@@ -27,7 +30,7 @@ function singlechart() {
                 , g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")")
                 ;
 
-            var x = d3.scaleLinear()
+            x = d3.scaleLinear()
                 .range([0, width]);
 
             var y = d3.scaleLinear()
@@ -104,6 +107,14 @@ function singlechart() {
 
             var tipText = tip_g.append("text").attr('text-anchor', "end");
 
+
+            var x12 = x(pension_year);
+            pension_year_line = g.append("line")
+                .attr("class", "line pension_year")
+                .attr("y1", 0 - margin.top)
+                .attr("y2", height + margin.bottom)
+                .attr("x1", x12)
+                .attr("x2", x12);
 
 
             // var handle_points_set = handlePoints.reduce(function(o,v) {o[v] = true; return o}, {});
@@ -296,6 +307,23 @@ function singlechart() {
         //todo recalculate minimals
         return my;
     };
+
+    my.pension_year = function(value) {
+        if (!arguments.length) return pension_year;
+        pension_year = value;
+        return my;        
+    };
+
+    my.update_pension_year = function(value) {
+        if (arguments.length) {
+            pension_year = value;
+        }
+
+        var x12 = x(pension_year);
+        pension_year_line.attr("x1", x12).attr("x2", x12);
+        return my;
+    };
+
     
     //
     // my.handlePoints = function(value) {
