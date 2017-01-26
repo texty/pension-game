@@ -169,6 +169,7 @@ d3.select("#submit").on("click", function() {
         var pension_year = calc_pension_year(current_year, user_age, future);
 
         ballance_chart.pension_year(pension_year);
+        payers_rate.pension_year(pension_year);
 
         pension_age.update_pension_year(pension_year);
         esv_rate.update_pension_year(pension_year);

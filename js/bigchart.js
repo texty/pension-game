@@ -88,7 +88,8 @@ function bigchart() {
                 .attr("clip-path", "url(#ballance-chart-clip)");
 
             pension_year_line_g = prediction_g
-                .append("g");
+                .append("g")
+                .attr("class", "pension_year");
 
             //line
             pension_year_line_g
