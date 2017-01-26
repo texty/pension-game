@@ -23,6 +23,7 @@ result.history = history.map(function(d){
        salary_avg: +d.salary_avg,
        esv_rate: +d.esv_rate,
        payers_rate: +d.payers_rate,
+       dreg: +d.dreg,
        ballance: +d.ballance
    }
 });
