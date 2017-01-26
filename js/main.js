@@ -41,6 +41,8 @@ d3.select("#submit").on("click", function() {
        }
     });
 
+    window.future = future;
+
     var current_year = new Date().getFullYear();
     var pension_year = calc_pension_year(current_year, user_age, future);
 
@@ -48,7 +50,7 @@ d3.select("#submit").on("click", function() {
         .domain([last_in_history.year, pension_year])
         .range([last_in_history.pension_avg, pension_target_size]);
 
-    future.forEach(function(d) { d.pension_avg = pension_size_scale(d.year)});
+    future.forEach(function(d) { d.pension_avg = pension_size_scale(d.year) });
 
     var future_start = [last(history)].concat(future);
 
@@ -134,6 +136,9 @@ d3.select("#submit").on("click", function() {
         .history(history)
         .minY(-150/10)
         .maxY(100/10)
+        .yText("млрд. $")
+        .showPrevious(true)
+        // .yFormat()
         .pension_year(pension_year);
 
     var payers_rate = bigchart()
@@ -141,17 +146,19 @@ d3.select("#submit").on("click", function() {
         .history(history)
         .minY(0)
         .maxY(1)
+        .yFormat(d3.format('.0%'))
         .pension_year(pension_year);
 
     d3.select("#ballance").call(ballance_chart);
     d3.select('#payers_rate').call(payers_rate); //.on("change", update);
     ballance_chart.update(ballance_data());
+    payers_rate.update(payers_rate_data());
 
     d3.select('#pension_age').call(pension_age).on("change", update_pension_age_changed).on("dragend", ballance_chart.dragend);
-    d3.select('#esv_rate').call(esv_rate).on("change", update).on("dragend", ballance_chart.dragend);
+    d3.select('#esv_rate').call(esv_rate).on("change", update_payers_rate).on("dragend", ballance_chart.dragend);
     d3.select('#pension_avg').call(pension_avg).on("change", update).on("dragend", ballance_chart.dragend);
     d3.select('#salary_avg').call(salary_avg).on("change", update).on("dragend", ballance_chart.dragend);
-    d3.select('#dreg').call(dreg).on("change", update).on("dragend", ballance_chart.dragend);
+    d3.select('#dreg').call(dreg).on("change", update_payers_rate).on("dragend", ballance_chart.dragend);
 
 
     function last(arr) {
@@ -172,8 +179,25 @@ d3.select("#submit").on("click", function() {
         update();
     }
 
+    function update_payers_rate() {
+        var p_data = payers_rate_data();
+        payers_rate.update(p_data);
+        future_start.forEach(function(d, i) {d.payers_rate = p_data[i].payers_rate});
+
+        update();
+    }
+
     function update() {
         ballance_chart.update(ballance_data());
+    }
+
+    function payers_rate_data() {
+        return future_start_years.map(function(y, i) {
+            return {
+                year: y,
+                payers_rate: model.calcPayersRate(future_start[i].esv_rate, future_start[i].dreg)
+            }
+        });
     }
 
     function ballance_data() {

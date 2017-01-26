@@ -1,4 +1,4 @@
-.bigchart {
+svg.bigchart {
     shape-rendering: crispEdges;
     overflow: visible;
 }

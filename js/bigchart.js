@@ -2,6 +2,11 @@ function bigchart() {
     var varName
         , minY
         , maxY
+        , yFormat = function(v) {return v}
+        , yText = ''
+        , showPrevious
+
+        , width
         , height
         , previous_path
         , prediction_path
@@ -92,10 +97,12 @@ function bigchart() {
                 .attr("y1", 0 - margin.top)
                 .attr("y2", height + margin.bottom - 5);
 
-            previous_path = prediction_g
-                .append("path")
-                .attr("class", "line previous")
-                .attr("clip-path", "url(#ballance-chart-clip)");
+            if (showPrevious) {
+                previous_path = prediction_g
+                    .append("path")
+                    .attr("class", "line previous")
+                    .attr("clip-path", "url(#ballance-chart-clip)");
+            }
 
             prediction_path = prediction_g
                 .append("path")
@@ -107,15 +114,20 @@ function bigchart() {
                 .attr("transform", "translate(0," + height + ")")
                 .call(d3.axisBottom(x).tickFormat(d3.format("d")));
 
+            var yAxis = d3.axisLeft(y)
+                .ticks(4);
+
+            if (yFormat) yAxis.tickFormat(yFormat);
+
             g.append("g")
                 .attr("class", "axis axis--y")
-                .call(d3.axisLeft(y).ticks(4))
+                .call(yAxis)
                 .append("text")
                 .attr("transform", "rotate(-90)")
                 .attr("y", 6)
                 .attr("dy", "0.71em")
                 .attr("fill", "#000")
-                .text("млрд. $");
+                .text(yText);
 
             message = g.append("text")
                 .attr("class", "message")
@@ -141,7 +153,6 @@ function bigchart() {
                 .attr('x', -50)
                 .attr('text-anchor', "end")
                 .text('рік виходу на пенсію')
-
         });
     }
     
@@ -150,7 +161,7 @@ function bigchart() {
 
         var line_d = line(data);
 
-        if (first_update) {
+        if (first_update && showPrevious) {
             __prev_data__ = data;
             previous_path.attr("d", line_d);
             first_update = false;
@@ -164,11 +175,11 @@ function bigchart() {
     };
 
     my.dragend = function() {
+        if (!showPrevious) return;
+
         var diff = __data__.map(function(d, i){
             return d[varName] - __prev_data__[i][varName];
         }).reduce(function(o,v) {return o + v});
-
-        console.log("diff " + diff);
 
         __prev_data__ = __data__;
 
@@ -210,6 +221,18 @@ function bigchart() {
         return my;
     };
 
+    my.yFormat = function(value) {
+        if (!arguments.length) return yFormat;
+        yFormat = value;
+        return my;
+    };
+
+    my.yText = function(value) {
+        if (!arguments.length) return yText;
+        yText = value;
+        return my;
+    };
+    
     my.history = function(value) {
         if (!arguments.length) return history;
         history = value;
@@ -219,6 +242,12 @@ function bigchart() {
     my.pension_year = function(value) {
         if (!arguments.length) return pension_year;
         pension_year = value;
+        return my;
+    };
+
+    my.showPrevious = function(value) {
+        if (!arguments.length) return showPrevious;
+        showPrevious = value;
         return my;
     };
 
