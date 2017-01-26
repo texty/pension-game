@@ -64,6 +64,18 @@ var model = (function(){
     module.calcBalanceFixedSalary = function(pension_age, payers_rate, esv_rate, pension_avg, year) {
         return module.calcBalance(pension_age, payers_rate, esv_rate, pension_avg, pension_avg * 3, year);
     };
+    
+    module.calcPayersRate = function(esv_rate, dreg) {
+        var dreg_0 = 1
+            , esv_0 = 0.175
+            , pr_0 = 0.407
+
+            , k_esv = -1.5
+            , k_dreg = 0.08
+            ;
+
+        return pr_0 + k_esv * (esv_rate - esv_0) + k_dreg * (dreg - dreg_0);
+    };
 
 
     return module;
