@@ -5,11 +5,16 @@ d3.select("#submit").on("click", function() {
     d3.select(".start-question").classed("hidden", true);
     window.deficit_top = $("#deficit").offset().top - 120;
 
-    var pension_size = +d3.select('#input-pension').node().value;
+    $('html,body').animate({
+        scrollTop: $(".main-content").offset().top
+    }, 1000);
+
+
+    var pension_target_size = +d3.select('#input-pension').node().value;
     var user_age = +d3.select('#input-age').node().value;
 
     d3.select("#user_age").text(user_age);
-    d3.select("#pension_target").text(pension_size);
+    d3.select("#pension_target").text(pension_target_size);
 
 
     var years = [];
@@ -23,24 +28,26 @@ d3.select("#submit").on("click", function() {
     var future_start_years = [2016].concat(future_years);
 
     var last_in_history = last(history);
-    var f_length = future_years.length;
-
-    var inter = d3.interpolateRound(last_in_history.pension_avg, pension_size);
 
     var future = future_years.map(function(y, i) {
        return {
            year: y,
            pension_age: last_in_history.pension_age,
-           pension_avg: inter((i + 1) / f_length),
+           // pension_avg will be filled later
            salary_avg: last_in_history.salary_avg,
            esv_rate: last_in_history.esv_rate,
            payers_rate: last_in_history.payers_rate
-       } 
+       }
     });
 
     var current_year = new Date().getFullYear();
     var pension_year = calc_pension_year(current_year, user_age, future);
-    console.log(pension_year);
+
+    var pension_size_scale = d3.scaleLinear()
+        .domain([last_in_history.year, pension_year])
+        .range([last_in_history.pension_avg, pension_target_size]);
+
+    future.forEach(function(d) { d.pension_avg = pension_size_scale(d.year)});
 
     var future_start = [last(history)].concat(future);
 
