@@ -1,45 +1,45 @@
-svg.singlechart {
+svg.smallchart {
     shape-rendering: crispEdges;
     overflow: visible;
 }
 
-.singlechart .axis--x path {
+.smallchart .axis--x path {
     /*display: none;*/
 }
 
-.singlechart .axis path {
+.smallchart .axis path {
     opacity: .1;
     stroke-width: 1;
     display: none;
 }
 
-.singlechart .tick line {
+.smallchart .tick line {
     opacity: .1;
     stroke-width: 1;
     display: none;
 }
 
-.singlechart .line {
+.smallchart .line {
     fill: none;
     stroke-width: 2px;
     stroke-linecap: round;
     stroke-linejoin: round;
     shape-rendering: auto;
 }
-.singlechart .line.historical {
+.smallchart .line.historical {
     stroke: black;
 }
 
-.singlechart .line.future {
+.smallchart .line.future {
     stroke: grey;
     stroke-dasharray: 3,3;
 }
 
-/*svg.singlechart {*/
+/*svg.smallchart {*/
     /*margin-left: -50px;*/
 /*}*/
 
-.singlechart circle {
+.smallchart circle {
     fill-opacity: .1;
     stroke: black;
     stroke-width: 1px;
@@ -47,17 +47,17 @@ svg.singlechart {
     stroke-opacity: 0;
 }
 
-.singlechart .tip {
+.smallchart .tip {
     opacity: 0;
 }
 
-.singlechart line.line.pension_year {
+.smallchart line.line.pension_year {
     stroke: #ddd;
     stroke-dasharray: 3 3;
     stroke-linecap: initial;
 }
 
-.singlechart .tip rect {
+.smallchart .tip rect {
     stroke: none;
     fill: rgba(205, 209, 218, 0.45);
 }

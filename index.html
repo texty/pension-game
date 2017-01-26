@@ -12,19 +12,15 @@
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <!--<link href="css/bootstrap-slider.min.css" rel="stylesheet">-->
-    <!--<link href="css/incrementer.css" rel="stylesheet">-->
 
     <!-- Base CSS for header and footer-->
     <link href="css/template-style.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     <!--<link href="css/normalize.css" rel="stylesheet">-->
-    <link href="css/ion.rangeSlider.css" rel="stylesheet">
-    <link href="css/ion.rangeSlider.skinModern.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
 
-    <link href="css/ballance_chart.css" rel="stylesheet">
-    <link href="css/singlechart.css" rel="stylesheet">
+    <link href="css/bigchart.css" rel="stylesheet">
+    <link href="css/smallchart.css" rel="stylesheet">
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,800&subset=cyrillic,latin' rel='stylesheet' type='text/css'>
@@ -148,7 +144,7 @@
                 </div>
                 <!--<h4>Пенсійний вік</h4>-->
                 <p>Зараз чоловіки йдуть на пенсію у 60 років. Для жінок пенсійний вік зростає щороку на 6 місяців і у 2021-му буде таким же, як у чоловіків</p>
-                <div><svg id="pension_age" class="singlechart" width="350" height="70"></svg></div>
+                <div><svg id="pension_age" class="smallchart" width="350" height="70"></svg></div>
 
                 <div class="step-label">
                     <div class="number-point text-center">3</div>
@@ -156,15 +152,15 @@
                 </div>
                 <!--<h4>Ставка ЄСВ, що йде в Пенсійний фонд</h4>-->
                 <p>Кошти зі сплати Єдиного соціального внеску, що йдуть на пенсійні виплати</p>
-                <div><svg id="esv_rate" class="singlechart" width="350" height="70"></svg></div>
+                <div><svg id="esv_rate" class="smallchart" width="350" height="70"></svg></div>
 
-                <div class="step-label">
-                    <div class="number-point text-center">4</div>
-                    <div class="post-number">Частка платників</div>
-                </div>
-                <!--<h4>Частка платників</h4>-->
-                <p>Відсоток тих, хто платить Єдиний соціальний внесок</p>
-                <div><svg id="payers_rate" class="singlechart" width="350" height="70"></svg></div>
+                <!--<div class="step-label">-->
+                    <!--<div class="number-point text-center">4</div>-->
+                    <!--<div class="post-number">Частка платників</div>-->
+                <!--</div>-->
+                <!--&lt;!&ndash;<h4>Частка платників</h4>&ndash;&gt;-->
+                <!--<p>Відсоток тих, хто платить Єдиний соціальний внесок</p>-->
+                <!--<div><svg id="payers_rate" class="singlechart" width="350" height="70"></svg></div>-->
 
                 <div class="step-label">
                     <div class="number-point text-center">5</div>
@@ -172,7 +168,7 @@
                 </div>
                 <!--<h4>Зарплата</h4>-->
                 <p>Розмір середньої зарплати <b>в $</b> </p>
-                <div><svg id="salary_avg" class="singlechart" width="350" height="70"></svg></div>
+                <div><svg id="salary_avg" class="smallchart" width="350" height="70"></svg></div>
 
                 <div class="step-label">
                     <div class="number-point text-center">6</div>
@@ -180,7 +176,15 @@
                 </div>
                 <!--<h4>Пенсія</h4>-->
                 <p>Розмір середньої пенсії за віком <b>в $</b> (станом на початок грудня 2016 року) становить 1800 грн. <b>Зазвичай середня зарплата УТРИЧІ вища, ніж середня пенсія</b></p>
-                <div><svg id="pension_avg" class="singlechart" width="350" height="70"></svg></div>
+                <div><svg id="pension_avg" class="smallchart" width="350" height="70"></svg></div>
+
+                <div class="step-label">
+                    <div class="number-point text-center">7</div>
+                    <div class="post-number">Дерегуляція</div>
+                </div>
+                <!--<h4>Пенсія</h4>-->
+                <p>Дерегуляція це є вєщь, Вася, яку ніхто її не пойме цієї вєщі Вася, і цю вєщь дуже тяжко поняти</p>
+                <div><svg id="dreg" class="smallchart" width="350" height="70"></svg></div>
             </div>
 
             <div class="col-md-8">
@@ -190,12 +194,13 @@
 
                 <div id="deficit">
                     <!--<h3>Прогноз</h3>-->
-                    <svg id="ballance_chart" width="800" height="200">
+                    <svg id="ballance" class="bigchart" width="800" height="200">
                         <marker id="arrowhead" viewBox="-10 -10 20 20" refX="0" refY="0" markerWidth="20" markerHeight="20" stroke-width="1" orient="auto"><polyline stroke-linejoin="bevel" points="-6.75,-6.75 0,0 -6.75,6.75"></polyline></marker>
-
-
                     </svg>
 
+                    <svg id="payers_rate" class="bigchart" width="800" height="200">
+                        <marker id="arrowhead" viewBox="-10 -10 20 20" refX="0" refY="0" markerWidth="20" markerHeight="20" stroke-width="1" orient="auto"><polyline stroke-linejoin="bevel" points="-6.75,-6.75 0,0 -6.75,6.75"></polyline></marker>
+                    </svg>
                         <!--<div class="col-xs-6">-->
                             <!--<span>Пенсійний вік</span><input id="age"/>-->
                         <!--</div>-->
@@ -257,11 +262,11 @@
 <script src="lib/d3-jetpack.js"></script>
 <script src="lib/swoopyArrows.js"></script>
 <script src="js/demographics.js"></script>
-<script src="js/singlechart.js"></script>
+<script src="js/smallchart.js"></script>
 <script src="js/model.js"></script>
 <!--<script src="js/parameters.js"></script>-->
 <!--<script src="js/controls.js"></script>-->
-<script src="js/ballance_chart.js"></script>
+<script src="js/bigchart.js"></script>
 <script src="js/main.js"></script>
 <script>
     $(function(){

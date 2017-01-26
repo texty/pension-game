@@ -36,7 +36,8 @@ d3.select("#submit").on("click", function() {
            // pension_avg will be filled later
            salary_avg: last_in_history.salary_avg,
            esv_rate: last_in_history.esv_rate,
-           payers_rate: last_in_history.payers_rate
+           payers_rate: last_in_history.payers_rate,
+           dreg: last_in_history.dreg
        }
     });
 
@@ -51,7 +52,7 @@ d3.select("#submit").on("click", function() {
 
     var future_start = [last(history)].concat(future);
 
-    var pension_age = singlechart()
+    var pension_age = smallchart()
         .historical(history)
         .future(future)
         .varName('pension_age')
@@ -64,7 +65,7 @@ d3.select("#submit").on("click", function() {
         .showTips(true)
         .pension_year(pension_year);
 
-    var esv_rate = singlechart()
+    var esv_rate = smallchart()
         .varName('esv_rate')
         .historical(history)
         .future(future)
@@ -76,24 +77,24 @@ d3.select("#submit").on("click", function() {
         .sticky(true)
         .showTips(true)
         .pension_year(pension_year);
+    //
+    // var payers_rate = smallchart()
+    //     .varName('payers_rate')
+    //     .historical(history)
+    //     .future(future)
+    //     .minY(0.3)
+    //     .maxY(0.6)
+    //     .yTickValues([.3, .4, .5, .6])
+    //     .yFormat(d3.format('.0%'))
+    //     .sticky(true)
+    //     .showTips(true)
+    //     .pension_year(pension_year);
 
-    var payers_rate = singlechart()
-        .varName('payers_rate')
-        .historical(history)
-        .future(future)
-        .minY(0.3)
-        .maxY(0.6)
-        .yTickValues([.3, .4, .5, .6])
-        .yFormat(d3.format('.0%'))
-        .sticky(true)
-        .showTips(true)
-        .pension_year(pension_year);
-
-    var pension_avg = singlechart()
+    var pension_avg = smallchart()
         .varName('pension_avg')
         .historical(history)
         .future(future)
-        .minY(0)
+        .minY(50)
         // .maxY(200)
         .maxStep(50)
         // .yTickValues([50, 100, 150, 200])
@@ -102,7 +103,7 @@ d3.select("#submit").on("click", function() {
         .showTips(true)
         .pension_year(pension_year);
 
-    var salary_avg = singlechart()
+    var salary_avg = smallchart()
         .varName('salary_avg')
         .historical(history)
         .future(future)
@@ -115,18 +116,42 @@ d3.select("#submit").on("click", function() {
         .showTips(true)
         .pension_year(pension_year);
 
-    var main_chart = ballance_chart()
-        .history(history)
+    var dreg = smallchart()
+        .varName('dreg')
+        .historical(history)
+        .future(future)
+        .minY(1)
+        .maxY(5)
+        .maxStep(1.25)
+        .yTickValues([1, 2, 3, 4, 5])
+        .yFormat(d3.format(".0f"))
+        .sticky(true)
+        .showTips(true)
         .pension_year(pension_year);
 
-    d3.select("#ballance_chart").call(main_chart);
-    main_chart.update(ballance_data());
+    var ballance_chart = bigchart()
+        .varName("ballance")
+        .history(history)
+        .minY(-150/10)
+        .maxY(100/10)
+        .pension_year(pension_year);
 
-    d3.select('#pension_age').call(pension_age).on("change", update_pension_age_changed).on("dragend", main_chart.dragend);
-    d3.select('#esv_rate').call(esv_rate).on("change", update).on("dragend", main_chart.dragend);
-    d3.select('#payers_rate').call(payers_rate).on("change", update).on("dragend", main_chart.dragend);
-    d3.select('#pension_avg').call(pension_avg).on("change", update).on("dragend", main_chart.dragend);
-    d3.select('#salary_avg').call(salary_avg).on("change", update).on("dragend", main_chart.dragend);
+    var payers_rate = bigchart()
+        .varName("payers_rate")
+        .history(history)
+        .minY(0)
+        .maxY(1)
+        .pension_year(pension_year);
+
+    d3.select("#ballance").call(ballance_chart);
+    d3.select('#payers_rate').call(payers_rate); //.on("change", update);
+    ballance_chart.update(ballance_data());
+
+    d3.select('#pension_age').call(pension_age).on("change", update_pension_age_changed).on("dragend", ballance_chart.dragend);
+    d3.select('#esv_rate').call(esv_rate).on("change", update).on("dragend", ballance_chart.dragend);
+    d3.select('#pension_avg').call(pension_avg).on("change", update).on("dragend", ballance_chart.dragend);
+    d3.select('#salary_avg').call(salary_avg).on("change", update).on("dragend", ballance_chart.dragend);
+    d3.select('#dreg').call(dreg).on("change", update).on("dragend", ballance_chart.dragend);
 
 
     function last(arr) {
@@ -136,18 +161,19 @@ d3.select("#submit").on("click", function() {
     function update_pension_age_changed() {
         var pension_year = calc_pension_year(current_year, user_age, future);
 
-        main_chart.pension_year(pension_year);
+        ballance_chart.pension_year(pension_year);
 
         pension_age.update_pension_year(pension_year);
         esv_rate.update_pension_year(pension_year);
-        payers_rate.update_pension_year(pension_year);
+        // payers_rate.update_pension_year(pension_year);
         pension_avg.update_pension_year(pension_year);
         salary_avg.update_pension_year(pension_year);
+        dreg.update_pension_year(pension_year);
         update();
     }
 
     function update() {
-        main_chart.update(ballance_data());
+        ballance_chart.update(ballance_data());
     }
 
     function ballance_data() {

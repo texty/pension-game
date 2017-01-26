@@ -1,5 +1,7 @@
-function ballance_chart() {
-    var width
+function bigchart() {
+    var varName
+        , minY
+        , maxY
         , height
         , previous_path
         , prediction_path
@@ -33,29 +35,29 @@ function ballance_chart() {
                 , g = svg.append("g").translate([margin.left, margin.top])
                 ;
 
-            svg.append('clipPath')
-                .attr('id', "ballance-chart-clip")
-                .append('rect')
-                .attr('x', 0)
-                .attr('y', -margin.top)
-                .attr('width', width)
-                .attr('height', height + margin.top + margin.bottom);
+            // svg.append('clipPath')
+            //     .attr('id', "ballance-chart-clip")
+            //     .append('rect')
+            //     .attr('x', 0)
+            //     .attr('y', -margin.top)
+            //     .attr('width', width)
+            //     .attr('height', height + margin.top + margin.bottom);
 
             x = d3.scaleLinear().range([0, width]);
             y = d3.scaleLinear().range([height, 0]);
 
             x.domain([minYear, maxYear]);
-            y.domain([-150/10, 100/10]);
+            y.domain([minY, maxY]);
 
             line = d3.line()
             // .curve(d3.curveMonotoneX)
                 .x(function(d) { return x(d.year); })
-                .y(function(d) { return y(d.ballance); });
+                .y(function(d) { return y(d[varName]); });
 
             area_gen = d3.area()
                 .x(function(d) { return x(d.year) })
                 .y0(y(0))
-                .y1(function(d) { return y(d.ballance) });
+                .y1(function(d) { return y(d[varName]) });
 
             var prediction_g = g
                 .append('g')
@@ -163,7 +165,7 @@ function ballance_chart() {
 
     my.dragend = function() {
         var diff = __data__.map(function(d, i){
-            return d.ballance - __prev_data__[i].ballance;
+            return d[varName] - __prev_data__[i][varName];
         }).reduce(function(o,v) {return o + v});
 
         console.log("diff " + diff);
@@ -190,6 +192,24 @@ function ballance_chart() {
         return my;
     };
     
+    my.varName = function(value) {
+        if (!arguments.length) return varName;
+        varName = value;
+        return my;
+    };
+
+    my.minY = function(value) {
+        if (!arguments.length) return minY;
+        minY = value;
+        return my;
+    };
+
+    my.maxY = function(value) {
+        if (!arguments.length) return maxY;
+        maxY = value;
+        return my;
+    };
+
     my.history = function(value) {
         if (!arguments.length) return history;
         history = value;

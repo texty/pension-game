@@ -1,94 +1,94 @@
-#ballance_chart {
+.bigchart {
     shape-rendering: crispEdges;
     overflow: visible;
 }
 
-#ballance_chart .axis path {
+.bigchart .axis path {
     stroke-width: 1px;
     stroke: black;
     stroke-opacity: .1;
 }
 
-#ballance_chart .axis .tick line {
+.bigchart .axis .tick line {
     stroke-opacity: .1;
 }
 
-#ballance_chart .axis--x path {
+.bigchart .axis--x path {
     /*display: none;*/
     fill:none;
     stroke: black;
     stroke-width: 1px;
 }
 
-#ballance_chart .line {
+.bigchart .line {
     fill: none;
     stroke-width: 2px;
     stroke: black;
     shape-rendering: auto;
 }
 
-/*#ballance_chart .historical .line {*/
+/*.bigchart .historical .line {*/
 /*}*/
 
-#ballance_chart .prediction .line {
+.bigchart .prediction .line {
     stroke-opacity: 0.6;
     stroke-dasharray: 3,3;
 }
 
-#ballance_chart .prediction .previous.line {
+.bigchart .prediction .previous.line {
     stroke-opacity: 0.3;
 }
 
-/*#ballance_chart .moving-line {*/
+/*.bigchart .moving-line {*/
     /*stroke: black;*/
     /*stroke-width: 1px;*/
     /*stroke-opacity: 0.2;*/
 /*}*/
 
-#ballance_chart .message {
+.bigchart .message {
     font-size: 44px;
     font-weight: 800;
     fill: #ccc;
 }
 
-#ballance_chart .message.red {
+.bigchart .message.red {
     fill: #fee08b;
 }
 
-#ballance_chart .message.green {
+.bigchart .message.green {
     fill: #d9ef8b;
 }
 
-#ballance_chart {
+.bigchart {
     /*margin-left: -53px;*/
 }
 
-#ballance_chart .green-zone{
+.bigchart .green-zone{
     fill: #4f803e;
 }
 
-#ballance_chart .yellow-zone{
+.bigchart .yellow-zone{
     fill: #ffff73;
 }
 
-#ballance_chart .red-zone{
+.bigchart .red-zone{
     fill: #ff7f80;
 }
 
-#ballance_chart .axis.axis--x path,
-#ballance_chart .axis.axis--x .tick line {
+.bigchart .axis.axis--x path,
+.bigchart .axis.axis--x .tick line {
     display: none;
 }
 
-#ballance_chart g.historical {
+.bigchart g.historical {
     /*display: none;*/
 }
 
-#ballance_chart .area {
+.bigchart .area {
     fill: #edf1fa;
 }
 
-#ballance_chart .swoopy-pension-year {
+.bigchart .swoopy-pension-year {
     stroke: black;
     fill: none;
     shape-rendering: initial;

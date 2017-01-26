@@ -1,6 +1,5 @@
-function singlechart() {
+function smallchart() {
 
-    
     var varName
         , historical = []
         , future = []
