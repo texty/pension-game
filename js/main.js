@@ -7,6 +7,11 @@ d3.select("#submit").on("click", function() {
 
     var pension_size = +d3.select('#input-pension').node().value;
     var user_age = +d3.select('#input-age').node().value;
+
+    d3.select("#user_age").text(user_age);
+    d3.select("#pension_target").text(pension_size);
+
+
     var years = [];
     for (var y = 2016; y <= 2050; y++) years.push(y);
 

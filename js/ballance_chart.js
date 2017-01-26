@@ -33,6 +33,14 @@ function ballance_chart() {
                 , g = svg.append("g").translate([margin.left, margin.top])
                 ;
 
+            svg.append('clipPath')
+                .attr('id', "ballance-chart-clip")
+                .append('rect')
+                .attr('x', 0)
+                .attr('y', -margin.top)
+                .attr('width', width)
+                .attr('height', height + margin.top + margin.bottom);
+
             x = d3.scaleLinear().range([0, width]);
             y = d3.scaleLinear().range([height, 0]);
 
@@ -69,7 +77,8 @@ function ballance_chart() {
 
             area = prediction_g
                 .append("path")
-                .attr("class", "area");
+                .attr("class", "area")
+                .attr("clip-path", "url(#ballance-chart-clip)");
 
             pension_year_line_g = prediction_g
                 .append("g");
@@ -79,15 +88,17 @@ function ballance_chart() {
                 .append("line")
                 .attr("class", "line")
                 .attr("y1", 0 - margin.top)
-                .attr("y2", 2*height);
+                .attr("y2", height + margin.bottom - 5);
 
             previous_path = prediction_g
                 .append("path")
-                .attr("class", "line previous");
+                .attr("class", "line previous")
+                .attr("clip-path", "url(#ballance-chart-clip)");
 
             prediction_path = prediction_g
                 .append("path")
-                .attr("class", "line");
+                .attr("class", "line")
+                .attr("clip-path", "url(#ballance-chart-clip)");
 
             g.append("g")
                 .attr("class", "axis axis--x")
