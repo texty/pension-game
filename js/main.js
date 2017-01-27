@@ -63,8 +63,9 @@ d3.select("#submit").on("click", function() {
         .maxStep(0.5*5)
         .yTickValues([55, 60, 65])
         .snapFunction(Math.round)
-        .sticky(true)
+        // .sticky(true)
         .showTips(true)
+        .drawMode(true)
         .pension_year(pension_year);
 
     var esv_rate = smallchart()
@@ -76,8 +77,9 @@ d3.select("#submit").on("click", function() {
         .maxStep(0.1)
         .yFormat(d3.format('.0%'))
         .yTickValues([.1, .2, .3, .4])
-        .sticky(true)
+        // .sticky(true)
         .showTips(true)
+        .drawMode(true)
         .pension_year(pension_year);
     //
     // var payers_rate = smallchart()
@@ -101,8 +103,9 @@ d3.select("#submit").on("click", function() {
         .maxStep(50)
         // .yTickValues([50, 100, 150, 200])
         .yFormat(d3.format(".0f"))
-        .sticky(true)
+        // .sticky(true)
         .showTips(true)
+        .drawMode(true)
         .pension_year(pension_year);
 
     var salary_avg = smallchart()
@@ -114,8 +117,9 @@ d3.select("#submit").on("click", function() {
         .maxStep(109)
         .yTickValues([0, 200, 400, 600])
         .yFormat(d3.format(".0f"))
-        .sticky(true)
+        // .sticky(true)
         .showTips(true)
+        .drawMode(true)
         .pension_year(pension_year);
 
     var dreg = smallchart()
@@ -127,8 +131,9 @@ d3.select("#submit").on("click", function() {
         .maxStep(1.25)
         .yTickValues([1, 2, 3, 4, 5])
         .yFormat(d3.format(".0f"))
-        .sticky(true)
+        // .sticky(true)
         .showTips(true)
+        .drawMode(true)
         .pension_year(pension_year);
 
     var ballance_chart = bigchart()

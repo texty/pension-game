@@ -10,6 +10,7 @@ function smallchart() {
         , yTickValues
         , snapFunction
         , sticky
+        , drawMode
         , showTips
         , minCurve
         , pension_year
@@ -130,7 +131,31 @@ function smallchart() {
                     .on("end", dragend)
                 );
 
+            if (drawMode) {
+                var nodes = circles.nodes();
+                var c_length = nodes.length;
+                var section_width = d3.select(nodes[c_length - 1]).attr("cx") - d3.select(nodes[c_length - 2]).attr("cx");
+                var x_margin = 5;
+
+                var max_handle_dist = section_width/2 + x_margin;
+            }
+
             function dragged(d, i) {
+
+                // throw event to neighbour circle if pointer position is far from current circle
+                if (drawMode) {
+                    if (i < c_length - 1 && d3.event.x - x(d.year) > max_handle_dist) {
+                        // we need to shift right
+                        dragged.call(circles.nodes()[i + 1], circles.data()[i + 1], i + 1);
+                        return;
+                    }
+                    else if (i > 0 && d3.event.x - x(d.year) < -max_handle_dist) {
+                        // we need to shift left
+                        dragged.call(circles.nodes()[i - 1], circles.data()[i - 1], i - 1);
+                        return;
+                    }
+                }
+
                 var v = y.invert(d3.event.y);
                 v = minmax(v, minY, maxY);
 
@@ -290,6 +315,12 @@ function smallchart() {
     my.sticky = function(value) {
         if (!arguments.length) return sticky;
         sticky = value;
+        return my;
+    };
+
+    my.drawMode = function(value) {
+        if (!arguments.length) return drawMode;
+        drawMode = value;
         return my;
     };
 
