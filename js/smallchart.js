@@ -110,7 +110,7 @@ function smallchart() {
 
             var x12 = x(pension_year);
             pension_year_line = g.append("line")
-                .attr("class", "line pension_year")
+                .attr("class", "pension_year")
                 .attr("y1", 0 - margin.top)
                 .attr("y2", height + margin.bottom)
                 .attr("x1", x12)
@@ -136,12 +136,12 @@ function smallchart() {
                 var c_length = nodes.length;
                 var section_width = d3.select(nodes[c_length - 1]).attr("cx") - d3.select(nodes[c_length - 2]).attr("cx");
                 var x_margin = 5;
-
+    
                 var max_handle_dist = section_width/2 + x_margin;
             }
 
             function dragged(d, i) {
-
+                
                 // throw event to neighbour circle if pointer position is far from current circle
                 if (drawMode) {
                     if (i < c_length - 1 && d3.event.x - x(d.year) > max_handle_dist) {
@@ -317,7 +317,7 @@ function smallchart() {
         sticky = value;
         return my;
     };
-
+    
     my.drawMode = function(value) {
         if (!arguments.length) return drawMode;
         drawMode = value;

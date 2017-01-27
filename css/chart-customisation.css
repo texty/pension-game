@@ -1,0 +1,19 @@
+svg#dreg path.line, svg#dreg line.line {
+    stroke: #dc143c;
+}
+
+svg#esv_rate path.line, svg#esv_rate line.line {
+    stroke: #dc143c;
+}
+
+#esv_rate circle,
+#dreg circle,
+
+#esv_rate .tip rect,
+#dreg .tip rect {
+    fill: #dc143c;
+}
+
+#payers_rate path {
+    stroke: #dc143c;
+}

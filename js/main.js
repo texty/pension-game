@@ -3,7 +3,7 @@
 d3.select("#submit").on("click", function() {
     d3.select(".main-content").classed("hidden", false);
     d3.select(".start-question").classed("hidden", true);
-    window.deficit_top = $("#deficit").offset().top - 120;
+    window.deficit_top = $("#deficit").offset().top - 80;
 
     $('html,body').animate({
         scrollTop: $(".main-content").offset().top
@@ -139,8 +139,8 @@ d3.select("#submit").on("click", function() {
     var ballance_chart = bigchart()
         .varName("ballance")
         .history(history)
-        .minY(-150/10)
-        .maxY(100/10)
+        .minY(-35)
+        .maxY(10)
         .yText("млрд. $")
         .showPrevious(true)
         // .yFormat()

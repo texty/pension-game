@@ -23,6 +23,7 @@
     <link href="css/smallchart.css" rel="stylesheet">
 
     <link href="css/payers_rate.css" rel="stylesheet">
+    <link href="css/chart-customisation.css" rel="stylesheet">
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,800&subset=cyrillic,latin' rel='stylesheet' type='text/css'>
@@ -56,7 +57,7 @@
         }
         #deficit.scrolling {
             position:fixed;
-            top:120px;
+            top:80px;
         }
     </style>
 </head>
@@ -120,14 +121,6 @@
         
         <div class="row main-content hidden">
             <div class="col-md-4">
-
-                <!--<div style="height: 260px; font-size: 20px; padding-top: 115px; border: 1px solid grey">-->
-                <!--<div style="height: 260px; font-size: 20px; padding-top: 115px; border: 1px solid grey">-->
-                    <!--<p>Мені <span id="user_age"></span> років. Я хочу отримувати $<span id="pension_target"></span> пенсії</p>-->
-                    <!--&lt;!&ndash;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Продам гараж. Дорого&ndash;&gt;-->
-
-                <!--</div>-->
-
                 <div>
                     <div class="step-label">
                         <div class="number-point text-center">1</div>
@@ -144,7 +137,6 @@
                     <div class="number-point text-center">2</div>
                     <div class="post-number">Пенсійний вік</div>
                 </div>
-                <!--<h4>Пенсійний вік</h4>-->
                 <p>Зараз чоловіки йдуть на пенсію у 60 років. Для жінок пенсійний вік зростає щороку на 6 місяців і у 2021-му буде таким же, як у чоловіків</p>
                 <div><svg id="pension_age" class="smallchart" width="350" height="70"></svg></div>
 
@@ -152,7 +144,6 @@
                     <div class="number-point text-center">3</div>
                     <div class="post-number">Ставка ЄСВ, що йде в Пенсійний фонд</div>
                 </div>
-                <!--<h4>Ставка ЄСВ, що йде в Пенсійний фонд</h4>-->
                 <p>Кошти зі сплати Єдиного соціального внеску, що йдуть на пенсійні виплати</p>
                 <div><svg id="esv_rate" class="smallchart" width="350" height="70"></svg></div>
 
@@ -166,27 +157,24 @@
 
                 <div class="step-label">
                     <div class="number-point text-center">5</div>
+                    <div class="post-number">Дерегуляція</div>
+                </div>
+                <p>Дерегуляція це є вєщь, Вася, яку ніхто її не пойме цієї вєщі Вася, і цю вєщь дуже тяжко поняти</p>
+                <div><svg id="dreg" class="smallchart" width="350" height="70"></svg></div>
+
+                <div class="step-label">
+                    <div class="number-point text-center">6</div>
                     <div class="post-number">Зарплата</div>
                 </div>
-                <!--<h4>Зарплата</h4>-->
                 <p>Розмір середньої зарплати <b>в $</b> </p>
                 <div><svg id="salary_avg" class="smallchart" width="350" height="70"></svg></div>
 
                 <div class="step-label">
-                    <div class="number-point text-center">6</div>
+                    <div class="number-point text-center">7</div>
                     <div class="post-number">Пенсія</div>
                 </div>
-                <!--<h4>Пенсія</h4>-->
                 <p>Розмір середньої пенсії за віком <b>в $</b> (станом на початок грудня 2016 року) становить 1800 грн. <b>Зазвичай середня зарплата УТРИЧІ вища, ніж середня пенсія</b></p>
                 <div><svg id="pension_avg" class="smallchart" width="350" height="70"></svg></div>
-
-                <div class="step-label">
-                    <div class="number-point text-center">7</div>
-                    <div class="post-number">Дерегуляція</div>
-                </div>
-                <!--<h4>Пенсія</h4>-->
-                <p>Дерегуляція це є вєщь, Вася, яку ніхто її не пойме цієї вєщі Вася, і цю вєщь дуже тяжко поняти</p>
-                <div><svg id="dreg" class="smallchart" width="350" height="70"></svg></div>
             </div>
 
             <div class="col-md-8">
