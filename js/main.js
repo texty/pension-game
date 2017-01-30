@@ -63,7 +63,6 @@ d3.select("#submit").on("click", function() {
         .maxStep(0.5*5)
         .yTickValues([55, 60, 65])
         .snapFunction(Math.round)
-        // .sticky(true)
         .showTips(true)
         .drawMode(true)
         .pension_year(pension_year);
@@ -77,7 +76,6 @@ d3.select("#submit").on("click", function() {
         .maxStep(0.1)
         .yFormat(d3.format('.0%'))
         .yTickValues([.1, .2, .3, .4])
-        // .sticky(true)
         .showTips(true)
         .drawMode(true)
         .pension_year(pension_year);
@@ -103,7 +101,6 @@ d3.select("#submit").on("click", function() {
         .maxStep(50)
         // .yTickValues([50, 100, 150, 200])
         .yFormat(d3.format(".0f"))
-        // .sticky(true)
         .showTips(true)
         .drawMode(true)
         .pension_year(pension_year);
@@ -117,7 +114,6 @@ d3.select("#submit").on("click", function() {
         .maxStep(109)
         .yTickValues([0, 200, 400, 600])
         .yFormat(d3.format(".0f"))
-        // .sticky(true)
         .showTips(true)
         .drawMode(true)
         .pension_year(pension_year);
@@ -131,7 +127,6 @@ d3.select("#submit").on("click", function() {
         .maxStep(1.25)
         .yTickValues([1, 2, 3, 4, 5])
         .yFormat(d3.format(".0f"))
-        // .sticky(true)
         .showTips(true)
         .drawMode(true)
         .pension_year(pension_year);
@@ -157,9 +152,6 @@ d3.select("#submit").on("click", function() {
     d3.select("#ballance")
         .call(ballance_chart);
 
-    // g.append("text").attr("x", 30).attr("y", 10).text("Баланс пенсійного фонду");
-    // g.append("text").attr("x", 30).attr("y", 20).text("Дефіцит");
-
     d3.select('#payers_rate').call(payers_rate); //.on("change", update);
     ballance_chart.update(ballance_data());
     payers_rate.update(payers_rate_data());
@@ -170,52 +162,7 @@ d3.select("#submit").on("click", function() {
     d3.select('#salary_avg').call(salary_avg).on("change", update).on("dragend", ballance_chart.dragend);
     d3.select('#dreg').call(dreg).on("change", update_payers_rate).on("dragend", ballance_chart.dragend);
 
-    var swoopyTip = swoopyArrow()
-        .angle(Math.PI/1.5)
-        // .clockwise(false)
-        .x(function(d) { return d[0]; })
-        .y(function(d) { return d[1]; });
-
-    var tipG = d3.select("#pension_age").append("g").attr("class" ,"tooltip").translate([108, 4]);
-
-    tipG
-        .append("text")
-        .attr('y', 4)
-        .attr('x', -5)
-        .attr('text-anchor', "end")
-        .text('Тягни!');
-
-    tipG
-        .append("path")
-        .attr('marker-end', 'url(#arrowhead)')
-        .attr('class', 'swoopy-arrow-line')
-        .datum([[0, 0], [30, 15]])
-        .attr("d", swoopyTip);
-
-    tipG
-        .style("opacity", 1)
-        .transition()
-        .ease(d3.easeLinear)
-        .duration(400)
-        .on("start", function repeat() {
-            d3.active(this)
-                .style("opacity", 1)
-                .transition()
-                .duration(400)
-                .ease(d3.easeLinear)
-                .style("opacity", 0.2)
-                .transition()
-                .duration(400)
-                .ease(d3.easeLinear)
-                .on("start", repeat);
-        });
-
-    d3.selectAll(".smallchart").on("dragend.tip", function(){
-        d3.select("#pension_age g.tooltip")
-            .interrupt()
-            .remove();
-    });
-
+    d3.select("#pension_age").call(addTip);
 
     function last(arr) {
         return arr[arr.length-1];
@@ -287,5 +234,59 @@ d3.select("#submit").on("click", function() {
         }
         return y;
     }
+
+    function addTip(selection) {
+        selection.each(function(d) {
+            var swoopyTip = swoopyArrow()
+                .angle(Math.PI/1.5)
+                .x(function(d) { return d[0]; })
+                .y(function(d) { return d[1]; });
+
+            var tipG = d3.select(this)
+                .append("g")
+                .attr("class" ,"tooltip")
+                .translate([108, 4]);
+
+            tipG
+                .append("text")
+                .attr('y', 4)
+                .attr('x', -5)
+                .attr('text-anchor', "end")
+                .text('Тягни!');
+
+            tipG
+                .append("path")
+                .attr('marker-end', 'url(#arrowhead)')
+                .attr('class', 'swoopy-arrow-line')
+                .datum([[0, 0], [30, 15]])
+                .attr("d", swoopyTip);
+
+            tipG
+                .style("opacity", 1)
+                .transition()
+                .ease(d3.easeLinear)
+                .duration(400)
+                .on("start", function repeat() {
+                    d3.active(this)
+                        .style("opacity", 1)
+                        .transition()
+                        .duration(400)
+                        .ease(d3.easeLinear)
+                        .style("opacity", 0.2)
+                        .transition()
+                        .duration(400)
+                        .ease(d3.easeLinear)
+                        .on("start", repeat);
+                });
+
+            d3.selectAll(".smallchart")
+                .on("dragend.tip", function(){
+                    tipG
+                        .interrupt()
+                        .remove();
+            });
+        });
+    }
+
 });
 
