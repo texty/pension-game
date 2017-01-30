@@ -88,12 +88,6 @@ svg.bigchart {
     fill: #edf1fa;
 }
 
-.bigchart .swoopy-pension-year {
-    stroke: black;
-    fill: none;
-    shape-rendering: initial;
-}
-
 /*body {*/
     /*background-image: url(../img/back1.jpg);*/
 /*}*/

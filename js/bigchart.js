@@ -144,7 +144,7 @@ function bigchart() {
             pension_year_line_g
                 .append("path")
                 .attr('marker-end', 'url(#arrowhead)')
-                .attr('class', 'swoopy-pension-year')
+                .attr('class', 'swoopy-arrow-line')
                 .datum([[-40, height + 70], [0, height + 30]])
                 .attr("d", swoopy);
 

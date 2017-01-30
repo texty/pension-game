@@ -1,9 +1,9 @@
 svg#dreg path.line, svg#dreg line.line {
-    stroke: #dc143c;
+    stroke: #4f803e;
 }
 
 svg#esv_rate path.line, svg#esv_rate line.line {
-    stroke: #dc143c;
+    stroke: #4f803e;
 }
 
 #esv_rate circle,
@@ -11,9 +11,9 @@ svg#esv_rate path.line, svg#esv_rate line.line {
 
 #esv_rate .tip rect,
 #dreg .tip rect {
-    fill: #dc143c;
+    fill: #4f803e;
 }
 
 #payers_rate path {
-    stroke: #dc143c;
+    stroke: #4f803e;
 }

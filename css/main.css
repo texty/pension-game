@@ -57,3 +57,16 @@
 #deficit {
     z-index: -10;
 }
+
+
+.swoopy-arrow-line {
+    stroke: black;
+    fill: none;
+    shape-rendering: initial;
+}
+
+#arrowhead {
+    stroke: black;
+    fill: none;
+    shape-rendering: initial;
+}
