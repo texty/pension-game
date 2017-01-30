@@ -210,7 +210,7 @@ d3.select("#submit").on("click", function() {
                 .on("start", repeat);
         });
 
-    d3.selectAll(".smallchart").on("dragend", function(){
+    d3.selectAll(".smallchart").on("dragend.tip", function(){
         d3.select("#pension_age g.tooltip")
             .interrupt()
             .remove();
