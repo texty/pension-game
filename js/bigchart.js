@@ -8,11 +8,10 @@ function bigchart() {
 
         , width
         , height
-        , previous_path
-        , prediction_path
-        , historical_path
+        , previous_future_path
+        , future_path
+        , future_area
         , area
-        , area_gen
 
         , line
 
@@ -56,38 +55,36 @@ function bigchart() {
 
             line = d3.line()
             // .curve(d3.curveMonotoneX)
-                .x(function(d) { return x(d.year); })
-                .y(function(d) { return y(d[varName]); });
+                .x(function(d) { return x(d.year)})
+                .y(function(d) { return y(d[varName])});
 
-            area_gen = d3.area()
-                .x(function(d) { return x(d.year) })
+            area = d3.area()
+                .x(function(d) { return x(d.year)})
                 .y0(y(0))
-                .y1(function(d) { return y(d[varName]) });
+                .y1(function(d) { return y(d[varName])});
 
-            var prediction_g = g
-                .append('g')
-                .attr("class", "prediction");
+            // var prediction_g = g
+            //     .append('g')
+            //     .attr("class", "prediction");
 
-            var historical_g = g
-                .append('g')
-                .attr("class", "historical");
+            // var historical_g = g
+            //     .append('g')
+            //     .attr("class", "historical");
 
-            historical_g
-                .append("path")
-                .attr("class", "area")
-                .attr("d", area_gen(history));
+            g.append("path")
+                .attr("class", "area historical")
+                .attr("d", area(history));
 
-            historical_path = historical_g
-                .append("path")
-                .attr("class", "line")
+            g.append("path")
+                .attr("class", "line historical")
                 .attr("d", line(history));
 
-            area = prediction_g
+            future_area = g
                 .append("path")
-                .attr("class", "area")
-                .attr("clip-path", "url(#ballance-chart-clip)");
+                .attr("class", "area future");
+                // .attr("clip-path", "url(#ballance-chart-clip)");
 
-            pension_year_line_g = prediction_g
+            pension_year_line_g = g
                 .append("g")
                 .attr("class", "pension_year");
 
@@ -99,16 +96,16 @@ function bigchart() {
                 .attr("y2", height + margin.bottom - 5);
 
             if (showPrevious) {
-                previous_path = prediction_g
+                previous_future_path = g
                     .append("path")
                     .attr("class", "line previous")
                     .attr("clip-path", "url(#ballance-chart-clip)");
             }
 
-            prediction_path = prediction_g
+            future_path = g
                 .append("path")
-                .attr("class", "line")
-                .attr("clip-path", "url(#ballance-chart-clip)");
+                .attr("class", "line future");
+                // .attr("clip-path", "url(#ballance-chart-clip)");
 
             g.append("g")
                 .attr("class", "axis axis--x")
@@ -164,12 +161,12 @@ function bigchart() {
 
         if (first_update && showPrevious) {
             __prev_data__ = data;
-            previous_path.attr("d", line_d);
+            previous_future_path.attr("d", line_d);
             first_update = false;
         }
 
-        prediction_path.attr("d", line_d);
-        area.attr("d", area_gen(data));
+        future_path.attr("d", line_d);
+        future_area.attr("d", area(data));
 
         pension_year_line_g.translate([x(pension_year), 0]);
         return my;
@@ -184,10 +181,10 @@ function bigchart() {
 
         __prev_data__ = __data__;
 
-        previous_path
+        previous_future_path
             .transition()
             .duration(700)
-            .attr("d", prediction_path.attr("d"));
+            .attr("d", future_path.attr("d"));
 
         message
             .classed("red", diff < 0)

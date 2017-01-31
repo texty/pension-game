@@ -31,16 +31,12 @@ svg.smallchart {
 }
 
 .smallchart .line.future {
-    stroke: grey;
-    stroke-dasharray: 3,3;
+    stroke: black;
+    stroke-dasharray: 2,4;
 }
 
-/*svg.smallchart {*/
-    /*margin-left: -50px;*/
-/*}*/
-
 .smallchart circle {
-    fill-opacity: .1;
+    fill-opacity: .2;
     stroke: black;
     stroke-width: 1px;
     cursor: pointer;
@@ -52,9 +48,11 @@ svg.smallchart {
 }
 
 .smallchart line.pension_year {
-    stroke: #ddd;
-    stroke-dasharray: 3 3;
-    stroke-linecap: initial;
+    stroke: black;
+    stroke-width: 1px;
+    shape-rendering: crispEdges;
+    /*stroke-dasharray: 3 3;*/
+    /*stroke-linecap: initial;*/
 }
 
 .smallchart .tip rect {

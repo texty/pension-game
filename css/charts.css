@@ -1,0 +1,31 @@
+svg.smallchart .area.historical,
+svg.bigchart .area.historical {
+  fill-opacity: 0.8; }
+svg.smallchart .area.future,
+svg.bigchart .area.future {
+  fill-opacity: 0.3; }
+
+svg#dreg .area {
+  fill: #33a02c; }
+
+svg#esv_rate .area {
+  fill: #e31a1c; }
+
+svg#pension_age .area {
+  fill: #1f78b4; }
+
+svg#pension_avg .area {
+  fill: #b2df8a; }
+
+svg#salary_avg .area {
+  fill: #fb9a99; }
+
+svg#payers_rate .area {
+  fill: #6a3d9a; }
+svg#payers_rate g.pension_year {
+  opacity: 0; }
+
+svg#ballance .area {
+  fill: #ff7f00; }
+
+/*# sourceMappingURL=charts.css.map */

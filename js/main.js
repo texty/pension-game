@@ -272,7 +272,7 @@ d3.select("#submit").on("click", function() {
                         .transition()
                         .duration(400)
                         .ease(d3.easeLinear)
-                        .style("opacity", 0.2)
+                        .style("opacity", 0)
                         .transition()
                         .duration(400)
                         .ease(d3.easeLinear)

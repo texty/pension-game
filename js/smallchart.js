@@ -37,8 +37,13 @@ function smallchart() {
                 .range([height, 0]);
 
             var line = d3.line()
-                .x(function(d) { return x(d.year); })
-                .y(function(d) { return y(d[varName]); });
+                .x(function(d) { return x(d.year)})
+                .y(function(d) { return y(d[varName])});
+
+            var area = d3.area()
+                .x(function(d) {return x(d.year)})
+                .y0(y(0))
+                .y1(function(d) {return y(d[varName])});
 
             var all = historical.concat(future);
 
@@ -84,10 +89,20 @@ function smallchart() {
                 // .style("text-anchor", "end")
                 // .text("Something");
 
+            var historical_area = g.append("path")
+                .datum(historical)
+                .attr("class", "area historical")
+                .attr("d", area);
+
             var historical_path = g.append("path")
                 .datum(historical)
                 .attr("class", "line historical")
                 .attr("d", line);
+
+            var future_area = g.append("path")
+                .datum(future_start)
+                .attr("class", "area future")
+                .attr("d", area);
 
             var future_path = g.append("path")
                 .datum(future_start)
@@ -218,6 +233,7 @@ function smallchart() {
 
             function update() {
                 future_path.attr("d", line);
+                future_area.attr("d", area);
                 circles.attr("cy", function(d){return y(d[varName])});
             }
 

@@ -22,8 +22,7 @@
     <link href="css/bigchart.css" rel="stylesheet">
     <link href="css/smallchart.css" rel="stylesheet">
 
-    <link href="css/payers_rate.css" rel="stylesheet">
-    <link href="css/chart-customisation.css" rel="stylesheet">
+    <link href="css/charts.css" rel="stylesheet">
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,800&subset=cyrillic,latin' rel='stylesheet' type='text/css'>
@@ -117,14 +116,14 @@
             </div>
             <div class="col-xs-3"></div>
         </div>
-        
-        
+
+
         <div class="row main-content hidden">
             <div class="col-md-4">
                 <div>
                     <div class="step-label">
-                        <div class="number-point text-center">1</div>
-                        <div class="post-number">Вкажіть вік і бажану пенсію</div>
+                        <div class="number-point text-center">?</div>
+                        <div class="post-number">Ваш вік та очікувана пенсія</div>
                     </div>
                     <p>
                         Мені <span id="user_age" class="dotted"></span> років.
@@ -132,6 +131,12 @@
                     </p>
                 </div>
 
+                <div class="step-label">
+                    <div class="number-point text-center">0</div>
+                    <div class="post-number">Пенсія</div>
+                </div>
+                <p>Розмір середньої пенсії за віком <b>в $</b> (станом на початок грудня 2016 року) становить 1800 грн. <b>Зазвичай середня зарплата УТРИЧІ вища, ніж середня пенсія</b></p>
+                <div><svg id="pension_avg" class="smallchart" width="350" height="70"></svg></div>
 
                 <div class="step-label">
                     <div class="number-point text-center">2</div>
@@ -169,12 +174,6 @@
                 <p>Розмір середньої зарплати <b>в $</b> </p>
                 <div><svg id="salary_avg" class="smallchart" width="350" height="70"></svg></div>
 
-                <div class="step-label">
-                    <div class="number-point text-center">6</div>
-                    <div class="post-number">Пенсія</div>
-                </div>
-                <p>Розмір середньої пенсії за віком <b>в $</b> (станом на початок грудня 2016 року) становить 1800 грн. <b>Зазвичай середня зарплата УТРИЧІ вища, ніж середня пенсія</b></p>
-                <div><svg id="pension_avg" class="smallchart" width="350" height="70"></svg></div>
             </div>
 
             <div class="col-md-8">
@@ -189,8 +188,8 @@
                         <marker id="arrowhead" viewBox="-10 -10 20 20" refX="0" refY="0" markerWidth="20" markerHeight="20" stroke-width="1" orient="auto"><polyline stroke-linejoin="bevel" points="-6.75,-4.75 0,0 -6.75,4.75"></polyline></marker>
                     </svg>
 
-                    <h3>Частка платників</h3>
-                    <svg id="payers_rate" class="bigchart" width="800" height="200">
+                    <p><div class="post-number">Частка платників</div></p>
+                    <svg id="payers_rate" class="bigchart" width="800" height="150">
                         <!--<marker id="arrowhead" viewBox="-10 -10 20 20" refX="0" refY="0" markerWidth="20" markerHeight="20" stroke-width="1" orient="auto"><polyline stroke-linejoin="bevel" points="-6.75,-6.75 0,0 -6.75,6.75"></polyline></marker>-->
                     </svg>
                         <!--<div class="col-xs-6">-->

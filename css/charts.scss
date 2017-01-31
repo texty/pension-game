@@ -1,0 +1,90 @@
+svg.smallchart,
+svg.bigchart {
+  .area.historical {
+    fill-opacity: 0.8;
+  }
+
+  .area.future {
+    fill-opacity: 0.3;
+  }
+}
+
+//
+// dreg chart
+//
+svg#dreg {
+  .area {
+    fill: #33a02c;
+  }
+  //
+  //path.line, line.line {
+  //  stroke: #4f803e;
+  //}
+  //
+  //circle, .tip rect {
+  //  fill: #4f803e;
+  //}
+}
+
+//
+// esv_rate chart
+//
+svg#esv_rate {
+  .area {
+    fill: #e31a1c;
+  }
+
+
+  //path.line, line.line {
+  //  stroke: #4f803e;
+  //}
+  //
+  //circle, .tip rect {
+  //  fill: #4f803e;
+  //}
+
+}
+
+svg#pension_age {
+  .area {
+    fill: #1f78b4;
+  }
+}
+
+svg#pension_avg {
+  .area {
+    fill: #b2df8a;
+  }
+}
+
+svg#salary_avg {
+  .area {
+    fill: #fb9a99;
+  }
+}
+//
+// payers_rate chart
+//
+
+svg#payers_rate {
+  .area {
+    fill: #6a3d9a;
+  }
+
+  g.pension_year {
+    opacity: 0;
+  }
+
+  path {
+
+    //stroke: #4f803e;
+  }
+}
+
+svg#ballance {
+  .area {
+    fill: #ff7f00
+  }
+}
+
+//http://colorbrewer2.org/#type=qualitative&scheme=Paired&n=10

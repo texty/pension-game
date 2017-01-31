@@ -27,23 +27,14 @@ svg.bigchart {
     shape-rendering: auto;
 }
 
-/*.bigchart .historical .line {*/
-/*}*/
-
-.bigchart .prediction .line {
-    stroke-opacity: 0.6;
+.bigchart .line.future {
     stroke-dasharray: 3,3;
 }
 
-.bigchart .prediction .previous.line {
+.bigchart .line.previous {
     stroke-opacity: 0.3;
+    stroke-dasharray: 3,3;
 }
-
-/*.bigchart .moving-line {*/
-    /*stroke: black;*/
-    /*stroke-width: 1px;*/
-    /*stroke-opacity: 0.2;*/
-/*}*/
 
 .bigchart .message {
     font-size: 44px;
@@ -59,37 +50,15 @@ svg.bigchart {
     fill: #d9ef8b;
 }
 
-.bigchart {
-    /*margin-left: -53px;*/
-}
-
-.bigchart .green-zone{
-    fill: #4f803e;
-}
-
-.bigchart .yellow-zone{
-    fill: #ffff73;
-}
-
-.bigchart .red-zone{
-    fill: #ff7f80;
-}
-
 .bigchart .axis.axis--x path,
 .bigchart .axis.axis--x .tick line {
     display: none;
 }
 
-.bigchart g.historical {
-    /*display: none;*/
+.bigchart .pension_year .line {
+    stroke-width: 1px;
+    stroke: black;
+    shape-rendering: crispEdges;
+
 }
-
-.bigchart .area {
-    fill: #edf1fa;
-}
-
-/*body {*/
-    /*background-image: url(../img/back1.jpg);*/
-/*}*/
-
 
