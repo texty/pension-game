@@ -3,6 +3,7 @@ function bigchart() {
         , minY
         , maxY
         , yFormat = function(v) {return v}
+        , yTickValues
         , yText = ''
         , showPrevious
 
@@ -27,6 +28,10 @@ function bigchart() {
         , message
         , pension_year
         , pension_year_line_g
+        , clip
+        , showTips
+        , tip_g
+        , tipText
         ;
     
     function my(selection) {
@@ -39,13 +44,15 @@ function bigchart() {
                 , g = svg.append("g").translate([margin.left, margin.top])
                 ;
 
-            // svg.append('clipPath')
-            //     .attr('id', "ballance-chart-clip")
-            //     .append('rect')
-            //     .attr('x', 0)
-            //     .attr('y', -margin.top)
-            //     .attr('width', width)
-            //     .attr('height', height + margin.top + margin.bottom);
+            if (clip) {
+                svg.append('clipPath')
+                    .attr('id', varName + "-chart-clip")
+                    .append('rect')
+                    .attr('x', 0)
+                    .attr('y', 0)
+                    .attr('width', width)
+                    .attr('height', height);
+            }
 
             x = d3.scaleLinear().range([0, width]);
             y = d3.scaleLinear().range([height, 0]);
@@ -63,26 +70,17 @@ function bigchart() {
                 .y0(y(0))
                 .y1(function(d) { return y(d[varName])});
 
-            // var prediction_g = g
-            //     .append('g')
-            //     .attr("class", "prediction");
-
-            // var historical_g = g
-            //     .append('g')
-            //     .attr("class", "historical");
-
-            g.append("path")
+            var historical_area = g.append("path")
                 .attr("class", "area historical")
                 .attr("d", area(history));
 
-            g.append("path")
+            var historical_path = g.append("path")
                 .attr("class", "line historical")
                 .attr("d", line(history));
 
             future_area = g
                 .append("path")
                 .attr("class", "area future");
-                // .attr("clip-path", "url(#ballance-chart-clip)");
 
             pension_year_line_g = g
                 .append("g")
@@ -98,14 +96,35 @@ function bigchart() {
             if (showPrevious) {
                 previous_future_path = g
                     .append("path")
-                    .attr("class", "line previous")
-                    .attr("clip-path", "url(#ballance-chart-clip)");
+                    .attr("class", "line previous");
+
+                if (clip) previous_future_path.attr("clip-path", "url(#" + varName + "-chart-clip)");
             }
 
             future_path = g
                 .append("path")
                 .attr("class", "line future");
                 // .attr("clip-path", "url(#ballance-chart-clip)");
+
+            if (clip) {
+                future_area.attr("clip-path", "url(#" + varName + "-chart-clip)");
+                future_path.attr("clip-path", "url(#" + varName + "-chart-clip)");
+                historical_area.attr("clip-path", "url(#" + varName + "-chart-clip)");
+                historical_path.attr("clip-path", "url(#" + varName + "-chart-clip)");
+            }
+
+            tip_g = g.append("g")
+                .attr("class", "tip");
+
+            var tip_rect = tip_g.append("rect")
+                .attr("x", -22)
+                .attr("y", -15)
+                .attr("ry", 3)
+                .attr("rx", 3)
+                .attr("width", 25)
+                .attr("height", 20);
+
+            tipText = tip_g.append("text").attr('text-anchor', "end");
 
             g.append("g")
                 .attr("class", "axis axis--x")
@@ -116,6 +135,7 @@ function bigchart() {
                 .ticks(4);
 
             if (yFormat) yAxis.tickFormat(yFormat);
+            if (yTickValues) yAxis.tickValues(yTickValues);
 
             g.append("g")
                 .attr("class", "axis axis--y")
@@ -154,7 +174,7 @@ function bigchart() {
         });
     }
     
-    my.update = function(data) {
+    my.update = function(data, point_index) {
         __data__ = data;
 
         var line_d = line(data);
@@ -169,34 +189,54 @@ function bigchart() {
         future_area.attr("d", area(data));
 
         pension_year_line_g.translate([x(pension_year), 0]);
+
+        if (showTips && point_index >=0) {
+            var v = data[point_index][varName];
+            var px = x(data[point_index].year);
+            var py = y(v);
+
+            tip_g
+                .style("opacity", 1)
+                .translate([px - 10, py]);
+
+            tipText.text(yFormat(v));
+        }
+
         return my;
     };
 
     my.dragend = function() {
-        if (!showPrevious) return;
+        if (showPrevious) {
+            var diff = __data__.map(function(d, i){
+                return d[varName] - __prev_data__[i][varName];
+            }).reduce(function(o,v) {return o + v});
 
-        var diff = __data__.map(function(d, i){
-            return d[varName] - __prev_data__[i][varName];
-        }).reduce(function(o,v) {return o + v});
+            __prev_data__ = __data__;
 
-        __prev_data__ = __data__;
+            previous_future_path
+                .transition()
+                .duration(700)
+                .attr("d", future_path.attr("d"));
 
-        previous_future_path
-            .transition()
-            .duration(700)
-            .attr("d", future_path.attr("d"));
+            message
+                .classed("red", diff < 0)
+                .classed("green", diff > 0)
+                .transition()
+                .duration(0)
+                .style("opacity", 1)
+                .text(d3.format("+.1f")(diff))
+                .transition()
+                .duration(1500)
+                .ease(d3.easeExpIn)
+                .style("opacity", 0);
+        }
 
-        message
-            .classed("red", diff < 0)
-            .classed("green", diff > 0)
-            .transition()
-            .duration(0)
-            .style("opacity", 1)
-            .text(d3.format("+.1f")(diff))
-            .transition()
-            .duration(1500)
-            .ease(d3.easeExpIn)
-            .style("opacity", 0);
+        if (showTips) {
+            tip_g
+                .transition()
+                .duration(700)
+                .style("opacity", 0);
+        }
 
         return my;
     };
@@ -246,6 +286,24 @@ function bigchart() {
     my.showPrevious = function(value) {
         if (!arguments.length) return showPrevious;
         showPrevious = value;
+        return my;
+    };
+
+    my.yTickValues = function(value) {
+        if (!arguments.length) return yTickValues;
+        yTickValues = value;
+        return my;
+    };
+
+    my.clip = function(value) {
+        if (!arguments.length) return clip;
+        clip = value;
+        return my;
+    };
+
+    my.showTips = function(value) {
+        if (!arguments.length) return showTips;
+        showTips = value;
         return my;
     };
 

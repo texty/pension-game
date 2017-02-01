@@ -9,12 +9,56 @@ svg.bigchart {
   }
 }
 
+$ballance_color: #ff7f00;
+$payers_rate_color: #6a3d9a;
+
+$pension_age_color: #1f78b4;
+$pension_avg_color: #b2df8a;
+$esv_rate_color: #e31a1c;
+$dreg_color: #33a02c;
+$salary_avg_color: #fb9a99;
+
+.ballance_color {
+  color: $ballance_color;
+  fill: $ballance_color;
+}
+
+.payers_rate_color {
+  color: $payers_rate_color;
+  fill: $payers_rate_color;
+}
+
+.pension_age_color {
+  color: $pension_age_color;
+  fill: $pension_age_color;
+}
+
+.pension_avg_color {
+  color: $pension_avg_color;
+  fill: $pension_avg_color;
+}
+
+.esv_rate_color {
+  color: $esv_rate_color;
+  fill: $esv_rate_color;
+}
+
+.dreg_color {
+  color: $dreg_color;
+  fill: $dreg_color;
+}
+
+.salary_avg_color {
+  color: $salary_avg_color;
+  fill: $salary_avg_color;
+}
+
 //
 // dreg chart
 //
 svg#dreg {
   .area {
-    fill: #33a02c;
+    fill: $dreg_color;
   }
   //
   //path.line, line.line {
@@ -31,7 +75,7 @@ svg#dreg {
 //
 svg#esv_rate {
   .area {
-    fill: #e31a1c;
+    fill: $esv_rate_color;
   }
 
 
@@ -47,19 +91,19 @@ svg#esv_rate {
 
 svg#pension_age {
   .area {
-    fill: #1f78b4;
+    fill: $pension_age_color;
   }
 }
 
 svg#pension_avg {
   .area {
-    fill: #b2df8a;
+    fill: $pension_avg_color;
   }
 }
 
 svg#salary_avg {
   .area {
-    fill: #fb9a99;
+    fill: $salary_avg_color;
   }
 }
 //
@@ -68,23 +112,28 @@ svg#salary_avg {
 
 svg#payers_rate {
   .area {
-    fill: #6a3d9a;
+    fill: $payers_rate_color;
   }
 
   g.pension_year {
     opacity: 0;
   }
-
-  path {
-
-    //stroke: #4f803e;
-  }
 }
 
 svg#ballance {
   .area {
-    fill: #ff7f00
+    fill: $ballance_color
   }
 }
 
 //http://colorbrewer2.org/#type=qualitative&scheme=Paired&n=10
+
+svg .tip {
+  opacity: 0;
+}
+
+svg .tip rect {
+  stroke: none;
+  fill-opacity: 0.45;
+  fill: #CDD1DA;
+}

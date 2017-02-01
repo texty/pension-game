@@ -70,3 +70,7 @@
     fill: none;
     shape-rendering: initial;
 }
+
+.payers_rate_div {
+    margin-top: 48px;
+}

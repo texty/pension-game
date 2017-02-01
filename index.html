@@ -112,7 +112,7 @@
             <div class="col-xs-6 text-center center-block">
                 <p><span>Мені </span><input id="input-age" type="number" min="26" max="120" value="35" autocomplete="off"><span>років</span></p>
                 <p><span>Я хочу отримувати </span><input id="input-pension" min="0" max="1000" type="number" value="300" autocomplete="off"><span>$ пенсії</span></p>
-                <p><button class="btn btn-success" id="submit">Покажіть прогноз</button></p>
+                <p><button class="btn btn-success" id="submit" autofocus>Поїхали</button></p>
             </div>
             <div class="col-xs-3"></div>
         </div>
@@ -135,21 +135,23 @@
                     <div class="number-point text-center">0</div>
                     <div class="post-number">Пенсія</div>
                 </div>
-                <p>Розмір середньої пенсії за віком <b>в $</b> (станом на початок грудня 2016 року) становить 1800 грн. <b>Зазвичай середня зарплата УТРИЧІ вища, ніж середня пенсія</b></p>
+                <!--<p>Розмір середньої пенсії за віком <b>в $</b> (станом на початок грудня 2016 року) становить 1800 грн. <b>Зазвичай середня зарплата УТРИЧІ вища, ніж середня пенсія</b></p>-->
                 <div><svg id="pension_avg" class="smallchart" width="350" height="70"></svg></div>
 
                 <div class="step-label">
                     <div class="number-point text-center">2</div>
                     <div class="post-number">Пенсійний вік</div>
                 </div>
-                <p>Зараз чоловіки йдуть на пенсію у 60 років. Для жінок пенсійний вік зростає щороку на 6 місяців і у 2021-му буде таким же, як у чоловіків</p>
+                <p>Впливає на кількість працездатного населення</p>
+                <!--<p>Зараз чоловіки йдуть на пенсію у 60 років. Для жінок пенсійний вік зростає щороку на 6 місяців і у 2021-му буде таким же, як у чоловіків</p>-->
                 <div><svg id="pension_age" class="smallchart" width="350" height="70"></svg></div>
 
                 <div class="step-label">
                     <div class="number-point text-center">3</div>
-                    <div class="post-number">Ставка ЄСВ, що йде в Пенсійний фонд</div>
+                    <div class="post-number">Податок, що йде в Пенсійний фонд</div>
                 </div>
-                <p>Кошти зі сплати Єдиного соціального внеску, що йдуть на пенсійні виплати</p>
+                <p>Збільшення податку збільшує надходження від кожного платника, але разом з тим зменшує кількість платників</p>
+                <!--<p>Кошти зі сплати Єдиного соціального внеску, що йдуть на пенсійні виплати</p>-->
                 <div><svg id="esv_rate" class="smallchart" width="350" height="70"></svg></div>
 
                 <!--<div class="step-label">-->
@@ -164,14 +166,14 @@
                     <div class="number-point text-center">4</div>
                     <div class="post-number">Дерегуляція</div>
                 </div>
-                <p>Дерегуляція це є вєщь, Вася, яку ніхто її не пойме цієї вєщі Вася, і цю вєщь дуже тяжко поняти</p>
+                <!--<p>Дерегуляція це є вєщь, Вася, яку ніхто її не пойме цієї вєщі Вася, і цю вєщь дуже тяжко поняти</p>-->
                 <div><svg id="dreg" class="smallchart" width="350" height="70"></svg></div>
 
                 <div class="step-label">
                     <div class="number-point text-center">5</div>
                     <div class="post-number">Зарплата</div>
                 </div>
-                <p>Розмір середньої зарплати <b>в $</b> </p>
+                <!--<p>Розмір середньої зарплати <b>в $</b> </p>-->
                 <div><svg id="salary_avg" class="smallchart" width="350" height="70"></svg></div>
 
             </div>
@@ -188,52 +190,12 @@
                         <marker id="arrowhead" viewBox="-10 -10 20 20" refX="0" refY="0" markerWidth="20" markerHeight="20" stroke-width="1" orient="auto"><polyline stroke-linejoin="bevel" points="-6.75,-4.75 0,0 -6.75,4.75"></polyline></marker>
                     </svg>
 
-                    <p><div class="post-number">Частка платників</div></p>
-                    <svg id="payers_rate" class="bigchart" width="800" height="150">
-                        <!--<marker id="arrowhead" viewBox="-10 -10 20 20" refX="0" refY="0" markerWidth="20" markerHeight="20" stroke-width="1" orient="auto"><polyline stroke-linejoin="bevel" points="-6.75,-6.75 0,0 -6.75,6.75"></polyline></marker>-->
-                    </svg>
-                        <!--<div class="col-xs-6">-->
-                            <!--<span>Пенсійний вік</span><input id="age"/>-->
-                        <!--</div>-->
-
-                        <!--<div class="col-xs-6">-->
-                            <!--<span>ЄСВ</span><input id="esv"/>-->
-                        <!--</div>-->
-
-                        <!--<div class="col-xs-6">-->
-                            <!--<span>% платників</span><input id="payers"/>-->
-                        <!--</div>-->
-
-                        <!--<div class="col-xs-6">-->
-                            <!--<span>Середня пенсія</span><input id="pension"/>-->
-                        <!--</div>-->
-
-                        <!--<div class="col-xs-6">-->
-                            <!--<span>Середня ЗП</span><input id="salary"/>-->
-                        <!--</div>-->
-
-
-                    <!--<div class="col-xs-3"><p>Пенсійний</p><input type="text" value="75" class="dial" id="age" data-inputColor="#222222" data-fgColor="#222222"></div>-->
-                        <!--<div class="col-xs-3"><p>ЄСВ</p><input type="text" value="75" class="dial" id="esv" data-inputColor="#222222" data-fgColor="#222222"></div>-->
-                        <!--<div class="col-xs-3"><p>% платників</p><input type="text" value="75" class="dial" id="payers" data-inputColor="#222222" data-fgColor="#222222"></div>-->
-                        <!--<div class="col-xs-3"><p>пенсія</p><input type="text" value="75" class="dial" id="pension" data-inputColor="#222222" data-fgColor="#222222"></div>-->
-                    <!--</div>-->
-
-                    <!--&lt;!&ndash;<img src="img/projections-template.jpg" alt="">&ndash;&gt;-->
-                    <!--<br>-->
-                    <!--<h4 id="result1">Працездатні: x осіб</h4>-->
-                    <!--<h4 id="result3">Платять: x осіб</h4>-->
-                    <!--<h4 id="result4">Пенсіонерів: x осіб</h4>-->
-                    <!--<br>-->
-
-                    <!--&lt;!&ndash;<h4 id="result5">Працездатні до пенсіонерів: x</h4>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<h4 id="result6">Платники до пенсіонерів: x</h4>&ndash;&gt;-->
-                    <!--<br>-->
-                    <!--<h4 id="result7"><b>Надходження:</b> x грн</h4>-->
-                    <!--<h4 id="result8"><b>Видатки:</b> x грн</h4>-->
-                    <!--<br>-->
-
-                    <!--<h3 id="result9">Баланс Пенс. фонду: x грн</h3>-->
+                    <div class="payers_rate_div">
+                        <div class="post-number">Частка платників</div>
+                        <svg id="payers_rate" class="bigchart" width="800" height="120">
+                            <!--<marker id="arrowhead" viewBox="-10 -10 20 20" refX="0" refY="0" markerWidth="20" markerHeight="20" stroke-width="1" orient="auto"><polyline stroke-linejoin="bevel" points="-6.75,-6.75 0,0 -6.75,6.75"></polyline></marker>-->
+                        </svg>
+                    </div>
                 </div>
             </div>
         </div>

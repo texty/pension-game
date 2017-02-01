@@ -43,9 +43,6 @@ svg.smallchart {
     stroke-opacity: 0;
 }
 
-.smallchart .tip {
-    opacity: 0;
-}
 
 .smallchart line.pension_year {
     stroke: black;
@@ -53,10 +50,4 @@ svg.smallchart {
     shape-rendering: crispEdges;
     /*stroke-dasharray: 3 3;*/
     /*stroke-linecap: initial;*/
-}
-
-.smallchart .tip rect {
-    stroke: none;
-    fill-opacity: 0.45;
-    fill: #CDD1DA;
 }

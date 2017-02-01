@@ -217,7 +217,7 @@ function smallchart() {
 
                 repair_data(i);
                 update();
-                svg.call(triggerEvent, 'change', {detail: future});
+                svg.call(triggerEvent, 'change', {detail: {index: i}});
             }
             
             function dragend() {

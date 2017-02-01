@@ -5,6 +5,34 @@ svg.smallchart .area.future,
 svg.bigchart .area.future {
   fill-opacity: 0.3; }
 
+.ballance_color {
+  color: #ff7f00;
+  fill: #ff7f00; }
+
+.payers_rate_color {
+  color: #6a3d9a;
+  fill: #6a3d9a; }
+
+.pension_age_color {
+  color: #1f78b4;
+  fill: #1f78b4; }
+
+.pension_avg_color {
+  color: #b2df8a;
+  fill: #b2df8a; }
+
+.esv_rate_color {
+  color: #e31a1c;
+  fill: #e31a1c; }
+
+.dreg_color {
+  color: #33a02c;
+  fill: #33a02c; }
+
+.salary_avg_color {
+  color: #fb9a99;
+  fill: #fb9a99; }
+
 svg#dreg .area {
   fill: #33a02c; }
 
@@ -27,5 +55,13 @@ svg#payers_rate g.pension_year {
 
 svg#ballance .area {
   fill: #ff7f00; }
+
+svg .tip {
+  opacity: 0; }
+
+svg .tip rect {
+  stroke: none;
+  fill-opacity: 0.45;
+  fill: #CDD1DA; }
 
 /*# sourceMappingURL=charts.css.map */

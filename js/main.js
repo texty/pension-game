@@ -138,15 +138,19 @@ d3.select("#submit").on("click", function() {
         .maxY(10)
         .yText("млрд. $")
         .showPrevious(true)
-        // .yFormat()
+        .showTips(true)
+        .yFormat(d3.format(".0f"))
         .pension_year(pension_year);
 
     var payers_rate = bigchart()
         .varName("payers_rate")
         .history(history)
-        .minY(0)
-        .maxY(1)
+        .minY(.0)
+        .maxY(.9)
+        .yTickValues([0, .3, .6, .9])
+        .showTips(true)
         .yFormat(d3.format('.0%'))
+        .clip(true)
         .pension_year(pension_year);
 
     d3.select("#ballance")
@@ -157,15 +161,20 @@ d3.select("#submit").on("click", function() {
     payers_rate.update(payers_rate_data());
 
     d3.select('#pension_age').call(pension_age).on("change", update_pension_age_changed).on("dragend", ballance_chart.dragend);
-    d3.select('#esv_rate').call(esv_rate).on("change", update_payers_rate).on("dragend", ballance_chart.dragend);
+    d3.select('#esv_rate').call(esv_rate).on("change", update_payers_rate).on("dragend", ballance_payers_dragend);
     d3.select('#pension_avg').call(pension_avg).on("change", update).on("dragend", ballance_chart.dragend);
     d3.select('#salary_avg').call(salary_avg).on("change", update).on("dragend", ballance_chart.dragend);
-    d3.select('#dreg').call(dreg).on("change", update_payers_rate).on("dragend", ballance_chart.dragend);
+    d3.select('#dreg').call(dreg).on("change", update_payers_rate).on("dragend", ballance_payers_dragend);
 
     d3.select("#pension_age").call(addTip);
 
     function last(arr) {
         return arr[arr.length-1];
+    }
+
+    function ballance_payers_dragend() {
+        ballance_chart.dragend();
+        payers_rate.dragend();
     }
 
     function update_pension_age_changed() {
@@ -185,14 +194,14 @@ d3.select("#submit").on("click", function() {
 
     function update_payers_rate() {
         var p_data = payers_rate_data();
-        payers_rate.update(p_data);
+        payers_rate.update(p_data, d3.event.detail.index + 1);
         future_start.forEach(function(d, i) {d.payers_rate = p_data[i].payers_rate});
 
         update();
     }
 
     function update() {
-        ballance_chart.update(ballance_data());
+        ballance_chart.update(ballance_data(), d3.event.detail.index + 1);
     }
 
     function payers_rate_data() {
