@@ -7,6 +7,10 @@ svg.bigchart {
   .area.future {
     fill-opacity: 0.3;
   }
+
+  .area.target {
+    fill-opacity: 0.2;
+  }
 }
 
 $ballance_color: #ff7f00;
@@ -123,6 +127,10 @@ svg#payers_rate {
 svg#ballance {
   .area {
     fill: $ballance_color
+  }
+
+  .area.target {
+    fill: #999;
   }
 }
 

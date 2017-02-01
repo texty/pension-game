@@ -4,6 +4,9 @@ svg.bigchart .area.historical {
 svg.smallchart .area.future,
 svg.bigchart .area.future {
   fill-opacity: 0.3; }
+svg.smallchart .area.target,
+svg.bigchart .area.target {
+  fill-opacity: 0.2; }
 
 .ballance_color {
   color: #ff7f00;
@@ -55,6 +58,8 @@ svg#payers_rate g.pension_year {
 
 svg#ballance .area {
   fill: #ff7f00; }
+svg#ballance .area.target {
+  fill: #999; }
 
 svg .tip {
   opacity: 0; }

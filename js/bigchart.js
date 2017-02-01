@@ -32,6 +32,9 @@ function bigchart() {
         , showTips
         , tip_g
         , tipText
+        
+        , target
+        , target_area
         ;
     
     function my(selection) {
@@ -81,6 +84,10 @@ function bigchart() {
             future_area = g
                 .append("path")
                 .attr("class", "area future");
+            
+            target_area = g
+                .append("path")
+                .attr("class", "area target");
 
             pension_year_line_g = g
                 .append("g")
@@ -150,7 +157,7 @@ function bigchart() {
             message = g.append("text")
                 .attr("class", "message")
                 .attr("y", 20)
-                .attr("x", 150);
+                .attr("x", 180);
 
             var swoopy = swoopyArrow()
                 .angle(Math.PI/2)
@@ -170,7 +177,9 @@ function bigchart() {
                 .attr('y', height + 70)
                 .attr('x', -50)
                 .attr('text-anchor', "end")
-                .text('рік виходу на пенсію')
+                .text('рік виходу на пенсію');
+
+            if (target) g.call(addTargetTip);
         });
     }
     
@@ -200,6 +209,10 @@ function bigchart() {
                 .translate([px - 25 - 4, py - 10]); // tip offset here
 
             tipText.text(yFormat(v));
+        }
+
+        if (target) {
+            target_area.attr("d", area([{year: data[0].year, ballance: target}, {year: maxYear, ballance: target}]));
         }
 
         return my;
@@ -306,6 +319,65 @@ function bigchart() {
         showTips = value;
         return my;
     };
+
+    my.target = function(value) {
+        if (!arguments.length) return target;
+        target = value;
+        return my;
+    };
+
+    function addTargetTip(selection) {
+        selection.each(function(d) {
+            var swoopyTip = swoopyArrow()
+                .angle(Math.PI/1.5)
+                .x(function(d) { return d[0]; })
+                .y(function(d) { return d[1]; });
+
+            var tipG = d3.select(this)
+                .append("g")
+                .attr("class" ,"swoopy-tooltip")
+                .translate([150, 15]);
+
+            tipG
+                .append("text")
+                .attr('y', 4)
+                .attr('x', -5)
+                .attr('text-anchor', "end")
+                .text('Ваша ціль');
+
+            tipG
+                .append("path")
+                .attr('marker-end', 'url(#arrowhead)')
+                .attr('class', 'swoopy-arrow-line')
+                .datum([[0, 0], [30, 15]])
+                .attr("d", swoopyTip);
+
+            // tipG
+            //     .style("opacity", 1)
+            //     .transition()
+            //     .ease(d3.easeLinear)
+            //     .duration(400)
+            //     .on("start", function repeat() {
+            //         d3.active(this)
+            //             .style("opacity", 1)
+            //             .transition()
+            //             .duration(400)
+            //             .ease(d3.easeLinear)
+            //             .style("opacity", 0)
+            //             .transition()
+            //             .duration(400)
+            //             .ease(d3.easeLinear)
+            //             .on("start", repeat);
+            //     });
+            //
+            // d3.selectAll(".smallchart")
+            //     .on("dragend.tip", function(){
+            //         tipG
+            //             .interrupt()
+            //             .remove();
+            //     });
+        });
+    }
 
     return my;
 }

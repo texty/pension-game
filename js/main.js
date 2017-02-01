@@ -140,7 +140,8 @@ d3.select("#submit").on("click", function() {
         .showPrevious(true)
         .showTips(true)
         .yFormat(d3.format(".0f"))
-        .pension_year(pension_year);
+        .pension_year(pension_year)
+        .target(-3.5);
 
     var payers_rate = bigchart()
         .varName("payers_rate")
@@ -166,7 +167,8 @@ d3.select("#submit").on("click", function() {
     d3.select('#salary_avg').call(salary_avg).on("change", update).on("dragend", ballance_chart.dragend);
     d3.select('#dreg').call(dreg).on("change", update_payers_rate).on("dragend", ballance_payers_dragend);
 
-    d3.select("#pension_age").call(addTip);
+    d3.select("#pension_age").call(addDragTip);
+    d3.select("#ballance g").call(addTargetTip);
 
     function last(arr) {
         return arr[arr.length-1];
@@ -244,7 +246,7 @@ d3.select("#submit").on("click", function() {
         return y;
     }
 
-    function addTip(selection) {
+    function addDragTip(selection) {
         selection.each(function(d) {
             var swoopyTip = swoopyArrow()
                 .angle(Math.PI/1.5)
@@ -253,7 +255,7 @@ d3.select("#submit").on("click", function() {
 
             var tipG = d3.select(this)
                 .append("g")
-                .attr("class" ,"tooltip")
+                .attr("class" ,"swoopy-tooltip")
                 .translate([108, 4]);
 
             tipG
@@ -298,4 +300,3 @@ d3.select("#submit").on("click", function() {
     }
 
 });
-
