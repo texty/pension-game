@@ -168,7 +168,6 @@ d3.select("#submit").on("click", function() {
     d3.select('#dreg').call(dreg).on("change", update_payers_rate).on("dragend", ballance_payers_dragend);
 
     d3.select("#pension_age").call(addDragTip);
-    d3.select("#ballance g").call(addTargetTip);
 
     function last(arr) {
         return arr[arr.length-1];
