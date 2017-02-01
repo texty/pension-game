@@ -64,4 +64,18 @@ svg .tip rect {
   fill-opacity: 0.45;
   fill: #CDD1DA; }
 
+svg#ballance .tip rect {
+  stroke: none;
+  fill-opacity: 1;
+  fill: #ff7f00; }
+svg#ballance .tip text {
+  fill: white; }
+
+svg#payers_rate .tip rect {
+  stroke: none;
+  fill-opacity: 1;
+  fill: #6a3d9a; }
+svg#payers_rate .tip text {
+  fill: white; }
+
 /*# sourceMappingURL=charts.css.map */

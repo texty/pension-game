@@ -137,3 +137,27 @@ svg .tip rect {
   fill-opacity: 0.45;
   fill: #CDD1DA;
 }
+
+svg#ballance {
+  .tip rect {
+    stroke: none;
+    fill-opacity: 1;
+    fill: $ballance_color;
+  }
+
+  .tip text {
+    fill: white;
+  }
+}
+
+svg#payers_rate {
+  .tip rect {
+    stroke: none;
+    fill-opacity: 1;
+    fill: $payers_rate_color;
+  }
+
+  .tip text {
+    fill: white;
+  }
+}

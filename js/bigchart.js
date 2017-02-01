@@ -117,14 +117,14 @@ function bigchart() {
                 .attr("class", "tip");
 
             var tip_rect = tip_g.append("rect")
-                .attr("x", -22)
-                .attr("y", -15)
+                .attr("x", 0)
+                .attr("y", 0)
                 .attr("ry", 3)
                 .attr("rx", 3)
                 .attr("width", 25)
                 .attr("height", 20);
 
-            tipText = tip_g.append("text").attr('text-anchor', "end");
+            tipText = tip_g.append("text").attr('text-anchor', "start").attr("dy", 14).attr("dx", 2);
 
             g.append("g")
                 .attr("class", "axis axis--x")
@@ -149,7 +149,7 @@ function bigchart() {
 
             message = g.append("text")
                 .attr("class", "message")
-                .attr("y", 40)
+                .attr("y", 20)
                 .attr("x", 150);
 
             var swoopy = swoopyArrow()
@@ -197,7 +197,7 @@ function bigchart() {
 
             tip_g
                 .style("opacity", 1)
-                .translate([px - 10, py]);
+                .translate([px - 25 - 4, py - 10]); // tip offset here
 
             tipText.text(yFormat(v));
         }
