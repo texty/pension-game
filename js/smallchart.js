@@ -24,7 +24,7 @@ function smallchart() {
         selection.each(function(d) {
 
             var svg = d3.select(this)
-                , margin = {top: 5, right: 15, bottom: 15, left: 40}
+                , margin = {top: 5, right: 15, bottom: 15, left: 20}
                 , width = +svg.attr("width") - margin.left - margin.right
                 , height = +svg.attr("height") - margin.top - margin.bottom
                 , g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")")
@@ -370,7 +370,7 @@ function smallchart() {
         return my;
     };
 
-    
+
     //
     // my.handlePoints = function(value) {
     //     if (!arguments.length) return handlePoints;

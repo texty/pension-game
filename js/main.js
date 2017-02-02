@@ -41,6 +41,7 @@ d3.select("#submit").on("click", function() {
        }
     });
 
+    //todo debug only
     window.future = future;
 
     var current_year = new Date().getFullYear();
@@ -92,18 +93,18 @@ d3.select("#submit").on("click", function() {
     //     .showTips(true)
     //     .pension_year(pension_year);
 
-    var pension_avg = smallchart()
-        .varName('pension_avg')
-        .historical(history)
-        .future(future)
-        .minY(50)
-        // .maxY(200)
-        .maxStep(50)
-        // .yTickValues([50, 100, 150, 200])
-        .yFormat(d3.format(".0f"))
-        .showTips(true)
-        .drawMode(true)
-        .pension_year(pension_year);
+    // var pension_avg = smallchart()
+    //     .varName('pension_avg')
+    //     .historical(history)
+    //     .future(future)
+    //     .minY(50)
+    //     // .maxY(200)
+    //     .maxStep(50)
+    //     // .yTickValues([50, 100, 150, 200])
+    //     .yFormat(d3.format(".0f"))
+    //     .showTips(true)
+    //     .drawMode(true)
+    //     .pension_year(pension_year);
 
     var salary_avg = smallchart()
         .varName('salary_avg')
@@ -163,7 +164,7 @@ d3.select("#submit").on("click", function() {
 
     d3.select('#pension_age').call(pension_age).on("change", update_pension_age_changed).on("dragend", ballance_chart.dragend);
     d3.select('#esv_rate').call(esv_rate).on("change", update_payers_rate).on("dragend", ballance_payers_dragend);
-    d3.select('#pension_avg').call(pension_avg).on("change", update).on("dragend", ballance_chart.dragend);
+    // d3.select('#pension_avg').call(pension_avg).on("change", update).on("dragend", ballance_chart.dragend);
     d3.select('#salary_avg').call(salary_avg).on("change", update).on("dragend", ballance_chart.dragend);
     d3.select('#dreg').call(dreg).on("change", update_payers_rate).on("dragend", ballance_payers_dragend);
 
@@ -181,13 +182,17 @@ d3.select("#submit").on("click", function() {
     function update_pension_age_changed() {
         var pension_year = calc_pension_year(current_year, user_age, future);
 
+        //recalc pension_avg
+        pension_size_scale.domain([last_in_history.year, pension_year]);
+        future.forEach(function(d) { d.pension_avg = pension_size_scale(d.year) });
+
         ballance_chart.pension_year(pension_year);
         payers_rate.pension_year(pension_year);
 
         pension_age.update_pension_year(pension_year);
         esv_rate.update_pension_year(pension_year);
         // payers_rate.update_pension_year(pension_year);
-        pension_avg.update_pension_year(pension_year);
+        // pension_avg.update_pension_year(pension_year);
         salary_avg.update_pension_year(pension_year);
         dreg.update_pension_year(pension_year);
         update();
