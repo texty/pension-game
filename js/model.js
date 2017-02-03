@@ -40,23 +40,9 @@ var model = (function(){
         var workForce = module.calcWorkForce('both', pension_age, year); //millions
         var pensioners = module.calcPensioners('both', pension_age, year); //millions
         var payers = payers_rate * workForce; //millions
-
-        // var years_past = year - 2016;
-        // pension_avg = pension_avg * Math.pow(1.02, years_past);
-
-        // var salary_avg = pension_avg * 3;
-
+        
         var income = salary_avg * payers * esv_rate * 12 / 1000; //billions UAH 
         var outcome = pensioners * pension_avg * 12 / 1000; //billions UAH
-
-        // console.log("year: " + year);
-        // console.log("workForce: " + workForce);
-        // console.log("pensioners: " + pensioners);
-        // console.log("payers: " + payers);
-        // console.log("salary_avg: " + salary_avg);
-        // console.log("income: " + income);
-        // console.log("outcome: " + outcome);
-        // console.log("\n");
 
         return income - outcome;
     };
@@ -74,9 +60,12 @@ var model = (function(){
             , k_dreg = 0.08
             ;
 
-        return pr_0 + k_esv * (esv_rate - esv_0) + k_dreg * (dreg - dreg_0);
+        return minmax(pr_0 + k_esv * (esv_rate - esv_0) + k_dreg * (dreg - dreg_0), 0, 1);
     };
 
+    function minmax(v, min, max) {
+        return Math.min(Math.max(v, min), max);
+    }
 
     return module;
 })();
