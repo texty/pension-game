@@ -36,6 +36,8 @@ function bigchart() {
         , tipText
         
         , target
+        , tipG
+        , tipGx = 150
         , target_data
         , target_area
 
@@ -228,6 +230,8 @@ function bigchart() {
         t.select('.line.historical').attr("d", line(history));
         t.select('.area.target').attr("d", area(target_data));
         t.select('.line.previous').attr("d", line(__data__));
+
+        if (target) t.select('g.swoopy-tooltip').translate([tipGx,  y(0) - 15]);
     }
 
     my.update = function(data, point_index, including_previous) {
@@ -388,10 +392,10 @@ function bigchart() {
                 .x(function(d) { return d[0]; })
                 .y(function(d) { return d[1]; });
 
-            var tipG = d3.select(this)
+            tipG = d3.select(this)
                 .append("g")
                 .attr("class" ,"swoopy-tooltip")
-                .translate([150, 15]);
+                .translate([tipGx, y(0) - 15]);
 
             tipG
                 .append("text")
