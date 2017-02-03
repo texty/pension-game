@@ -123,10 +123,10 @@ d3.select("#submit").on("click", function() {
         .varName('dreg')
         .historical(history)
         .future(future)
-        .minY(1)
+        .minY(0)
         .maxY(5)
         .maxStep(1.25)
-        .yTickValues([1, 2, 3, 4, 5])
+        .yTickValues([0, 1, 2, 3, 4, 5])
         .yFormat(d3.format(".0f"))
         .showTips(true)
         .drawMode(true)
@@ -142,7 +142,8 @@ d3.select("#submit").on("click", function() {
         .showTips(true)
         .yFormat(d3.format(".0f"))
         .pension_year(pension_year)
-        .target(-3.5);
+        .target(-3.5)
+        .yScales([[-35, 10], [-10, 5]]);
 
     var payers_rate = bigchart()
         .varName("payers_rate")
@@ -155,8 +156,7 @@ d3.select("#submit").on("click", function() {
         .clip(true)
         .pension_year(pension_year);
 
-    d3.select("#ballance")
-        .call(ballance_chart);
+    d3.select("#ballance").call(ballance_chart);
 
     d3.select('#payers_rate').call(payers_rate); //.on("change", update);
     ballance_chart.update(ballance_data());
@@ -260,7 +260,7 @@ d3.select("#submit").on("click", function() {
             var tipG = d3.select(this)
                 .append("g")
                 .attr("class" ,"swoopy-tooltip")
-                .translate([108, 4]);
+                .translate([94, 4]);
 
             tipG
                 .append("text")

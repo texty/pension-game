@@ -19,6 +19,8 @@ function bigchart() {
         , x
         , y
 
+        , yAxis
+
         , minYear = 2005
         , maxYear = 2050
         , history
@@ -34,14 +36,19 @@ function bigchart() {
         , tipText
         
         , target
+        , target_data
         , target_area
+
+        , yScales
+        , svg
         ;
     
     function my(selection) {
         selection.each(function(d){
             
-            var svg = d3.select(this)
-                , margin = {top: 20, right: 80, bottom: 30, left: 50}
+            svg = d3.select(this);
+
+            var margin = {top: 20, right: 80, bottom: 30, left: 50}
                 , width = svg.attr("width") - margin.left - margin.right
                 , height = svg.attr("height") - margin.top - margin.bottom
                 , g = svg.append("g").translate([margin.left, margin.top])
@@ -138,7 +145,7 @@ function bigchart() {
                 .attr("transform", "translate(0," + height + ")")
                 .call(d3.axisBottom(x).tickFormat(d3.format("d")));
 
-            var yAxis = d3.axisLeft(y)
+            yAxis = d3.axisLeft(y)
                 .ticks(4);
 
             if (yFormat) yAxis.tickFormat(yFormat);
@@ -179,10 +186,43 @@ function bigchart() {
                 .attr('text-anchor', "end")
                 .text('рік виходу на пенсію');
 
-            if (target) g.call(addTargetTip);
+            if (target) {
+                target_data = [{year: last(history).year}, {year: maxYear}];
+                target_data[0][varName] = target;
+                target_data[1][varName] = target;
+                g.call(addTargetTip);
+            }
         });
     }
-    
+
+    function rescaleY() {
+        var extent = d3.extent(__data__, function(d) {return d[varName]});
+
+        var dmin = extent[0];
+        var dmax = extent[1];
+
+        var s = yScales[0];
+        if (dmin >= -10) {
+            s = yScales[1];
+        }
+
+        y.domain(s);
+
+        var t = svg.transition()
+            .duration(700);
+
+        t.select("g.axis--y").call(yAxis);
+        t.select('.area.future').attr("d", area(__data__));
+        t.select('.line.future').attr("d", line(__data__));
+
+        t.select('.area.historical').attr("d", area(history));
+        t.select('.line.historical').attr("d", line(history));
+
+        t.select('.area.target').attr("d", area(target_data));
+
+        t.select('.line.previous').attr("d", line(__data__));
+    }
+
     my.update = function(data, point_index) {
         __data__ = data;
 
@@ -212,7 +252,7 @@ function bigchart() {
         }
 
         if (target) {
-            target_area.attr("d", area([{year: data[0].year, ballance: target}, {year: maxYear, ballance: target}]));
+            target_area.attr("d", area(target_data));
         }
 
         return my;
@@ -243,6 +283,8 @@ function bigchart() {
                 .ease(d3.easeExpIn)
                 .style("opacity", 0);
         }
+
+        if (yScales) rescaleY();
 
         if (showTips) {
             tip_g
@@ -326,6 +368,12 @@ function bigchart() {
         return my;
     };
 
+    my.yScales = function(value) {
+        if (!arguments.length) return yScales;
+        yScales = value;
+        return my;
+    };
+
     function addTargetTip(selection) {
         selection.each(function(d) {
             var swoopyTip = swoopyArrow()
@@ -377,6 +425,10 @@ function bigchart() {
             //             .remove();
             //     });
         });
+    }
+
+    function last(arr) {
+        return arr[arr.length - 1];
     }
 
     return my;
