@@ -125,6 +125,7 @@ d3.select("#submit").on("click", function() {
         .future(future)
         .minY(0)
         .maxY(5)
+        .minValueY(1)
         .maxStep(1.25)
         .yTickValues([0, 1, 2, 3, 4, 5])
         .yFormat(d3.format(".0f"))
@@ -143,7 +144,7 @@ d3.select("#submit").on("click", function() {
         .yFormat(d3.format(".0f"))
         .pension_year(pension_year)
         .target(-3.5)
-        .yScales([[-35, 10], [-10, 5]]);
+        .yScales([[-35, 10], [-15, 10]]);
 
     var payers_rate = bigchart()
         .varName("payers_rate")

@@ -12,10 +12,13 @@ function smallchart() {
         , sticky
         , drawMode
         , showTips
-        , minCurve
+        // , minCurve
         , pension_year
         , pension_year_line
         , x
+
+        , minValueY
+        , maxValueY
 
         // , handlePoints = [2020, 2025, 2030, 2035, 2040, 2045, 2050]
         ;
@@ -54,6 +57,9 @@ function smallchart() {
 
             if (!minY) minY = 0;
             if (!maxY) maxY = d3.max(all, function(d) {return d[varName]});
+
+            if (!minValueY) minValueY = minY;
+            if (!maxValueY) maxValueY = maxY;
 
             y.domain([minY, maxY]);
 
@@ -172,7 +178,7 @@ function smallchart() {
                 }
 
                 var v = y.invert(d3.event.y);
-                v = minmax(v, minY, maxY);
+                v = minmax(v, minValueY, maxValueY);
 
                 if (snapFunction) {
                     v = snapFunction(v);
@@ -198,7 +204,7 @@ function smallchart() {
 
                     for (var j=i+1; j < future.length; j++) {
                         var f_new = future[j][varName] + eps;
-                        future[j][varName] = minmax(f_new, minY, maxY);
+                        future[j][varName] = minmax(f_new, minValueY, maxValueY);
                     }
                 }
 
@@ -304,6 +310,18 @@ function smallchart() {
         return my;
     };
 
+    my.minValueY = function(value) {
+        if (!arguments.length) return minValueY;
+        minValueY = value;
+        return my;
+    };
+
+    my.maxValueY = function(value) {
+        if (!arguments.length) return maxValueY;
+        maxValueY = value;
+        return my;
+    };
+
     my.maxStep = function(value) {
         if (!arguments.length) return maxStep;
         maxStep = value;
@@ -345,14 +363,14 @@ function smallchart() {
         showTips = value;
         return my;
     };
-
-    my.minCurve = function(value) {
-        if (!arguments.length) return minCurve;
-        minCurve = value;
-        
-        //todo recalculate minimals
-        return my;
-    };
+    //
+    // my.minCurve = function(value) {
+    //     if (!arguments.length) return minCurve;
+    //     minCurve = value;
+    //
+    //     //todo recalculate minimals
+    //     return my;
+    // };
 
     my.pension_year = function(value) {
         if (!arguments.length) return pension_year;
