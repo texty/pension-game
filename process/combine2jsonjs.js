@@ -14,7 +14,7 @@ var result = {};
 
 result.males = toMatrix(males);
 result.females = toMatrix(females);
-result.both = toMatrix(both);
+result.both = toMatrix(both, function(d){return d / 1000});
 result.history = history.map(function(d){ 
    return {
        year: +d.year,
@@ -41,18 +41,20 @@ fs.writeFileSync('demographics.js', jsContent);
 console.log('Done - see demographics.json and demographics.js');
 
 
-function toMatrix(json) {
+function toMatrix(json, rescale) {
     var res = [];
     for (var age = 0; age <= 100; age++) {
-        res.push(toArray(json[age]));
+        res.push(toArray(json[age], rescale));
     }
     return res;
 }
 
-function toArray(obj) {
+function toArray(obj, rescale) {
+    if (!rescale) rescale = function(d) {return d};
+
     var res = [];
     for (var y = minYear; y <= maxYear; y++) {
-        res.push(+obj[y]);
+        res.push(rescale(+obj[y]));
     }
     return res;
 }
