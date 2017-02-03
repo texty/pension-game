@@ -77,7 +77,7 @@ function bigchart() {
 
             area = d3.area()
                 .x(function(d) { return x(d.year)})
-                .y0(y(0))
+                .y0(function() {return y(0)})
                 .y1(function(d) { return y(d[varName])});
 
             var historical_area = g.append("path")
@@ -196,13 +196,14 @@ function bigchart() {
     }
 
     function rescaleY() {
-        var extent = d3.extent(__data__, function(d) {return d[varName]});
+        var future_extent = d3.extent(__data__, function(d) {return d[varName]});
+        var history_extent = d3.extent(history, function(d) {return d[varName]});
 
-        var dmin = extent[0];
-        var dmax = extent[1];
+        var dmin = Math.min(future_extent[0], history_extent[0]);
+        var dmax = Math.max(future_extent[1], history_extent[1]);
 
         var s = yScales[0];
-        if (dmin >= -10) {
+        if (dmin >= -15) {
             s = yScales[1];
         }
 
@@ -214,12 +215,9 @@ function bigchart() {
         t.select("g.axis--y").call(yAxis);
         t.select('.area.future').attr("d", area(__data__));
         t.select('.line.future').attr("d", line(__data__));
-
         t.select('.area.historical').attr("d", area(history));
         t.select('.line.historical').attr("d", line(history));
-
         t.select('.area.target').attr("d", area(target_data));
-
         t.select('.line.previous').attr("d", line(__data__));
     }
 
@@ -239,7 +237,7 @@ function bigchart() {
 
         pension_year_line_g.translate([x(pension_year), 0]);
 
-        if (showTips && point_index >=0) {
+        if (showTips && point_index && point_index >= 0) {
             var v = data[point_index][varName];
             var px = x(data[point_index].year);
             var py = y(v);
@@ -399,31 +397,6 @@ function bigchart() {
                 .attr('class', 'swoopy-arrow-line')
                 .datum([[0, 0], [30, 15]])
                 .attr("d", swoopyTip);
-
-            // tipG
-            //     .style("opacity", 1)
-            //     .transition()
-            //     .ease(d3.easeLinear)
-            //     .duration(400)
-            //     .on("start", function repeat() {
-            //         d3.active(this)
-            //             .style("opacity", 1)
-            //             .transition()
-            //             .duration(400)
-            //             .ease(d3.easeLinear)
-            //             .style("opacity", 0)
-            //             .transition()
-            //             .duration(400)
-            //             .ease(d3.easeLinear)
-            //             .on("start", repeat);
-            //     });
-            //
-            // d3.selectAll(".smallchart")
-            //     .on("dragend.tip", function(){
-            //         tipG
-            //             .interrupt()
-            //             .remove();
-            //     });
         });
     }
 

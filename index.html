@@ -12,6 +12,7 @@
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/TangleKit.css" rel="stylesheet">
 
     <!-- Base CSS for header and footer-->
     <link href="css/template-style.css" rel="stylesheet">
@@ -111,7 +112,7 @@
             <div class="col-xs-3"></div>
             <div class="col-xs-6 text-center center-block">
                 <p><span>Мені </span><input id="input-age" type="number" min="26" max="120" value="35" autocomplete="off"><span>років</span></p>
-                <p><span>Я хочу отримувати </span><input id="input-pension" min="0" max="1000" type="number" value="300" autocomplete="off"><span>$ пенсії</span></p>
+                <p><span>Я хочу отримувати </span><input id="input-pension" min="10" max="1000" type="number" value="300" autocomplete="off"><span>$ пенсії</span></p>
                 <p><button class="btn btn-success" id="submit" autofocus>Поїхали</button></p>
             </div>
             <div class="col-xs-3"></div>
@@ -125,9 +126,9 @@
                         <div class="number-point text-center">?</div>
                         <div class="post-number">Ваш вік та очікувана пенсія</div>
                     </div>
-                    <p>
-                        Мені <span id="user_age" class="dotted"></span> років.
-                        Я хочу отримувати $<span id="pension_target" class="dotted"></span> пенсії.
+                    <p id="input_data">
+                        Мені <span id="user_age" class="TKAdjustableNumber" data-var="user_age" data-min="26" data-max="120"></span> років.
+                        Я хочу отримувати $<span id="pension_target" class="TKAdjustableNumber" data-var="pension_target" data-min="10" data-max="1000" data-step="10"></span> пенсії.
                     </p>
                 </div>
 
@@ -139,7 +140,7 @@
                 <!--<div><svg id="pension_avg" class="smallchart" width="350" height="70"></svg></div>-->
 
                 <div class="step-label">
-                    <div class="number-point text-center">2</div>
+                    <div class="number-point text-center">1</div>
                     <div class="post-number">Пенсійний вік</div>
                 </div>
                 <p>Впливає на кількість працездатного населення</p>
@@ -147,7 +148,7 @@
                 <div><svg id="pension_age" class="smallchart" width="350" height="70"></svg></div>
 
                 <div class="step-label">
-                    <div class="number-point text-center">3</div>
+                    <div class="number-point text-center">2</div>
                     <div class="post-number">Податок, що йде в Пенсійний фонд</div>
                 </div>
                 <p>Збільшення податку збільшує надходження від кожного платника, але разом з тим зменшує кількість платників</p>
@@ -163,14 +164,14 @@
                 <!--<div><svg id="payers_rate" class="singlechart" width="350" height="70"></svg></div>-->
 
                 <div class="step-label">
-                    <div class="number-point text-center">4</div>
+                    <div class="number-point text-center">3</div>
                     <div class="post-number">Дерегуляція</div>
                 </div>
                 <!--<p>Дерегуляція це є вєщь, Вася, яку ніхто її не пойме цієї вєщі Вася, і цю вєщь дуже тяжко поняти</p>-->
                 <div><svg id="dreg" class="smallchart" width="350" height="70"></svg></div>
 
                 <div class="step-label">
-                    <div class="number-point text-center">5</div>
+                    <div class="number-point text-center">4</div>
                     <div class="post-number">Зарплата</div>
                 </div>
                 <!--<p>Розмір середньої зарплати <b>в $</b> </p>-->
@@ -215,10 +216,15 @@
 <script src="lib/d3-jetpack.js"></script>
 <script src="lib/swoopyArrows.js"></script>
 <script src="js/demographics.js"></script>
-<script src="js/smallchart.js"></script>
 <script src="js/model.js"></script>
-<!--<script src="js/parameters.js"></script>-->
-<!--<script src="js/controls.js"></script>-->
+
+<script src="lib/Tangle.js"></script>
+<script src="lib/mootools.js"></script>
+<script src="lib/sprintf.js"></script>
+<script src="lib/BVTouchable.js"></script>
+<script src="lib/TangleKit.js"></script>
+
+<script src="js/smallchart.js"></script>
 <script src="js/bigchart.js"></script>
 <script src="js/main.js"></script>
 <script>
