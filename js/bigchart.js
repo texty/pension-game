@@ -39,7 +39,7 @@ function bigchart() {
         , target_data
         , target_area
 
-        , yScales
+        , minYscales
         , svg
         ;
     
@@ -202,10 +202,19 @@ function bigchart() {
         var dmin = Math.min(future_extent[0], history_extent[0]);
         var dmax = Math.max(future_extent[1], history_extent[1]);
 
-        var s = yScales[0];
-        if (dmin >= -15) {
-            s = yScales[1];
+        var s = [minY, maxY];
+
+        var min, max;
+
+        for (var i = 0; i < minYscales.length - 1; i++) {
+            min = minYscales[i];
+            max = minYscales[i+1];
+
+            if (dmin >= min && dmin <= max) break;
         }
+
+        if (dmin < minYscales[0]) s[0] = minYscales[0];
+        else s[0] = min;
 
         y.domain(s);
 
@@ -221,7 +230,7 @@ function bigchart() {
         t.select('.line.previous').attr("d", line(__data__));
     }
 
-    my.update = function(data, point_index) {
+    my.update = function(data, point_index, including_previous) {
         __data__ = data;
 
         var line_d = line(data);
@@ -234,6 +243,8 @@ function bigchart() {
 
         future_path.attr("d", line_d);
         future_area.attr("d", area(data));
+
+        if (including_previous) previous_future_path.attr("d", line_d);
 
         pension_year_line_g.translate([x(pension_year), 0]);
 
@@ -249,9 +260,7 @@ function bigchart() {
             tipText.text(yFormat(v));
         }
 
-        if (target) {
-            target_area.attr("d", area(target_data));
-        }
+        if (target) target_area.attr("d", area(target_data));
 
         return my;
     };
@@ -282,7 +291,7 @@ function bigchart() {
                 .style("opacity", 0);
         }
 
-        if (yScales) rescaleY();
+        if (minYscales) rescaleY();
 
         if (showTips) {
             tip_g
@@ -366,9 +375,9 @@ function bigchart() {
         return my;
     };
 
-    my.yScales = function(value) {
-        if (!arguments.length) return yScales;
-        yScales = value;
+    my.minYscales = function(value) {
+        if (!arguments.length) return minYscales;
+        minYscales = value;
         return my;
     };
 

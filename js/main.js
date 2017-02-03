@@ -139,7 +139,7 @@ d3.select("#submit").on("click", function() {
         .yFormat(d3.format(".0f"))
         .pension_year(pension_year)
         .target(-3.5)
-        .yScales([[-35, 10], [-15, 10]]);
+        .minYscales([-150, -70, -35, -15, -5, 0]);
 
     var payers_rate = bigchart()
         .varName("payers_rate")
@@ -171,7 +171,11 @@ d3.select("#submit").on("click", function() {
         pension_target_size = params.pension_target;
 
         pension_size_scale.range([last_in_history.pension_avg, pension_target_size]);
-        update_pension_age_changed()
+        update_pension_age_changed(true);
+    });
+
+    $("body").on("mouseup", function(){
+       if ($(this).hasClass("TKCursorDragHorizontal")) ballance_chart.dragend();
     });
 
     function last(arr) {
@@ -183,7 +187,7 @@ d3.select("#submit").on("click", function() {
         payers_rate.dragend();
     }
 
-    function update_pension_age_changed() {
+    function update_pension_age_changed(including_previous) {
         var pension_year = calc_pension_year(current_year, user_age, future);
 
         //recalc pension_avg
@@ -198,7 +202,7 @@ d3.select("#submit").on("click", function() {
         // pension_avg.update_pension_year(pension_year);
         salary_avg.update_pension_year(pension_year);
         dreg.update_pension_year(pension_year);
-        update();
+        update(including_previous);
     }
 
     function update_payers_rate() {
@@ -209,8 +213,8 @@ d3.select("#submit").on("click", function() {
         update();
     }
 
-    function update() {
-        ballance_chart.update(ballance_data(), d3.event ? d3.event.detail.index + 1 : false);
+    function update(including_previous) {
+        ballance_chart.update(ballance_data(), d3.event ? d3.event.detail.index + 1 : false, including_previous);
     }
 
     function payers_rate_data() {
