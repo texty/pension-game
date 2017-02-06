@@ -396,9 +396,6 @@ img {
 .dotted {
   border-bottom: 1px dashed #46f; }
 
-#deficit {
-  z-index: -10; }
-
 .swoopy-arrow-line {
   stroke: black;
   fill: none;
