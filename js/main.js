@@ -3,7 +3,7 @@
 d3.select("#submit").on("click", function() {
     d3.select(".main-content").classed("hidden", false);
     d3.select("#start-question").classed("hidden", true);
-    window.deficit_top = $("#deficit").offset().top - 80;
+    window.deficit_top = $("#deficit").offset().top - 20;
 
     $('html,body').animate({
         scrollTop: $(".main-content").offset().top

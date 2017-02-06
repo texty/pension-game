@@ -221,7 +221,7 @@ function bigchart() {
         y.domain(s);
 
         var t = svg.transition()
-            .duration(700);
+            .duration(1200);
 
         t.select("g.axis--y").call(yAxis);
         t.select('.area.future').attr("d", area(__data__));

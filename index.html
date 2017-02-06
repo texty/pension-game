@@ -123,7 +123,7 @@
 
             <div id="deficit">
                 <h3>Баланс пенсійного фонду</h3>
-                <svg id="ballance" class="bigchart" width="800" height="200">
+                <svg id="ballance" class="bigchart" width="800" height="300">
                     <marker id="arrowhead" viewBox="-10 -10 20 20" refX="0" refY="0" markerWidth="20" markerHeight="20" stroke-width="1" orient="auto"><polyline stroke-linejoin="bevel" points="-6.75,-4.75 0,0 -6.75,4.75"></polyline></marker>
                 </svg>
 
@@ -263,7 +263,7 @@
      $(window).scroll(function () {
          if ($(".main-content").hasClass("hidden")) return;
 
-         if ($(this).scrollTop() >  $('#left-block').offset().top + $('#left-block').height() -  $('#deficit').height() - 80) {
+         if ($(this).scrollTop() >  $('#left-block').offset().top + $('#left-block').height() -  $('#deficit').height() - 20) {
              $('#deficit').removeClass('scrolling');
              $('#deficit').addClass('absolute');
              $('#deficit').css("top", $('#left-block').height() - $('#deficit').height());
