@@ -6,45 +6,34 @@
  *  (c) 2011 Bret Victor.  MIT open-source license.
  *
  */
-
-
 /* cursor */
-
 .TKCursorDragHorizontal {
-	cursor: pointer;
-	cursor: move;
-	cursor: col-resize;
-}
-
+  cursor: pointer;
+  cursor: move;
+  cursor: col-resize; }
 
 /* TKToggle */
-
 .TKToggle {
-	color: #46f;
-	border-bottom: 1px dashed #46f;
-	cursor: pointer;
-}
-
+  color: #46f;
+  border-bottom: 1px dashed #5CB85C;
+  cursor: pointer; }
 
 /* TKAdjustableNumber */
-
 .TKAdjustableNumber {
-	position:relative;
-	color: #46f;
-	border-bottom: 1px dashed #46f;
-}
-
-.TKAdjustableNumberHover {
-}
+  position: relative;
+  color: #5CB85C;
+  border-bottom: 1px dashed #5CB85C; }
 
 .TKAdjustableNumberDown {
-	color: #00c;
-	border-bottom: 1px dashed #00c;
-}
+  color: #4f803e;
+  border-bottom: 1px dashed #4f803e; }
 
 .TKAdjustableNumberHelp {
-	position:absolute;
-	color: #00f;
-	font: 9px "Helvetica-Neue", "Arial", sans-serif;
-}
+  position: absolute;
+  color: #5CB85C;
+  font-size: 16px; }
 
+#input_data .TKAdjustableNumberHelp {
+  font-size: 12px; }
+
+/*# sourceMappingURL=TangleKit.css.map */

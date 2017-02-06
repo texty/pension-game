@@ -1,217 +1,245 @@
 <!DOCTYPE html>
-<html lang="ua">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-gb" lang="en" xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml" itemscope itemtype="http://schema.org/Map">
 
 <head>
+    <title>Утеплитися або зникнути</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="___">
-    <meta name="author" content="___">
+    <meta name="title" content="Признач собі пенсію">
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta name="description" content="І перевір, чи держава зможе її виплатити. Ключовий показник — розмір «дірки» у бюджеті Пенсійного фонду">
+    <meta name="author" content="Артур Денисенко, Ярина Михайлишин">
 
-    <title>Pension Game</title>
-
-    <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/TangleKit.css" rel="stylesheet">
-
-    <!-- Base CSS for header and footer-->
-    <link href="css/template-style.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-    <!--<link href="css/normalize.css" rel="stylesheet">-->
-    <link href="css/main.css" rel="stylesheet">
-
-    <link href="css/bigchart.css" rel="stylesheet">
-    <link href="css/smallchart.css" rel="stylesheet">
-
-    <link href="css/charts.css" rel="stylesheet">
-    <!-- Custom Fonts -->
-    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,800&subset=cyrillic,latin' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=PT+Sans&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/TangleKit.css">
+    <link rel="stylesheet" href="css/application.css">
 
     <!-- OpenGraph Meta Tags -->
-    <meta property="og:site_name" content="ТЕКСТИ.ORG.UA"/>
-    <meta property="og:type" content="article"/>
-    <meta property="og:title" content="___"/>
-    <meta property="og:image" content="http://texty.org.ua/d/___/share.png"/>
-    <meta property="og:description" content="___"/>
-    <meta property="og:url" content="http://texty.org.ua/d/___/"/>
-    <meta property="article:publisher" content="https://www.facebook.com/TEXTY.org.ua"/>
-    <meta property="article:author" content="___">
+    <meta property="og:site_name" content="ТЕКСТИ.ORG.UA" />
+    <meta property="og:type" content="website"/>
+    <meta property="og:title" content="Признач собі пенсію"/>
+    <meta property="og:image" content="http://texty.org.ua/d/pension-game/img/energy-sm.jpg"/>
+    <meta property="og:description" content="І перевір, чи держава зможе її виплатити. Ключовий показник — розмір «дірки» у бюджеті Пенсійного фонду"/>
+    <meta property="og:url" content="http://texty.org.ua/d/pension-game/"/>
 
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:site" content="@textyorgua"/>
     <meta property="twitter:account_id" content="49572937"/>
     <meta name="twitter:card" content="summary_large_image"/>
-    <meta name="twitter:url" content="http://texty.org.ua/d/___/"/>
-    <meta name="twitter:title" content="___"/>
-    <meta name="twitter:description" content="___"/>
-    <meta name="twitter:image:src" content="http://texty.org.ua/d/___/share.png"/>
+    <meta name="twitter:url" content="http://texty.org.ua/d/pension-game/"/>
+    <meta name="twitter:title" content="Признач собі пенсію"/>
+    <meta name="twitter:description" content="І перевір, чи держава зможе її виплатити. Ключовий показник — розмір «дірки» у бюджеті Пенсійного фонду"/>
+    <meta name="twitter:image:src" content="http://texty.org.ua/d/pension-game/img/energy-sm.jpg"/>
     <meta name="twitter:image:width" content="1200"/>
     <meta name="twitter:image:height" content="630"/>
 
-    <style>
-        #deficit {
-            /*width:;!* add the width here *!*/
-            position:relative;
-        }
-        #deficit.scrolling {
-            position:fixed;
-            top:80px;
-        }
-    </style>
+
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,800&subset=cyrillic,latin' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=PT+Sans&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
 </head>
+
+
 <body>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
-                <a href="http://texty.org.ua"><img class="img-responsive logo" src="img/logo-dark.png"></a>
-            </div>
-            <div class="col-lg-1 col-lg-offset-9 col-md-1 col-md-offset-9 col-sm-2 col-sm-offset-6 col-xs-2 col-xs-offset-6">
-                <div class="social-icons">
-                    <a href="https://twitter.com/intent/tweet?text=http://texty.org.ua/d/___/" class="share-btn"><i class="fa fa-twitter fa-fw fa-2x social-tw"></i></a>
-                    <a href="https://www.facebook.com/sharer/sharer.php?u=http://texty.org.ua/d/___/" class="share-btn"><i class="fa fa-facebook fa-fw fa-2x social-fb"></i></a>
-                </div>
-            </div>
+ <!-- Fixed navbar -->
+<div class="row logo-buttons" style="width:100%;">
+    <div class="col-lg-2 col-md-2 col-sm-2  col-xs-4">
+        <a href="http://texty.org.ua"><img class="img-responsive logo" src="img/logo.png"></a>
+    </div>
+    <div class="col-lg-1 col-lg-offset-9 col-md-1 col-md-offset-9 col-sm-2 col-sm-offset-8 col-xs-2 col-xs-offset-6">
+        <div class="social-icons">
+            <a href="https://twitter.com/intent/tweet?text=http://texty.org.ua/d/pension-game/" class="share-btn"><i class="fa fa-twitter fa-fw fa-2x social-tw"></i></a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=http://texty.org.ua/d/pension-game/" class="share-btn"><i class="fa fa-facebook fa-fw fa-2x social-fb"></i></a>
         </div>
+    </div>
+</div>
 
-        <div class="row">
-            <h1 class="text-center header-text">Признач собі пенсію</h1>
+<div class="container cover">
+    <div class="col-lg-6 col-lg-offset-3 col-sm-12" style="padding-top: 46px;">
+        <h1>Признач собі пенсію</h1>
+        <p class="subtitle subtitle-one">І перевір, чи держава зможе її виплатити. Ключовий показник — розмір «дірки» у бюджеті Пенсійного фонду.</p>
+        <p class="subtitle">Ви прокралися до таємного пункту керування українською пенсійною системою. Ви можете керувати балансом Пенсійного фонду і запобігти колапсу усієї системи. Ваше завдання — обмежити дефіцит Пенсійного фонду, не допустивши його падіння до умовної межі $5 млрд. Минулого року дефіцит був рекордним і становив $ 3.22 млрд. Це приблизно 12% минулорічного бюджету крїни. Від Вас залежить доля 12 млн. пенсіонерів. І Ваша доля також — Ви ж теж через якийсь час станете одним із них.</p>
+        <div class="credits">Збір даних і текст: <span>Олександр Оксимець</span>, <span>Лідія Ткаченко</span>, <span>Влад Герасименко</span><br>Опубліковано: 7 лютого 2017 року</div>
+        <div id="start-question" class="text-center">
+            Мені <span id="input-age" class="TKAdjustableNumber" data-var="user_age" data-min="26" data-max="120"></span> років.
+            Я хочу отримувати $<span id="input-pension" class="TKAdjustableNumber" data-var="pension_target" data-min="10" data-max="1000" data-step="10"></span> пенсії.
+            <p><button class="btn btn-success" id="submit" autofocus>Вжууух!</button></p>
         </div>
+    </div>
+</div>
 
-        <div class="container-intro text-center">
-            <p class="intro-text article-text">Ви прокралися до таємного пункту керування українською пенсійною системою. Ви можете керувати балансом Пенсійного фонду і запобігти колапсу усієї системи. Ваше завдання — обмежити дефіцит Пенсійного фонду, не допустивши його падіння до умовної межі $5 млрд. Минулого року дефіцит був рекордним і становив $ 3.22 млрд. Це приблизно 12% минулорічного бюджету крїни. Від Вас залежить доля 12 млн. пенсіонерів. І Ваша доля також — Ви ж теж через якийсь час станете одним із них.</p>
-
-            <!--<div class="row">-->
-                <!--<h4>Історія показників за останні 10 років</h4>-->
-                <!--<br>-->
-                <!--<div class="col-md-3 col-sm-6">-->
-                    <!--<p>Пенсійний вік:</p>-->
-                    <!--<img src="img/graph-template.png" class="history"  alt="">-->
-                <!--</div>-->
-
-                <!--<div class="col-md-3 col-sm-6">-->
-                    <!--<p>Частка платників:</p>-->
-                    <!--<img src="img/graph-template.png" class="history" alt="">-->
-                <!--</div>-->
-
-                <!--<div class="col-md-3 col-sm-6">-->
-                    <!--<p>Ставка ЄСВ:</p>-->
-                    <!--<img src="img/graph-template.png" class="history" alt="">-->
-                <!--</div>-->
-
-                <!--<div class="col-md-3 col-sm-6">-->
-                    <!--<p>Середня пенсія:</p>-->
-                    <!--<img src="img/graph-template.png" class="history" alt="">-->
-                <!--</div>-->
-            <!--</div>-->
-        </div>
-
-        <hr>
-        <div class="row start-question">
-            <div class="col-xs-3"></div>
-            <div class="col-xs-6 text-center center-block">
-                <p><span>Мені </span><input id="input-age" type="number" min="26" max="120" value="35" autocomplete="off"><span>років</span></p>
-                <p><span>Я хочу отримувати </span><input id="input-pension" min="10" max="1000" type="number" value="300" autocomplete="off"><span>$ пенсії</span></p>
-                <p><button class="btn btn-success" id="submit" autofocus>Вжууух!</button></p>
-            </div>
-            <div class="col-xs-3"></div>
-        </div>
-
-
-        <div class="row main-content hidden">
-            <div class="col-md-4">
-                <div>
-                    <div class="step-label">
-                        <div class="number-point text-center">?</div>
-                        <div class="post-number">Ваш вік та очікувана пенсія</div>
-                    </div>
-                    <p id="input_data">
-                        Мені <span id="user_age" class="TKAdjustableNumber" data-var="user_age" data-min="26" data-max="120"></span> років.
-                        Я хочу отримувати $<span id="pension_target" class="TKAdjustableNumber" data-var="pension_target" data-min="10" data-max="1000" data-step="10"></span> пенсії.
-                    </p>
-                </div>
-
-                <!--<div class="step-label">-->
-                    <!--<div class="number-point text-center">0</div>-->
-                    <!--<div class="post-number">Пенсія</div>-->
-                <!--</div>-->
-                <!--&lt;!&ndash;<p>Розмір середньої пенсії за віком <b>в $</b> (станом на початок грудня 2016 року) становить 1800 грн. <b>Зазвичай середня зарплата УТРИЧІ вища, ніж середня пенсія</b></p>&ndash;&gt;-->
-                <!--<div><svg id="pension_avg" class="smallchart" width="350" height="70"></svg></div>-->
-
+<div class="container">
+    <div class="row main-content hidden">
+        <div class="col-md-4" id="left-block">
+            <div>
                 <div class="step-label">
-                    <div class="number-point text-center">1</div>
-                    <div class="post-number">Пенсійний вік</div>
+                    <div class="number-point text-center">?</div>
+                    <div class="post-number">Ваш вік та очікувана пенсія</div>
                 </div>
-                <p>Впливає на витрати ПФ і кількість працівників. Зараз чоловіки йдуть на пенсію у 60 років. Для жінок пенсійний вік зростає щороку на 6 місяців і у 2021-му буде таким же, як у чоловіків</p>
-                <!--<p>Зараз чоловіки йдуть на пенсію у 60 років. Для жінок пенсійний вік зростає щороку на 6 місяців і у 2021-му буде таким же, як у чоловіків</p>-->
-                <div><svg id="pension_age" class="smallchart" width="350" height="70"></svg></div>
-
-                <div class="step-label">
-                    <div class="number-point text-center">2</div>
-                    <div class="post-number">Відрахування із зарплати до Пенсійного фонду</div>
-                </div>
-                <p>Впливає на наповнення Пенсійного фонду та кількість людей, які платять податки. Чим більший розмір відрахувань, тим менше людей їх роблять.</p>
-                <!--<p>Кошти зі сплати Єдиного соціального внеску, що йдуть на пенсійні виплати</p>-->
-                <div><svg id="esv_rate" class="smallchart" width="350" height="70"></svg></div>
-
-                <!--<div class="step-label">-->
-                    <!--<div class="number-point text-center">4</div>-->
-                    <!--<div class="post-number">Частка платників</div>-->
-                <!--</div>-->
-                <!--&lt;!&ndash;<h4>Частка платників</h4>&ndash;&gt;-->
-                <!--<p>Відсоток тих, хто платить Єдиний соціальний внесок</p>-->
-                <!--<div><svg id="payers_rate" class="singlechart" width="350" height="70"></svg></div>-->
-
-                <div class="step-label">
-                    <div class="number-point text-center">3</div>
-                    <div class="post-number">Дерегуляція</div>
-                </div>
-                <p>Впливає на розмір тіньової економіки, а отже і на частку платників пенсійних внесків. Чим більше різних ліцензій і обмежень для бізнесу, тим менше людей платить податки і внески до Пенсійного фонду.</p>
-                <div><svg id="dreg" class="smallchart" width="350" height="70"></svg></div>
-
-                <div class="step-label">
-                    <div class="number-point text-center">4</div>
-                    <div class="post-number">Зарплата</div>
-                </div>
-                <p>Впливає на суму грошей, яка відраховується до Пенсійного фонду. Чим вища у людей зарплата, тим більше грошей у ПФ.</p>
-                <p>Розмір середньої зарплати в $</p>
-                <div><svg id="salary_avg" class="smallchart" width="350" height="70"></svg></div>
-
+                <p id="input_data">
+                    Мені <span id="user_age" class="TKAdjustableNumber" data-var="user_age" data-min="26" data-max="120"></span> років.
+                    Я хочу отримувати $<span id="pension_target" class="TKAdjustableNumber" data-var="pension_target" data-min="10" data-max="1000" data-step="10"></span> пенсії.
+                </p>
             </div>
 
-            <div class="col-md-8">
-                <h2>Врятуй бюджет Пенсійного фонду</h2>
-                <p>Пенсії не платяться з бюджету. Пенсії платяться із внесків працівників до Пенсійного фонду. Та в Україні 12 мільйонів пенсіонерів і трохи більше 10 млн людей, які працюють офіційно і платять відрахування до Пенсійного фонду (ПФ). Там грошей не вистачає, і уряд постійно доплачує у ПФ з бюджету, тобто з тих грошей, які могли б піти, наприклад, на ремонти доріг. Чи можна змінити ситуацію? Спробуйте! <b>На графіках ліворуч змінюйте показники мишкою.</b></p>
-                <p>Модель побудована на основі прогнозу зміни населення Інституту демографії. З плином часу українців ставиме менше і збільшуватиметься частка людей похилого віку. Наприклад у 2050 році нас буде 35 млн. З них 11.8 млн віком 60+</p>
+            <div class="step-label">
+                <div class="number-point text-center">1</div>
+                <div class="post-number">Пенсійний вік</div>
+            </div>
+            <p>Впливає на витрати ПФ і кількість працівників. Зараз чоловіки йдуть на пенсію у 60 років. Для жінок пенсійний вік зростає щороку на 6 місяців і у 2021-му буде таким же, як у чоловіків</p>
+            <div><svg id="pension_age" class="smallchart" width="350" height="70"></svg></div>
 
-                <div id="deficit">
-                    <!--<h3>Прогноз</h3>-->
-                    <h3>Баланс пенсійного фонду</h3>
-                    <svg id="ballance" class="bigchart" width="800" height="200">
-                        <marker id="arrowhead" viewBox="-10 -10 20 20" refX="0" refY="0" markerWidth="20" markerHeight="20" stroke-width="1" orient="auto"><polyline stroke-linejoin="bevel" points="-6.75,-4.75 0,0 -6.75,4.75"></polyline></marker>
+            <div class="step-label">
+                <div class="number-point text-center">2</div>
+                <div class="post-number">Відрахування із зарплати до Пенсійного фонду</div>
+            </div>
+            <p>Впливає на наповнення Пенсійного фонду та кількість людей, які платять податки. Чим більший розмір відрахувань, тим менше людей їх роблять.</p>
+            <div><svg id="esv_rate" class="smallchart" width="350" height="70"></svg></div>
+
+            <div class="step-label">
+                <div class="number-point text-center">3</div>
+                <div class="post-number">Дерегуляція</div>
+            </div>
+            <p>Впливає на розмір тіньової економіки, а отже і на частку платників пенсійних внесків. Чим більше різних ліцензій і обмежень для бізнесу, тим менше людей платить податки і внески до Пенсійного фонду.</p>
+            <div><svg id="dreg" class="smallchart" width="350" height="70"></svg></div>
+
+            <div class="step-label">
+                <div class="number-point text-center">4</div>
+                <div class="post-number">Зарплата</div>
+            </div>
+            <p>Впливає на суму грошей, яка відраховується до Пенсійного фонду. Чим вища у людей зарплата, тим більше грошей у ПФ.</p>
+            <p>Розмір середньої зарплати в $</p>
+            <div><svg id="salary_avg" class="smallchart" width="350" height="70"></svg></div>
+
+        </div>
+
+        <div class="col-md-8">
+            <h2>Врятуй бюджет Пенсійного фонду</h2>
+            <p>Пенсії не платяться з бюджету. Пенсії платяться із внесків працівників до Пенсійного фонду. Та в Україні 12 мільйонів пенсіонерів і трохи більше 10 млн людей, які працюють офіційно і платять відрахування до Пенсійного фонду (ПФ). Там грошей не вистачає, і уряд постійно доплачує у ПФ з бюджету, тобто з тих грошей, які могли б піти, наприклад, на ремонти доріг. Чи можна змінити ситуацію? Спробуйте! <b>На графіках ліворуч змінюйте показники мишкою.</b></p>
+            <p>Модель побудована на основі прогнозу зміни населення Інституту демографії. З плином часу українців ставиме менше і збільшуватиметься частка людей похилого віку. Наприклад у 2050 році нас буде 35 млн. З них 11.8 млн віком 60+</p>
+
+            <div id="deficit">
+                <h3>Баланс пенсійного фонду</h3>
+                <svg id="ballance" class="bigchart" width="800" height="200">
+                    <marker id="arrowhead" viewBox="-10 -10 20 20" refX="0" refY="0" markerWidth="20" markerHeight="20" stroke-width="1" orient="auto"><polyline stroke-linejoin="bevel" points="-6.75,-4.75 0,0 -6.75,4.75"></polyline></marker>
+                </svg>
+
+                <div class="payers_rate_div">
+                    <div class="post-number">Скільки працівників платять внески до ПФ?</div>
+                    <p>Впливає на доходи Пенсійного фонду. В ідеалі показник має бути 100%. Щоб збільшити частку платників внеску, потрібно проводити дерегуляцію, зменшувати корупцію, підвищувати якість державних інститутів  і не рватися піднімати податки.</p>
+                    <svg id="payers_rate" class="bigchart" width="800" height="120">
+                        <!--<marker id="arrowhead" viewBox="-10 -10 20 20" refX="0" refY="0" markerWidth="20" markerHeight="20" stroke-width="1" orient="auto"><polyline stroke-linejoin="bevel" points="-6.75,-6.75 0,0 -6.75,6.75"></polyline></marker>-->
                     </svg>
-
-                    <div class="payers_rate_div">
-                        <div class="post-number">Скільки працівників платять внески до ПФ?</div>
-                        <p>Впливає на доходи Пенсійного фонду. В ідеалі показник має бути 100%. Щоб збільшити частку платників внеску, потрібно проводити дерегуляцію, зменшувати корупцію, підвищувати якість державних інститутів  і не рватися піднімати податки.</p>
-                        <svg id="payers_rate" class="bigchart" width="800" height="120">
-                            <!--<marker id="arrowhead" viewBox="-10 -10 20 20" refX="0" refY="0" markerWidth="20" markerHeight="20" stroke-width="1" orient="auto"><polyline stroke-linejoin="bevel" points="-6.75,-6.75 0,0 -6.75,6.75"></polyline></marker>-->
-                        </svg>
-                    </div>
                 </div>
             </div>
         </div>
     </div>
-<!-- End of your content -->
+
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-9 col-sm-12 col-xs-12">
+        <!-- Begin MailChimp Signup Form -->
+        <link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
+        <style type="text/css">
+            #mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; width:100%;}
+            /* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+               We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+        </style>
+        <div id="mc_embed_signup" style="margin-top: 50px; background-color: rgba(0, 0, 0, 0);">
+        <form action="//texty.us2.list-manage.com/subscribe/post?u=6a4d05e311e165b44ca8ccb21&amp;id=7eccc55fe8" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+            <div id="mc_embed_signup_scroll">
+            <label for="mce-EMAIL">Будь ласка, підпишіться на анонси наших наступних проектів (~два повідомлення на місяць)</label>
+            <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="ваш email" required>
+            <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+            <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_6a4d05e311e165b44ca8ccb21_7eccc55fe8" tabindex="-1" value=""></div>
+            <div class="clear"><input type="submit" value="Додайте мене у список!" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+            </div>
+        </form>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-12">
+            <h4 style="text-align:center"><b>Читайте також</b></h4>
+            <div class="col-sm-4 read-more">
+                <a target="_blank" href="http://texty.org.ua/d/fb-trolls/"><img src="img/trolls.png" class="img-responsive" alt="Тролесфера"></a>
+            </div>
+            <div class="col-sm-4 read-more">
+                <a target="_blank" href="http://texty.org.ua/d/carpathians-3d/"><img src="img/svydovec.png" class="img-responsive" alt="Свидовець. Анатомія Карпат"></a>
+            </div>
+            <div class="col-sm-4 read-more">
+                 <a target="_blank" href="http://texty.org.ua/d/buildings-kyiv/#16.41229/50.46677/30.51564"><img src="img/ruins.png" class="img-responsive" alt="Київські розвалини"></a>
+             </div>
+        </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Footer-->
+<footer id="footer" class="container-fluid">
+    <div id="footer-wraper" class="wraper">
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12 col-md-3 col-sm-3 col-xs-12">
+            <div class="copyright">
+                <p class="p1">&copy; 2016, Тексти.org.ua</p>
+                <p class="p2">Медія для розумних</p>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12 col-md-3 col-sm-3 col-xs-3">
+            <ul class="links">
+                <li><a href="http://texty.org.ua/mod/article/index.php?ed=1">Вибір редакції</a>
+                    <a href="http://texty.org.ua/mod/article/?view=rss&amp;ed=1">(RSS)</a>
+                </li>
+                <li><a href="http://texty.org.ua/mod/video/">Відео</a>
+                    <a href="http://texty.org.ua/mod/video/?view=rss">(RSS)</a>
+                </li>
+                <li><a href="http://texty.org.ua/mod/article/">Статті</a>
+                    <a href="http://texty.org.ua/mod/article/?view=rss">(RSS)</a>
+                </li>
+                <li><a href="http://texty.org.ua/mod/news/">Новини</a>
+                    <a href="http://texty.org.ua/mod/news/?view=rss">(RSS)</a>
+                </li>
+                <li><a href="http://texty.org.ua/mod/blog/everyone.php">Блоги</a>
+                    <a href="http://texty.org.ua/mod/blog/blog_list.php?view=rss">(RSS)</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12 col-md-3 col-sm-3 col-xs-3">
+            <ul class="links">
+                <li>
+                    <a href="http://texty.org.ua/mod/archive/tag.php?tag=%D0%BA%D0%BE%D0%BD%D1%86%D0%B5%D0%BF%D1%86%D1%96%D1%8F">Концепції</a>
+                </li>
+                <li>
+                    <a href="http://texty.org.ua/mod/archive/tag.php?tag=%D1%80%D0%B5%D1%84%D0%BE%D1%80%D0%BC%D0%B8">Реформи</a>
+                </li>
+                <li><a href="http://texty.org.ua/mod/archive/tag.php?tag=%D0%B4%D0%BE%D1%81%D0%B2%D1%96%D0%B4">Важливий досвід</a></li>
+                <li><a href="http://texty.org.ua/mod/archive/tag.php?tag=%D1%96%D0%BD%D0%BE%D0%B7%D0%BC%D1%96">Найцікавіше з інозмі</a></li>
+                <li><a href="http://texty.org.ua/pg/blog/infoviz">Журналістика даних</a></li>
+            </ul>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12 col-md-3 col-sm-3 col-xs-3">
+            <ul class="links">
+                <li><a href="http://texty.org.ua/mod/pages/donate.php" class="support-site">Підтримай сайт фінансово!</a></li>
+                <li><a href="http://facebook.com/texty.org.ua">Ми у Фейсбуці</a></li>
+                <li><a href="http://twitter.com/textyorgua">Ми у Твітері</a></li>
+                <li><a href="http://texty.org.ua/pg/pages/view/22">Про нас</a></li>
+                <li><a href="http://texty.org.ua/mod/archive/">Архів</a></li>
+            </ul>
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="copying-info">
+                Матеріали ТЕКСТИ.org.ua можна поширювати згідно з ліцензією Creative Commons з обов’язковим посиланням.
+                Велике прохання ставити гіперпосилання в першому чи другому абзаці вашого матеріалу.
+            </div>
+        </div>
+    </div>
+</footer>
+
 
 <script src="lib/jquery-2.1.4.min.js"></script>
-<!--<script src="lib/jquery.knob.min.js"></script>-->
-<!--<script src="lib/jquery-ui-1.12.1.js"></script>-->
-<script src="lib/bootstrap.min.js"></script>
-<!--<script src="lib/bootstrap-slider.min.js"></script>-->
-<!--<script src="lib/ion.rangeSlider.min.js"></script>-->
-<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+<!--<script src="lib/bootstrap.min.js"></script>-->
 <script src="lib/share-behavior.js"></script>
 
 <script src="lib/d3.v4.min.js"></script>
@@ -229,21 +257,77 @@
 <script src="js/smallchart.js"></script>
 <script src="js/bigchart.js"></script>
 <script src="js/main.js"></script>
+<script src="js/share-behavior.js"></script>
 <script>
-    $(function(){
-        $(window).scroll(function () {
-            if($(this).scrollTop() > window.deficit_top) {
-                $('#deficit').addClass('scrolling');
-            } else {
-                $('#deficit').removeClass('scrolling');
-            }
-        });
-    });
+ $(function(){
+     $(window).scroll(function () {
+         if ($(this).scrollTop() >  $('#left-block').offset().top + $('#left-block').height() -  $('#deficit').height() - 80) {
+             $('#deficit').removeClass('scrolling');
+             $('#deficit').addClass('absolute');
+             $('#deficit').css("top", $('#left-block').height() - $('#deficit').height());
+             return;
+         }
+
+         if($(this).scrollTop() > window.deficit_top) {
+             $('#deficit').addClass('scrolling');
+             $('#deficit').removeClass('absolute');
+             $('#deficit').css("top", "");
+         } else {
+             $('#deficit').removeClass('scrolling');
+             $('#deficit').removeClass('absolute');
+             $('#deficit').css("top", "");
+         }
+     });
+ });
 
 </script>
 
 
-<!--todo add Google analytics -->
+<script>
+
+// Animated Logo
+$(window).scroll(function() {
+    $(".logo").fadeOut( "slow" );
+    if ($(window).scrollTop() == 0) {
+        $(".logo").css('display', 'block');
+    }
+});
+</script>
+
+<script>
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-18136548-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+
+<script>
+    (function() {
+        setUpTangle(35, 300);
+
+        function setUpTangle(user_age, pension_target) {
+            var element = document.getElementById("start-question");
+            var age = document.getElementById("input-age");
+            var pension = document.getElementById("input-pension");
+
+            var tangle = new Tangle(element, {
+                initialize: function () {
+                    this.user_age = user_age;
+                    this.pension_target = pension_target;
+                },
+                update: function () {
+                    age.setAttribute('value', this.user_age);
+                    pension.setAttribute('value', this.pension_target);
+                }
+            });
+        }
+    })();
+
+</script>
 
 </body>
 </html>
