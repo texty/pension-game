@@ -13,6 +13,7 @@
 
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/TangleKit.css">
+    <link rel="stylesheet" href="css/jquery-ui.min.css">
     <link rel="stylesheet" href="css/application.css">
 
     <!-- OpenGraph Meta Tags -->
@@ -76,7 +77,7 @@
         <div class="col-md-4" id="left-block">
             <div>
                 <div class="step-label">
-                    <div class="number-point text-center">?</div>
+                    <!--<div class="number-point text-center">?</div>-->
                     <div class="post-number">Ваш вік та очікувана пенсія</div>
                 </div>
                 <p id="input_data">
@@ -88,6 +89,7 @@
             <div class="step-label">
                 <div class="number-point text-center">1</div>
                 <div class="post-number">Пенсійний вік</div>
+                <div class="step-hint" data-varname="pension_age">i</div>
             </div>
             <p>Впливає на витрати ПФ і кількість працівників. Зараз чоловіки йдуть на пенсію у 60 років. Для жінок пенсійний вік зростає щороку на 6 місяців і у 2021-му буде таким же, як у чоловіків</p>
             <div><svg id="pension_age" class="smallchart" width="350" height="70"></svg></div>
@@ -95,6 +97,7 @@
             <div class="step-label">
                 <div class="number-point text-center">2</div>
                 <div class="post-number">Відрахування із зарплати до Пенсійного фонду</div>
+                <div class="step-hint" data-varname="esv_rate">i</div>
             </div>
             <p>Впливає на наповнення Пенсійного фонду та кількість людей, які платять податки. Чим більший розмір відрахувань, тим менше людей їх роблять.</p>
             <div><svg id="esv_rate" class="smallchart" width="350" height="70"></svg></div>
@@ -102,6 +105,7 @@
             <div class="step-label">
                 <div class="number-point text-center">3</div>
                 <div class="post-number">Дерегуляція</div>
+                <div class="step-hint" data-varname="dreg">i</div>
             </div>
             <p>Впливає на розмір тіньової економіки, а отже і на частку платників пенсійних внесків. Чим більше різних ліцензій і обмежень для бізнесу, тим менше людей платить податки і внески до Пенсійного фонду.</p>
             <div><svg id="dreg" class="smallchart" width="350" height="70"></svg></div>
@@ -109,6 +113,7 @@
             <div class="step-label">
                 <div class="number-point text-center">4</div>
                 <div class="post-number">Зарплата</div>
+                <div class="step-hint" data-varname="salary_avg">i</div>
             </div>
             <p>Впливає на суму грошей, яка відраховується до Пенсійного фонду. Чим вища у людей зарплата, тим більше грошей у ПФ.</p>
             <p>Розмір середньої зарплати в $</p>
@@ -239,12 +244,14 @@
 
 
 <script src="lib/jquery-2.1.4.min.js"></script>
+<script src="lib/jquery-ui.min.js"></script>
 <!--<script src="lib/bootstrap.min.js"></script>-->
 <script src="lib/share-behavior.js"></script>
 
 <script src="lib/d3.v4.min.js"></script>
 <script src="lib/d3-jetpack.js"></script>
 <script src="lib/swoopyArrows.js"></script>
+<script src="js/share-behavior.js"></script>
 <script src="js/demographics.js"></script>
 <script src="js/model.js"></script>
 
@@ -257,7 +264,7 @@
 <script src="js/smallchart.js"></script>
 <script src="js/bigchart.js"></script>
 <script src="js/main.js"></script>
-<script src="js/share-behavior.js"></script>
+<script src="js/hints.js"></script>
 <script>
  $(function(){
      $(window).scroll(function () {
@@ -329,6 +336,16 @@ $(window).scroll(function() {
         }
     })();
 
+    $(document).ready(function() {
+        var url = window.location.href;
+        console.log(url);
+        if( url.indexOf('#') < 0 ) {
+            window.location.replace(url + "#");
+        } else {
+            window.location.replace(url);
+        }
+
+    });
 </script>
 
 </body>
