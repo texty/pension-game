@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,QAAS;EACL,mCAAmC;EACnC,QAAQ,EAAC,QAAQ;;AAErB,kBAAmB;EACf,QAAQ,EAAC,KAAK;EACd,GAAG,EAAC,IAAI",
+"sources": ["../scss/scrolly.scss"],
+"names": [],
+"file": "scrolly.css"
+}
