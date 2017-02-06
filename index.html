@@ -261,6 +261,8 @@
 <script>
  $(function(){
      $(window).scroll(function () {
+         if ($(".main-content").hasClass("hidden")) return;
+
          if ($(this).scrollTop() >  $('#left-block').offset().top + $('#left-block').height() -  $('#deficit').height() - 80) {
              $('#deficit').removeClass('scrolling');
              $('#deficit').addClass('absolute');
