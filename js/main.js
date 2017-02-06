@@ -2,15 +2,16 @@
 
 d3.select("#submit").on("click", function() {
     d3.select(".main-content").classed("hidden", false);
-    d3.select(".start-question").classed("hidden", true);
+    d3.select("#start-question").classed("hidden", true);
     window.deficit_top = $("#deficit").offset().top - 80;
+    window.deficit_bottom = $("#deficit").offset().bottom;
 
     $('html,body').animate({
         scrollTop: $(".main-content").offset().top
     }, 1000);
 
-    var pension_target_size = +d3.select('#input-pension').node().value;
-    var user_age = +d3.select('#input-age').node().value;
+    var pension_target_size = +d3.select('#input-pension').attr("value");
+    var user_age = +d3.select('#input-age').attr("value");
 
     // d3.select("#user_age").text(user_age);
     // d3.select("#pension_target").text(pension_target_size);
