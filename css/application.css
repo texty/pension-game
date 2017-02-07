@@ -430,4 +430,9 @@ img {
 .disclaimer h5 {
   font-weight: 800; }
 
+.disclaimer .pointer {
+  cursor: pointer;
+  border-bottom: 1px dashed;
+  display: inline-block; }
+
 /*# sourceMappingURL=application.css.map */
