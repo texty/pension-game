@@ -38,9 +38,10 @@ d3.select("#submit").on("click", function() {
            dreg: last_in_history.dreg
        }
     });
+    var future_start = [last(history)].concat(future);
 
     var current_year = new Date().getFullYear();
-    var pension_year = calc_pension_year(current_year, user_age, future);
+    var pension_year = calc_pension_year(current_year, user_age, future_start);
 
     var pension_size_scale = d3.scaleLinear()
         .domain([last_in_history.year, pension_year])
@@ -48,7 +49,6 @@ d3.select("#submit").on("click", function() {
 
     future.forEach(function(d) { d.pension_avg = pension_size_scale(d.year) });
 
-    var future_start = [last(history)].concat(future);
 
     var pension_age = smallchart()
         .historical(history)
@@ -188,7 +188,7 @@ d3.select("#submit").on("click", function() {
     }
 
     function update_pension_age_changed(including_previous) {
-        var pension_year = calc_pension_year(current_year, user_age, future);
+        var pension_year = calc_pension_year(current_year, user_age, future_start);
 
         //recalc pension_avg
         recalc_pension_avg(pension_year);
@@ -235,12 +235,12 @@ d3.select("#submit").on("click", function() {
         });
     }
 
-    function calc_pension_year(current_year, user_age, future) {
+    function calc_pension_year(current_year, user_age, future_start) {
         var f1, f2, age_y1, age_y2;
 
-        for (var i = 0; i < future.length - 1; i++) {
-            f1 = future[i];
-            f2 = future[i+1];
+        for (var i = 0; i < future_start.length - 1; i++) {
+            f1 = future_start[i];
+            f2 = future_start[i+1];
 
             age_y1 = user_age + f1.year - current_year;
             age_y2 = user_age + f2.year - current_year;
