@@ -33,8 +33,12 @@ h1 {
 }
 
 h2 {
-  @include text(2em, 2em, bold);
+  @include text(18px, 2em, normal);
     margin-bottom: 4px;
+}
+
+h2.caption {
+    @include text(18px, 2em, bold);
 }
 
 h3 {
