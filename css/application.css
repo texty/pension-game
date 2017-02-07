@@ -32,7 +32,8 @@ h1 {
 h2 {
   font-size: 2em;
   line-height: 2em;
-  font-weight: bold; }
+  font-weight: bold;
+  margin-bottom: 4px; }
 
 h3 {
   font-size: 1.8em;
@@ -408,5 +409,20 @@ img {
 
 .payers_rate_div {
   margin-top: 48px; }
+
+.disclaimer h4 {
+  border-top: 3px solid #383e47;
+  font-weight: 600;
+  padding-top: 0.5em;
+  width: 15%; }
+
+.disclaimer {
+  margin-top: 80px; }
+  .disclaimer p, .disclaimer li, .disclaimer h5 {
+    font-size: 12px;
+    line-height: 1.5; }
+
+.disclaimer h5 {
+  font-weight: 800; }
 
 /*# sourceMappingURL=application.css.map */

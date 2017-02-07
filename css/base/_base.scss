@@ -34,6 +34,7 @@ h1 {
 
 h2 {
   @include text(2em, 2em, bold);
+    margin-bottom: 4px;
 }
 
 h3 {

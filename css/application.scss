@@ -225,3 +225,23 @@ img {
 .payers_rate_div {
   margin-top: 48px;
 }
+
+.disclaimer h4 {
+  border-top: 3px solid #383e47;
+  font-weight: 600;
+  padding-top: 0.5em;
+  width: 15%;
+}
+
+.disclaimer {
+  p, li, h5{
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  margin-top: 80px;
+}
+
+.disclaimer h5 {
+  font-weight: 800;
+}

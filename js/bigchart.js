@@ -50,7 +50,7 @@ function bigchart() {
             
             svg = d3.select(this);
 
-            var margin = {top: 20, right: 80, bottom: 30, left: 50}
+            var margin = {top: 20, right: 80, bottom: 30, left: 30}
                 , width = svg.attr("width") - margin.left - margin.right
                 , height = svg.attr("height") - margin.top - margin.bottom
                 , g = svg.append("g").translate([margin.left, margin.top])
