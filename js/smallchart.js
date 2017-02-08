@@ -19,6 +19,7 @@ function smallchart() {
 
         , minValueY
         , maxValueY
+        , circleRadius
 
         // , handlePoints = [2020, 2025, 2030, 2035, 2040, 2045, 2050]
         ;
@@ -30,6 +31,8 @@ function smallchart() {
             var w = svg.node().getBoundingClientRect().width;
             var mh = +svg.attr("data-min-height");
             var h = Math.max(mh, w * (+svg.attr("data-aspect-ratio")));
+
+            circleRadius = d3.select("body").classed("xs") ? 15 : 5;
 
             var margin = {top: 5, right: 15, bottom: 15, left: 20}
                 , width = w - margin.left - margin.right
@@ -151,7 +154,7 @@ function smallchart() {
                 .attr("class", 'handle')
                 .attr('cx', function(d) {return x(d.year)})
                 .attr('cy', function(d) {return y(d[varName])})
-                .attr('r', 5.0)
+                .attr('r', circleRadius)
                 .call(d3.drag()
                     .on("drag", dragged)
                     .on("end", dragend)
