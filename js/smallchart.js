@@ -32,7 +32,7 @@ function smallchart() {
             var mh = +svg.attr("data-min-height");
             var h = Math.max(mh, w * (+svg.attr("data-aspect-ratio")));
 
-            circleRadius = d3.select("body").classed("xs") ? 15 : 5;
+            circleRadius = d3.select("body").classed("xs") ? 12 : 5;
 
             var margin = {top: 5, right: 15, bottom: 15, left: 20}
                 , width = w - margin.left - margin.right
