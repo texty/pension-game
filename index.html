@@ -82,7 +82,27 @@
 
 <div class="container">
     <div class="row main-content hidden">
-        <div class="col-sm-4" id="left-block">
+        <div class="col-xs-12 col-sm-8 pull-right">
+            <h2 class="caption">Врятуй бюджет Пенсійного фонду</h2>
+            <p>Пенсії не платяться з бюджету. Пенсії платяться із внесків працівників до Пенсійного фонду. Та в Україні 12 мільйонів пенсіонерів і трохи більше 10 млн людей, які працюють офіційно і платять відрахування до Пенсійного фонду (ПФ). Там грошей не вистачає, і уряд постійно доплачує у ПФ з бюджету, тобто з тих грошей, які могли б піти, наприклад, на ремонти доріг. Чи можна змінити ситуацію? Спробуйте! <b>На графіках ліворуч змінюйте показники мишкою.</b></p>
+            <p>Модель побудована на основі прогнозу зміни населення Інституту демографії. З плином часу українців ставатиме менше і збільшуватиметься частка людей похилого віку. Наприклад у 2050 році нас буде 35 млн. З них 11.8 млн віком 60+</p>
+
+            <div id="deficit">
+                <h2>Баланс пенсійного фонду</h2>
+                <p class="hidden-xs">На цьому графіку показаний дефіцит Пенсійного фонду. Низька народжуваність, високий рівень еміграції, а також намагання політиків <a class="dotted" href=http://texty.org.ua/pg/article/solodko/read/74140/>витрачати на соціалку більше, ніж країна заробляє</a>, і спричинили те, що видатки Пенсійного фонду суттєво перевищують його доходи. Через це з державного бюджету щороку виділяються шалені кошти на покриття дефіциту. Тільки у 2016 році на «пенсії» уряд виділив понад 88 млрд грн — це більше, ніж на армію, бюджет якої того ж року становив 58 млрд грн. Пенсійні гроші можна було б вкладати в оборону, відновлення доріг чи енергозбереження та підвищувати добробут українців.</p>
+                <svg id="ballance" class="bigchart" width="800" height="250">
+                    <marker id="arrowhead" viewBox="-10 -10 20 20" refX="0" refY="0" markerWidth="20" markerHeight="20" stroke-width="1" orient="auto"><polyline stroke-linejoin="bevel" points="-6.75,-4.75 0,0 -6.75,4.75"></polyline></marker>
+                </svg>
+
+                <h2 style="margin-top:48px;">Скільки працівників платять внески до ПФ?</h2>
+                <p class="hidden-xs">Впливає на доходи Пенсійного фонду. В ідеалі показник має бути 100%. Щоб збільшити частку платників внеску, потрібно проводити дерегуляцію, зменшувати корупцію, підвищувати якість державних інститутів  і не рватися піднімати податки.</p>
+                <svg id="payers_rate" class="bigchart" width="800" height="120">
+                    <!--<marker id="arrowhead" viewBox="-10 -10 20 20" refX="0" refY="0" markerWidth="20" markerHeight="20" stroke-width="1" orient="auto"><polyline stroke-linejoin="bevel" points="-6.75,-6.75 0,0 -6.75,6.75"></polyline></marker>-->
+                </svg>
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-sm-4 pull-left" id="left-block">
             <div>
                 <div class="step-label" style="margin-top: 24px;">
                     <!--<div class="number-point text-center">?</div>-->
@@ -126,26 +146,6 @@
             <p>Чим вища у людей зарплата, тим більше грошей у Пенсійному Фонді.</p>
             <p>Розмір середньої зарплати в $</p>
             <div><svg id="salary_avg" class="smallchart" width="350" height="70"></svg></div>
-        </div>
-
-        <div class="col-sm-8">
-            <h2 class="caption">Врятуй бюджет Пенсійного фонду</h2>
-            <p>Пенсії не платяться з бюджету. Пенсії платяться із внесків працівників до Пенсійного фонду. Та в Україні 12 мільйонів пенсіонерів і трохи більше 10 млн людей, які працюють офіційно і платять відрахування до Пенсійного фонду (ПФ). Там грошей не вистачає, і уряд постійно доплачує у ПФ з бюджету, тобто з тих грошей, які могли б піти, наприклад, на ремонти доріг. Чи можна змінити ситуацію? Спробуйте! <b>На графіках ліворуч змінюйте показники мишкою.</b></p>
-            <p>Модель побудована на основі прогнозу зміни населення Інституту демографії. З плином часу українців ставатиме менше і збільшуватиметься частка людей похилого віку. Наприклад у 2050 році нас буде 35 млн. З них 11.8 млн віком 60+</p>
-
-            <div id="deficit">
-                <h2>Баланс пенсійного фонду</h2>
-                <p>На цьому графіку показаний дефіцит Пенсійного фонду. Низька народжуваність, високий рівень еміграції, а також намагання політиків <a class="dotted" href=http://texty.org.ua/pg/article/solodko/read/74140/>витрачати на соціалку більше, ніж країна заробляє</a>, і спричинили те, що видатки Пенсійного фонду суттєво перевищують його доходи. Через це з державного бюджету щороку виділяються шалені кошти на покриття дефіциту. Тільки у 2016 році на «пенсії» уряд виділив понад 88 млрд грн — це більше, ніж на армію, бюджет якої того ж року становив 58 млрд грн. Пенсійні гроші можна було б вкладати в оборону, відновлення доріг чи енергозбереження та підвищувати добробут українців.</p>
-                <svg id="ballance" class="bigchart" width="800" height="250">
-                    <marker id="arrowhead" viewBox="-10 -10 20 20" refX="0" refY="0" markerWidth="20" markerHeight="20" stroke-width="1" orient="auto"><polyline stroke-linejoin="bevel" points="-6.75,-4.75 0,0 -6.75,4.75"></polyline></marker>
-                </svg>
-
-                <h2 style="margin-top:48px;">Скільки працівників платять внески до ПФ?</h2>
-                <p>Впливає на доходи Пенсійного фонду. В ідеалі показник має бути 100%. Щоб збільшити частку платників внеску, потрібно проводити дерегуляцію, зменшувати корупцію, підвищувати якість державних інститутів  і не рватися піднімати податки.</p>
-                <svg id="payers_rate" class="bigchart" width="800" height="120">
-                    <!--<marker id="arrowhead" viewBox="-10 -10 20 20" refX="0" refY="0" markerWidth="20" markerHeight="20" stroke-width="1" orient="auto"><polyline stroke-linejoin="bevel" points="-6.75,-6.75 0,0 -6.75,6.75"></polyline></marker>-->
-                </svg>
-            </div>
         </div>
 
         <div class="col-xs-12 col-md-8 col-md-offset-2 disclaimer">
@@ -322,6 +322,7 @@
 <script src="lib/jquery-2.1.4.min.js"></script>
 <script src="lib/jquery-ui.min.js"></script>
 <script src="lib/bootstrap.min.js"></script>
+<script src="lib/bootstrap-toolkit.min.js"></script>
 <script src="lib/share-behavior.js"></script>
 
 <script src="lib/d3.v4.min.js"></script>
@@ -342,31 +343,79 @@
 <script src="js/main.js"></script>
 <script src="js/hints.js"></script>
 <script>
- $(function(){
-     $(window).scroll(function () {
-         if ($(".main-content").hasClass("hidden")) return;
 
-         var deficit = $("#deficit");
-         var left_block = $("#left-block");
+(function($, viewport){
+    var body = $("body");
 
-         if ($(this).scrollTop() >  left_block.offset().top + left_block.height() -  deficit.height() - 20) {
-             deficit.removeClass('scrolling');
-             deficit.addClass('absolute');
-             deficit.css("top", left_block.height() - deficit.height());
-             return;
-         }
+    function updateViewport() {
+        if (viewport.is('xs')) {
+            body.addClass("xs");
+            body.removeClass("sm");
+            body.removeClass("md");
+            body.removeClass("lg");
+        }
 
-         if($(this).scrollTop() > window.deficit_top) {
-             deficit.addClass('scrolling');
-             deficit.removeClass('absolute');
-             deficit.css("top", "");
-         } else {
-             deficit.removeClass('scrolling');
-             deficit.removeClass('absolute');
-             deficit.css("top", "");
-         }
-     });
- });
+        if (viewport.is('sm')) {
+            body.removeClass("xs");
+            body.addClass("sm");
+            body.removeClass("md");
+            body.removeClass("lg");
+        }
+
+        if (viewport.is('md')) {
+            body.removeClass("xs");
+            body.removeClass("sm");
+            body.addClass("md");
+            body.removeClass("lg");
+        }
+
+        if (viewport.is('lg')) {
+            body.removeClass("xs");
+            body.removeClass("sm");
+            body.removeClass("md");
+            body.addClass("lg");
+        }
+    }
+
+    $(document).ready(updateViewport);
+
+    $(window).resize(viewport.changed(updateViewport));
+
+})(jQuery, ResponsiveBootstrapToolkit);
+
+
+$(function(){
+    $(window).scroll(function () {
+        if ($(".main-content").hasClass("hidden")) return;
+
+        var deficit = $("#deficit");
+        if ($("body").hasClass("xs")) {
+            deficit.removeClass('scrolling');
+            deficit.removeClass('absolute');
+            deficit.css("top", "");
+            return;
+        }
+
+        var left_block = $("#left-block");
+
+        if ($(this).scrollTop() > left_block.offset().top + left_block.height() - deficit.height() - 20) {
+            deficit.removeClass('scrolling');
+            deficit.addClass('absolute');
+            deficit.css("top", left_block.height() - deficit.height());
+            return;
+        }
+
+        if ($(this).scrollTop() > window.deficit_top) {
+            deficit.addClass('scrolling');
+            deficit.removeClass('absolute');
+            deficit.css("top", "");
+        } else {
+            deficit.removeClass('scrolling');
+            deficit.removeClass('absolute');
+            deficit.css("top", "");
+        }
+    });
+});
 </script>
 
 
