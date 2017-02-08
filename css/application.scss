@@ -251,3 +251,9 @@ img {
   border-bottom: 1px dashed;
   display: inline-block;
 }
+
+@media  #{$brk-narrow} {
+  #deficit {
+    h2 {@include text(16px, 1.4, normal);}
+  }
+}

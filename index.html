@@ -377,7 +377,11 @@
         }
     }
 
-    $(document).ready(updateViewport);
+    $(document).ready(function(){
+        updateViewport();
+
+        if (body.hasClass("xs")) $("svg#ballance").attr("data-min-height", "120");
+    });
 
     $(window).resize(viewport.changed(updateViewport));
 
