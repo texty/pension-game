@@ -260,6 +260,12 @@ svg#payers_rate .tip text {
   position: absolute;
   top: 20px; }
 
+#deficit.scrolling-xs {
+  position: fixed;
+  top: 0;
+  background: white;
+  z-index: 1000; }
+
 .cover {
   margin-bottom: 15%; }
 

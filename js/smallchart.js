@@ -26,12 +26,17 @@ function smallchart() {
     function my(selection) {
         selection.each(function(d) {
 
-            var svg = d3.select(this)
-                , margin = {top: 5, right: 15, bottom: 15, left: 20}
-                , width = +svg.attr("width") - margin.left - margin.right
-                , height = +svg.attr("height") - margin.top - margin.bottom
+            var svg = d3.select(this);
+            var w = svg.node().getBoundingClientRect().width;
+            var mh = +svg.attr("data-min-height");
+            var h = Math.max(mh, w * (+svg.attr("data-aspect-ratio")));
+
+            var margin = {top: 5, right: 15, bottom: 15, left: 20}
+                , width = w - margin.left - margin.right
+                , height = h - margin.top - margin.bottom
                 , g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")")
                 ;
+            svg.attr("height", h);
 
             x = d3.scaleLinear()
                 .range([0, width]);

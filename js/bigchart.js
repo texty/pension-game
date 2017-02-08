@@ -47,14 +47,18 @@ function bigchart() {
     
     function my(selection) {
         selection.each(function(d){
-            
-            svg = d3.select(this);
 
-            var margin = {top: 20, right: 80, bottom: 30, left: 30}
-                , width = svg.attr("width") - margin.left - margin.right
-                , height = svg.attr("height") - margin.top - margin.bottom
+            svg = d3.select(this);
+            var w = svg.node().getBoundingClientRect().width;
+            var mh = +svg.attr("data-min-height");
+            var h = Math.max(mh, w * (+svg.attr("data-aspect-ratio")));
+
+            var margin = {top: 20, right: 5, bottom: 30, left: 30}
+                , width = w - margin.left - margin.right
+                , height = h - margin.top - margin.bottom
                 , g = svg.append("g").translate([margin.left, margin.top])
                 ;
+            svg.attr("height", h);
 
             if (clip) {
                 svg.append('clipPath')

@@ -90,13 +90,13 @@
             <div id="deficit">
                 <h2>Баланс пенсійного фонду</h2>
                 <p class="hidden-xs">На цьому графіку показаний дефіцит Пенсійного фонду. Низька народжуваність, високий рівень еміграції, а також намагання політиків <a class="dotted" href=http://texty.org.ua/pg/article/solodko/read/74140/>витрачати на соціалку більше, ніж країна заробляє</a>, і спричинили те, що видатки Пенсійного фонду суттєво перевищують його доходи. Через це з державного бюджету щороку виділяються шалені кошти на покриття дефіциту. Тільки у 2016 році на «пенсії» уряд виділив понад 88 млрд грн — це більше, ніж на армію, бюджет якої того ж року становив 58 млрд грн. Пенсійні гроші можна було б вкладати в оборону, відновлення доріг чи енергозбереження та підвищувати добробут українців.</p>
-                <svg id="ballance" class="bigchart" width="800" height="250">
+                <svg id="ballance" class="bigchart" width="100%" data-aspect-ratio="0.3125" data-min-height="150">
                     <marker id="arrowhead" viewBox="-10 -10 20 20" refX="0" refY="0" markerWidth="20" markerHeight="20" stroke-width="1" orient="auto"><polyline stroke-linejoin="bevel" points="-6.75,-4.75 0,0 -6.75,4.75"></polyline></marker>
                 </svg>
 
                 <h2 style="margin-top:48px;">Скільки працівників платять внески до ПФ?</h2>
                 <p class="hidden-xs">Впливає на доходи Пенсійного фонду. В ідеалі показник має бути 100%. Щоб збільшити частку платників внеску, потрібно проводити дерегуляцію, зменшувати корупцію, підвищувати якість державних інститутів  і не рватися піднімати податки.</p>
-                <svg id="payers_rate" class="bigchart" width="800" height="120">
+                <svg id="payers_rate" class="bigchart" width="100%" data-aspect-ratio="0.15" data-min-height="88">
                     <!--<marker id="arrowhead" viewBox="-10 -10 20 20" refX="0" refY="0" markerWidth="20" markerHeight="20" stroke-width="1" orient="auto"><polyline stroke-linejoin="bevel" points="-6.75,-6.75 0,0 -6.75,6.75"></polyline></marker>-->
                 </svg>
             </div>
@@ -120,7 +120,7 @@
                 <div class="step-hint" data-varname="pension_age">i</div>
             </div>
             <p>Впливає на витрати Пенсійного Фонду та кількість працівників.</p>
-            <div><svg id="pension_age" class="smallchart" width="350" height="70"></svg></div>
+            <div><svg id="pension_age" class="smallchart" width="100%" data-aspect-ratio="0.2" data-min-height="72"></svg></div>
 
             <div class="step-label">
                 <div class="number-point text-center">2</div>
@@ -128,7 +128,7 @@
                 <div class="step-hint" data-varname="esv_rate">i</div>
             </div>
             <p>Обережно: збільшення розміру відрахування зменшує кількість людей, що їх платять - підприємства закриваються або йдуть у тінь.</p>
-            <div><svg id="esv_rate" class="smallchart" width="350" height="70"></svg></div>
+            <div><svg id="esv_rate" class="smallchart" width="100%" data-aspect-ratio="0.2" data-min-height="72"></svg></div>
 
             <div class="step-label">
                 <div class="number-point text-center">3</div>
@@ -136,7 +136,7 @@
                 <div class="step-hint" data-varname="dreg">i</div>
             </div>
             <p>Впливає на розмір тіньової економіки, а отже і на кількість пенсійних внесків.</p>
-            <div><svg id="dreg" class="smallchart" width="350" height="70"></svg></div>
+            <div><svg id="dreg" class="smallchart" width="100%" data-aspect-ratio="0.2" data-min-height="72"></svg></div>
 
             <div class="step-label">
                 <div class="number-point text-center">4</div>
@@ -145,7 +145,7 @@
             </div>
             <p>Чим вища у людей зарплата, тим більше грошей у Пенсійному Фонді.</p>
             <p>Розмір середньої зарплати в $</p>
-            <div><svg id="salary_avg" class="smallchart" width="350" height="70"></svg></div>
+            <div><svg id="salary_avg" class="smallchart" width="100%" data-aspect-ratio="0.2" data-min-height="72"></svg></div>
         </div>
 
         <div class="col-xs-12 col-md-8 col-md-offset-2 disclaimer">
@@ -389,14 +389,23 @@ $(function(){
         if ($(".main-content").hasClass("hidden")) return;
 
         var deficit = $("#deficit");
+        var left_block = $("#left-block");
+
         if ($("body").hasClass("xs")) {
             deficit.removeClass('scrolling');
             deficit.removeClass('absolute');
             deficit.css("top", "");
+
+            if ($(this).scrollTop() > window.deficit_top && $(this).scrollTop() < left_block.offset().top + left_block.height() - deficit.height()) {
+                deficit.addClass("scrolling-xs");
+                left_block.css("margin-top", deficit.height());
+            } else {
+                deficit.removeClass("scrolling-xs");
+                left_block.css("margin-top", "");
+            }
             return;
         }
 
-        var left_block = $("#left-block");
 
         if ($(this).scrollTop() > left_block.offset().top + left_block.height() - deficit.height() - 20) {
             deficit.removeClass('scrolling');
